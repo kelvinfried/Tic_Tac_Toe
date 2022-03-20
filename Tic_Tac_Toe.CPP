@@ -157,8 +157,11 @@ int main(void )
 //Win Test Part 2
 	std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
 	//Incriment
-	test.Incriment_Win_Count();
-	std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
+	for(int i= 0; i<4; i++ )
+	{
+		test.Incriment_Win_Count();
+		std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
+	}
 	
 	//std::cout<<"Test output" <<std::endl;
 	
