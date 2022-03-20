@@ -8,6 +8,7 @@ class Player
 	private:
 	//Attrubutes
 		std::string* name;
+		int* wins;
 		
 	public:
 	//Getters and Setters - Function Prototypes
@@ -15,12 +16,16 @@ class Player
 		std::string* Get_Name(void );
 		void Set_Name(std::string* new_name );
 		
+		//Wins
+		int* Get_Wins(void );
+		void Incriment_Wins(void );
+		
 	//Constructor- Called upon object creation
 		//Default
 	Player(void );
 	
 		//Over Ridden
-	Player(std::string* new_name );
+	Player(std::string* new_name, int* wins );
 	
 	//Destructor- Called upon object deletion
 	~Player(void );	
