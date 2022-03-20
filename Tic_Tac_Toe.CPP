@@ -163,6 +163,7 @@ int main(void )
 		std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
 	}
 	
+//Piece type
 	//std::cout<<"Test output" <<std::endl;
 	
 	return 0;

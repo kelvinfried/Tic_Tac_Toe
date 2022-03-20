@@ -66,4 +66,8 @@ Player::~Player(void )
 	//Wins
 	delete win_count;
 	win_count= NULL;
+	
+	//Piece_type
+	delete piece_type;
+	piece_type= NULL;
 }
