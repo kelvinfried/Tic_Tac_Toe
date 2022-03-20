@@ -19,11 +19,6 @@ int* Player::Get_Win_Count(void )
 	return win_count;
 }
 
-/*void Player::Set_Win_Count(int* new_win_count )
-{
-	win_count[0 ]= new_win_count[0 ];
-}*/
-
 void Player::Incriment_Win_Count(void )
 {
 	//Incriment wins up by one.
@@ -31,8 +26,17 @@ void Player::Incriment_Win_Count(void )
 	//(win_count[0 ] )++;
 	(win_count[0 ] )+= 1;
 }
-
 	//Piece
+bool* Player::Get_Piece_Type(void )
+{
+	return piece_type;
+}
+
+void Player::Set_Piece_Type(bool* new_piece_type )
+{
+	piece_type[0 ]= new_piece_type[0 ];
+}
+
 
 //Constructors
 	//Default
@@ -43,11 +47,12 @@ Player::Player(void )
 	win_count= new int(0 );
 };
 	//Overridden
-Player::Player(std::string* start_name )
+Player::Player(std::string* start_name, bool* piece_type )
 {
 	//Forgot to dereferace the passed in name.
 	name= new std::string(start_name[0 ] );
 	win_count= new int(0 );	
+	piece_type= new bool(piece_type[0 ] );
 };
 
 //Destructor
