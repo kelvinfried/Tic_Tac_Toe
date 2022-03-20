@@ -133,8 +133,14 @@ int main(void )
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl <<std::endl;
 	
 	std::string new_name= "KelvinFried";
-	test.Set_Name(&new_name );	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
+	test.Set_Name(&new_name );	
+	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
+	
+	std::cout<<"The players number of wins is " <<*test.Get_Wins() <<std::end;
+	//test.Incriment_Wins();
+	//std::cout<<"The players number after an incriment is wins is " <<*test.Get_Wins() <<std::end;
+	
 	
 	//std::cout<<"Test output" <<std::endl;
 	

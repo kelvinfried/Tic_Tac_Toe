@@ -25,7 +25,7 @@ class Player
 	Player(void );
 	
 		//Over Ridden
-	Player(std::string* new_name, int* wins );
+	Player(std::string* start_name );
 	
 	//Destructor- Called upon object deletion
 	~Player(void );	
