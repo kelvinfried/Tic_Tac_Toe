@@ -45,6 +45,7 @@ Player::Player(void )
 	name= new std::string("Player_name" );
 	//This is always the same regardless of the input so it stays as zero
 	win_count= new int(0 );
+	piece_type= new bool(false );
 };
 	//Overridden
 Player::Player(std::string* start_name, bool* piece_type )

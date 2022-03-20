@@ -164,6 +164,29 @@ int main(void )
 	}
 	
 //Piece type
+	if(test.Get_Piece_Type()[0 ]== true )
+	{
+		std::cout<<"The players current piece type is X" <<std::endl;
+	}
+	
+	else
+	{
+		std::cout<<"The players current piece type is O" <<std::endl;
+	}
+	
+	bool tru= true;
+	test.Set_Piece_Type(&tru );
+	
+	if(test.Get_Piece_Type()[0 ]== true )
+	{
+		std::cout<<"The players current piece type is X" <<std::endl;
+	}
+	
+	else
+	{
+		std::cout<<"The players current piece type is O" <<std::endl;
+	}
+	
 	//std::cout<<"Test output" <<std::endl;
 	
 	return 0;
