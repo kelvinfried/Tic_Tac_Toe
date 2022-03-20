@@ -1,5 +1,7 @@
 #include <iostream>
 
+//Setup and call player class
+
 int main(void )
 {
 //This is the intro segment of the program
@@ -18,4 +20,5 @@ int main(void )
 	std::cout<<"There will be prompts onto the console telling you what to do when interacting with the game and you must follow them to progress." <<std::endl;
 	std::cout<<"For example entering the position you wish to select, there will be a prompt and until a valid position is passed in" <<std::endl;
 	
+//Data input phase
 }
