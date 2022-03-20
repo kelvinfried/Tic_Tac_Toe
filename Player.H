@@ -12,18 +12,17 @@ class Player
 	public:
 	//Getters and Setters - Function Prototypes
 		//Name
-		std:string* Get_Name(void );
+		std::string* Get_Name(void );
 		void Set_Name(std::string* new_name );
 		
 	//Constructor- Called upon object creation
 		//Default
-	Player();
+	Player(void );
 	
 		//Over Ridden
 	Player(std::string* new_name );
 	
 	//Destructor- Called upon object deletion
-	~Player();	
+	~Player(void );	
 };
-
 #endif

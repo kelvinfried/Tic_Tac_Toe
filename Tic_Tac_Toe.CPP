@@ -1,6 +1,6 @@
 #include <iostream>
 //Setup and call player class
-#include "Player.H"
+#include "Player.CPP"
 
 //Test Definition of the class.
 //All attributes must be set before The 'main games' run time.
@@ -137,4 +137,6 @@ int main(void )
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
 	
 	//std::cout<<"Test output" <<std::endl;
+	
+	return 0;
 }
