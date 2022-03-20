@@ -137,7 +137,8 @@ int main(void )
 	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
 	
-	std::cout<<"The players number of wins is " <<*test.Get_Wins() <<std::end;
+	//std::cout<<"The players number of wins is " <<*(test.Get_Win_Count() ) <<std::end;
+	int win_count= *test.Get_Win_Count();
 	//test.Incriment_Wins();
 	//std::cout<<"The players number after an incriment is wins is " <<*test.Get_Wins() <<std::end;
 	

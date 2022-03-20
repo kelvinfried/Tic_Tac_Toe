@@ -16,14 +16,14 @@ void Player::Set_Name(std::string* new_name )
 	//Win count
 int* Player::Get_Win_Count(void )
 {
-	return wins;
+	return win_count;
 }
 
 void Player::Incriment_Win_Count(void )
 {
 	//Incriment wins up by one.
 	//wins[0 ]++;
-	(wins[0 ] )++;
+	(win_count[0 ] )++;
 }
 
 	//Piece
@@ -34,7 +34,7 @@ Player::Player(void )
 {
 	name= new std::string("Player_name" );
 	//This is always the same regardless of the input so it stays as zero
-	wins= new int(0 );
+	win_count= new int(0 );
 };
 	//Overridden
 Player::Player(std::string* start_name )
