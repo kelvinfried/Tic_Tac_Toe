@@ -147,7 +147,11 @@ int main(void )
 	std::cout<<"win count is " <<win_count <<std::endl;
 	win_count= *test.Get_Win_Count();
 	std::cout<<"win count is " <<win_count <<std::endl;
-	//std::cout<<"The players number after an incriment is wins is " <<*test.Get_Wins() <<std::end;
+	//std::cout<<"The players number after an incriment is wins is " <<*test.Get_Wins() <<std::end;	//Raises error
+	
+	test.Set_Win_Count(&(win_count+= 1 ) );
+	std::cout<<"win count is " <<win_count <<std::endl;
+	std::cout<<"win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
 	
 	
 	//std::cout<<"Test output" <<std::endl;
