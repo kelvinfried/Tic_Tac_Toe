@@ -9,6 +9,7 @@ class Player
 	//Attrubutes
 		std::string* name;
 		int* win_count;
+		bool* piece_type;
 		
 	public:
 	//Getters and Setters - Function Prototypes
@@ -17,15 +18,17 @@ class Player
 		void Set_Name(std::string* new_name );
 		//Wins
 		int* Get_Win_Count(void );
-		//void Set_Win_Count(int* new_win_count );
 		void Incriment_Win_Count(void );
+		//Piece
+		bool* Get_Piece_Type(void );
+		void Set_Piece_Type(bool* new_piece );
 		
 	//Constructor- Called upon object creation
 		//Default
 	Player(void );
 	
 		//Over Ridden
-	Player(std::string* start_name );
+	Player(std::string* start_name, bool* piece_type );
 	
 	//Destructor- Called upon object deletion
 	~Player(void );	
