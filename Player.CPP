@@ -19,6 +19,11 @@ int* Player::Get_Win_Count(void )
 	return win_count;
 }
 
+void Player::Set_Win_Count(int* new_win_count )
+{
+	win_count[0 ]= new_win_count[0 ];
+}
+
 void Player::Incriment_Win_Count(void )
 {
 	//Incriment wins up by one.

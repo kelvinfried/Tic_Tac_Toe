@@ -17,7 +17,7 @@ class Player
 		void Set_Name(std::string* new_name );
 		//Wins
 		int* Get_Win_Count(void );
-		//void Incriment_Win_Count(void );
+		void Set_Win_Count(int* new_win_count );
 		void Incriment_Win_Count(void );
 		
 	//Constructor- Called upon object creation
