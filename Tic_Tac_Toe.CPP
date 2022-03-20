@@ -128,7 +128,7 @@ int main(void )
 
 //Testing the class
 	Player test;
-	
+//Name Test
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl <<std::endl;
 	
@@ -136,9 +136,9 @@ int main(void )
 	test.Set_Name(&new_name );	
 	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
-	
+//Win Test Part 1
 	//std::cout<<"The players number of wins is " <<*(test.Get_Win_Count() ) <<std::end;	//Causes issues with cout
-	int win_count= *test.Get_Win_Count();
+	/*int win_count= *test.Get_Win_Count();
 	std::cout<<"win count is " <<win_count <<std::endl;
 	
 	test.Incriment_Win_Count();
@@ -153,8 +153,12 @@ int main(void )
 	std::cout<<"win count is " <<win_count <<std::endl;
 	
 	test.Incriment_Win_Count();
-	std::cout<<"win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
-	
+	std::cout<<"win count is " <<test.Get_Win_Count()[0 ] <<std::endl;*/
+//Win Test Part 2
+	std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
+	//Incriment
+	test.Incriment_Win_Count();
+	std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
 	
 	//std::cout<<"Test output" <<std::endl;
 	
