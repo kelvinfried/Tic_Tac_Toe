@@ -65,7 +65,7 @@
 		{
 		}
 };*/
-class Player
+/*class Player
 {
 	private:
 	//Attributes	-All dynamic, so the attributes are just pointers
@@ -103,7 +103,7 @@ class Player
 			delete name;
 			name= NULL;
 		}
-};
+};*/
 
 
 int main(void )
