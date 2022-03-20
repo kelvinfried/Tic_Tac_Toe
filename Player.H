@@ -15,7 +15,6 @@ class Player
 		//Name
 		std::string* Get_Name(void );
 		void Set_Name(std::string* new_name );
-		
 		//Wins
 		int* Get_Win_Count(void );
 		void Incriment_Win_Count(void );

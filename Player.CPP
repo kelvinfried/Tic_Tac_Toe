@@ -23,7 +23,8 @@ void Player::Incriment_Win_Count(void )
 {
 	//Incriment wins up by one.
 	//wins[0 ]++;
-	(win_count[0 ] )++;
+	//(win_count[0 ] )++;
+	(win_count[0 ] )+= 1;
 }
 
 	//Piece
