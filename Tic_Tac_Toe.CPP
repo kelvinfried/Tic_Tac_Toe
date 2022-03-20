@@ -81,9 +81,9 @@ class Player
 			return name;
 		}
 			
-		void Set_Name(std::string new_name )
+		void Set_Name(std::string* new_name )
 		{
-			*name= new_name;
+			name[0 ]= new_name;
 		}
 
 	//Constructor
@@ -129,6 +129,11 @@ int main(void )
 	Player test;
 	
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
+	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl <<std::endl;
+	
+	std::string new_name= "KelvinFried";
+	test.Set_Name(&new_name );	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
+	
 	std::cout<<"Test output" <<std::endl;
 }
