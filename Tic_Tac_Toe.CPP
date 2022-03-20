@@ -1,11 +1,75 @@
 #include <iostream>
-
 //Setup and call player class
+#include "Player.H"
+
+//Test Definition of the class.
+//All attributes must be set before run time.
+class Player
+{
+	private:
+	//Attributes
+		//Used  to store the name passed by the player.
+		std::string name;	
+		//Keeps track of how many wins each player has
+		int wins;
+		//Shows which piece the player has 0= O, 0!= X;
+		bool piece;
+		
+	public:
+	//Getters and Setters
+		//Name
+		std::string Get_Name(void )
+		{
+			return name;
+		}
+		
+		void Set_Name(std::string new_name )
+		{
+			name= new_name;
+		}
+		
+		//Wins
+		int Get_Wins(void )
+		{
+			return wins;
+		}
+			//does not require anything to be passed in as it can only go up by one.
+		void Incriment_Win(void )
+		{
+			wins++;
+		}
+		
+		//Piece
+		bool Get_Piece(void )
+		{
+			return piece;
+		}
+		
+		void Set_Piece(bool new_piece )
+		{
+			piece= new_piece;
+		}
+		
+	//Constructor
+		//Default, for now
+		Player()
+		{
+			name= "Player_name";
+			wins= 0;
+			piece= 0;
+		}
+		
+	//Destructor
+		//Will be used for when the vairables are made dynamic because of their lifespans
+		~Player()
+		{
+		}
+};
 
 int main(void )
 {
 //This is the intro segment of the program
-	//Intro Text
+	/*//Intro Text
 	std::cout<<"#----Tic Tac Toe Console Application----#" <<std::endl <<std::endl;
 	std::cout<<"Welcome to Tic Tac Toe." <<std::endl;
 	std::cout<<"This is a 2 Player game and will require you and your opponent to swap after every turn for the game to function." <<std::endl <<std::endl <<std::endl;
@@ -18,7 +82,12 @@ int main(void )
 	//Control Scheme
 	std::cout<<"#----The Control scheme----#" <<std::endl;
 	std::cout<<"There will be prompts onto the console telling you what to do when interacting with the game and you must follow them to progress." <<std::endl;
-	std::cout<<"For example entering the position you wish to select, there will be a prompt and until a valid position is passed in" <<std::endl;
+	std::cout<<"For example entering the position you wish to select, there will be a prompt and until a valid position is passed in" <<std::endl;*/
 	
 //Data input phase
+
+//Testing the class
+	Player test;
+	
+	std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
 }
