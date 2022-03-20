@@ -83,7 +83,8 @@ class Player
 			
 		void Set_Name(std::string* new_name )
 		{
-			name[0 ]= new_name;
+			//Added dereferancing so the pointer is not overwritten but the value is.
+			name[0 ]= new_name[0 ];
 		}
 
 	//Constructor
@@ -135,5 +136,5 @@ int main(void )
 	test.Set_Name(&new_name );	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
 	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
 	
-	std::cout<<"Test output" <<std::endl;
+	//std::cout<<"Test output" <<std::endl;
 }
