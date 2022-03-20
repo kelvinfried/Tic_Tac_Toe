@@ -96,6 +96,9 @@ class Player
 		//Will be used for when the vairables are made dynamic because of their lifespans
 		~Player()
 		{
+			//Relinquish memory and null the pointer
+			delete name;
+			name= NULL;
 		}
 };
 
