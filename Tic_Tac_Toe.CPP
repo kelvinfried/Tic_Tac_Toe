@@ -3,7 +3,69 @@
 #include "Player.H"
 
 //Test Definition of the class.
-//All attributes must be set before run time.
+//All attributes must be set before The 'main games' run time.
+/*class Player
+{
+	private:
+	//Attributes
+		//Used  to store the name passed by the player.
+		std::string name;	
+		//Keeps track of how many wins each player has
+		int wins;
+		//Shows which piece the player has 0= O, 0!= X;
+		bool piece;
+		
+	public:
+	//Getters and Setters
+		//Name
+		std::string Get_Name(void )
+		{
+			return name;
+		}
+		
+		void Set_Name(std::string new_name )
+		{
+			name= new_name;
+		}
+		
+		//Wins
+		int Get_Wins(void )
+		{
+			return wins;
+		}
+			//does not require anything to be passed in as it can only go up by one.
+		void Incriment_Win(void )
+		{
+			wins++;
+		}
+		
+		//Piece
+		bool Get_Piece(void )
+		{
+			return piece;
+		}
+		
+		void Set_Piece(bool new_piece )
+		{
+			piece= new_piece;
+		}
+		
+	//Constructor
+		//Default, for now
+		Player()
+		{
+			name= "Player_name";
+			wins= 0;
+			piece= 0;
+		}
+		
+	//Destructor
+		//Will be used for when the vairables are made dynamic because of their lifespans
+		~Player()
+		{
+		}
+};*/
+
 class Player
 {
 	private:
@@ -65,6 +127,7 @@ class Player
 		{
 		}
 };
+
 
 int main(void )
 {
