@@ -151,6 +151,8 @@ int main(void )
 	
 	test.Set_Win_Count(&(win_count+= 1 ) );
 	std::cout<<"win count is " <<win_count <<std::endl;
+	
+	test.Incriment_Win_Count();
 	std::cout<<"win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
 	
 	
