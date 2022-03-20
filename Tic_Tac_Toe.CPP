@@ -74,16 +74,15 @@ class Player
 		
 	public:
 	//Getters and Setters
-		//Name
-		std::string Get_Name(void )
+		//Name- Now returns a string pointer, so it will carry the memory address of the name so it can be printed.
+		std::string* Get_Name(void )
 		{
 			//return name[0 ];
-			return *name;
+			return name;
 		}
-		
+			
 		void Set_Name(std::string new_name )
 		{
-			//name[0 ]= new_name;
 			*name= new_name;
 		}
 
@@ -130,6 +129,6 @@ int main(void )
 	Player test;
 	
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
-	std::cout<<"The players name is " <<test.Get_Name() <<std::endl;
+	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
 	std::cout<<"Test output" <<std::endl;
 }
