@@ -65,60 +65,31 @@
 		{
 		}
 };*/
-
 class Player
 {
 	private:
-	//Attributes
+	//Attributes	-All dynamic, so the attributes are just pointers
 		//Used  to store the name passed by the player.
-		std::string name;	
-		//Keeps track of how many wins each player has
-		int wins;
-		//Shows which piece the player has 0= O, 0!= X;
-		bool piece;
+		std::string* name;	
 		
 	public:
 	//Getters and Setters
 		//Name
 		std::string Get_Name(void )
 		{
-			return name;
+			return name[0 ];
 		}
 		
 		void Set_Name(std::string new_name )
 		{
-			name= new_name;
+			name[0 ]= new_name;
 		}
-		
-		//Wins
-		int Get_Wins(void )
-		{
-			return wins;
-		}
-			//does not require anything to be passed in as it can only go up by one.
-		void Incriment_Win(void )
-		{
-			wins++;
-		}
-		
-		//Piece
-		bool Get_Piece(void )
-		{
-			return piece;
-		}
-		
-		void Set_Piece(bool new_piece )
-		{
-			piece= new_piece;
-		}
-		
+
 	//Constructor
 		//Default, for now
 		Player()
 		{
-			name= "Player_name";
-			wins= 0;
-			piece= 0;
+			name[0 ]= "Player_name";
 		}
 		
 	//Destructor
@@ -152,5 +123,6 @@ int main(void )
 //Testing the class
 	Player test;
 	
-	std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
+	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
+	std::cout<<"Test output" <<std::endl;
 }
