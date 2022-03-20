@@ -77,19 +77,22 @@ class Player
 		//Name
 		std::string Get_Name(void )
 		{
-			return name[0 ];
+			//return name[0 ];
+			return *name;
 		}
 		
 		void Set_Name(std::string new_name )
 		{
-			name[0 ]= new_name;
+			//name[0 ]= new_name;
+			*name= new_name;
 		}
 
 	//Constructor
 		//Default, for now
 		Player()
 		{
-			name[0 ]= "Player_name";
+			//name[0 ]= "Player_name";	//Forgot to define the string in memory correctly before using it.
+			name= new std::string("Player_name" );
 		}
 		
 	//Destructor
@@ -127,5 +130,6 @@ int main(void )
 	Player test;
 	
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
+	std::cout<<"The players name is " <<test.Get_Name() <<std::endl;
 	std::cout<<"Test output" <<std::endl;
 }
