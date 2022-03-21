@@ -129,8 +129,11 @@ int main(void )
 //Testing the class
 	Player test;
 	
-	//Dynamic version of the "test" object, using the default constructor
-	Player* player_pointer= new Player();
+	//Dynamic version of the "test" object, using the default constructor	//Now Trying the constructor
+	string test_name= "Test Gaming Moment :sunglasses:";
+	bool test_piece= true;
+	
+	Player* player_pointer= new Player(&test_name, &test_piece);
 	
 //Name Test
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
@@ -199,9 +202,9 @@ int main(void )
 	
 	//Output	-Dynmaic
 	std::cout<<"Player ''2'' stats block:" <<std::endl;
-	std::cout<<"Their name should be 'Player_name' and is: " <<player_pointer[0 ].Get_Name()[0 ] <<std::endl;
+	std::cout<<"Their name should not be be 'Player_name' and is: " <<player_pointer[0 ].Get_Name()[0 ] <<std::endl;
 	std::cout<<"Their win count should be '0' and is: " <<player_pointer[0 ].Get_Win_Count()[0 ] <<std::endl;
-	std::cout<<"Their piece type should be '0' and is: " <<player_pointer[0 ].Get_Piece_Type()[0 ] <<std::endl <<std::endl;
+	std::cout<<"Their piece type should not be '0' and is: " <<player_pointer[0 ].Get_Piece_Type()[0 ] <<std::endl <<std::endl;
 	
 	
 	
