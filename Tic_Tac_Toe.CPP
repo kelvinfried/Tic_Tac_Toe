@@ -130,12 +130,12 @@ int main(void )
 	Player test;
 //Name Test
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
-	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl <<std::endl;
+	/*std::cout<<"The players name is " <<*test.Get_Name() <<std::endl <<std::endl;
 	
 	std::string new_name= "KelvinFried";
 	test.Set_Name(&new_name );	
 	//On compile G++ tells me that i need to specify that it needs to be a memory address when passing it in.
-	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;
+	std::cout<<"The players name is " <<*test.Get_Name() <<std::endl;*/
 //Win Test Part 1
 	//std::cout<<"The players number of wins is " <<*(test.Get_Win_Count() ) <<std::end;	//Causes issues with cout
 	/*int win_count= *test.Get_Win_Count();
@@ -155,16 +155,16 @@ int main(void )
 	test.Incriment_Win_Count();
 	std::cout<<"win count is " <<test.Get_Win_Count()[0 ] <<std::endl;*/
 //Win Test Part 2
-	std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
+	/*std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
 	//Incriment
 	for(int i= 0; i<4; i++ )
 	{
 		test.Incriment_Win_Count();
 		std::cout<<"Win count is " <<test.Get_Win_Count()[0 ] <<std::endl;
-	}
+	}*/
 	
 //Piece type
-	if(test.Get_Piece_Type()[0 ]== true )
+/*	if(test.Get_Piece_Type()[0 ]== true )
 	{
 		std::cout<<"The players current piece type is X" <<std::endl;
 	}
@@ -185,8 +185,14 @@ int main(void )
 	else
 	{
 		std::cout<<"The players current piece type is O" <<std::endl;
-	}
+	}*/
 	
 	//Output
+	std::cout<<"Player stats block:" <<std::endl;
+	std::cout<<"Their name should be 'Player_name' and is: " <<test.Get_Name()[0 ] <<std::endl;
+	std::cout<<"Their win count should be '0' and is: " <<test.Get_Win_Count()[0 ] <<std::endl;
+	std::cout<<"Their piece type should be '0' and is: " <<test.Get_Piece_Type()[0 ] <<std::endl;
+	
+	
 	return 0;
 }
