@@ -128,6 +128,10 @@ int main(void )
 
 //Testing the class
 	Player test;
+	
+	//Dynamic version of the "test" object, using the default constructor
+	Player* player_pointer= new Player();
+	
 //Name Test
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
 	/*std::cout<<"The players name is " <<*test.Get_Name() <<std::endl <<std::endl;
@@ -187,11 +191,18 @@ int main(void )
 		std::cout<<"The players current piece type is O" <<std::endl;
 	}*/
 	
-	//Output
+	//Output	-Static
 	std::cout<<"Player stats block:" <<std::endl;
 	std::cout<<"Their name should be 'Player_name' and is: " <<test.Get_Name()[0 ] <<std::endl;
 	std::cout<<"Their win count should be '0' and is: " <<test.Get_Win_Count()[0 ] <<std::endl;
-	std::cout<<"Their piece type should be '0' and is: " <<test.Get_Piece_Type()[0 ] <<std::endl;
+	std::cout<<"Their piece type should be '0' and is: " <<test.Get_Piece_Type()[0 ] <<std::endl <<std::endl;
+	
+	//Output	-Dynmaic
+	std::cout<<"Player ''2'' stats block:" <<std::endl;
+	std::cout<<"Their name should be 'Player_name' and is: " <<player_pointer[0 ].Get_Name()[0 ] <<std::endl;
+	std::cout<<"Their win count should be '0' and is: " <<player_pointer[0 ].Get_Win_Count()[0 ] <<std::endl;
+	std::cout<<"Their piece type should be '0' and is: " <<player_pointer[0 ].Get_Piece_Type()[0 ] <<std::endl <<std::endl;
+	
 	
 	
 	return 0;
