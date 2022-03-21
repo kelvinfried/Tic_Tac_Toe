@@ -187,7 +187,6 @@ int main(void )
 		std::cout<<"The players current piece type is O" <<std::endl;
 	}
 	
-	//std::cout<<"Test output" <<std::endl;
-	
+	//Output
 	return 0;
 }
