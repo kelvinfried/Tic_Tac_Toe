@@ -131,9 +131,12 @@ int main(void )
 	
 	//Dynamic version of the "test" object, using the default constructor	//Now Trying the constructor
 	std::string test_name= "Test Gaming Moment :sunglasses:";
-	bool test_piece= true;
+	bool test_piece= false;
 	
 	Player* player_pointer= new Player(&test_name, &test_piece);
+	player_pointer[0 ].Set_Piece_Type(&test_piece );
+	
+	//Player* player_pointer= new Player();
 	
 //Name Test
 	//std::cout<<"The players name is " <<test.Get_Name() <<" and has a win count of " <<test.Get_Wins() <<" using the " <<test.Get_Piece() <<std::endl;
@@ -199,11 +202,26 @@ int main(void )
 	std::cout<<"Their name should be 'Player_name' and is: " <<test.Get_Name()[0 ] <<std::endl;
 	std::cout<<"Their win count should be '0' and is: " <<test.Get_Win_Count()[0 ] <<std::endl;
 	std::cout<<"Their piece type should be '0' and is: " <<test.Get_Piece_Type()[0 ] <<std::endl <<std::endl;
+	/*test.Set_Piece_Type(&test_piece );	//Testing chaning the value works on the static object
+	std::cout<<"Their piece type should be '0' and is: " <<test.Get_Piece_Type()[0 ] <<std::endl <<std::endl;*/
 	
 	//Output	-Dynmaic
 	std::cout<<"Player ''2'' stats block:" <<std::endl;
 	std::cout<<"Their name should not be be 'Player_name' and is: " <<player_pointer[0 ].Get_Name()[0 ] <<std::endl;
 	std::cout<<"Their win count should be '0' and is: " <<player_pointer[0 ].Get_Win_Count()[0 ] <<std::endl;
+	
+	/*if( player_pointer[0 ].Get_Piece_Type() == 0 )
+	{
+		std::cout<<"NOT GOOD" <<std::endl;
+	}
+	
+	else
+	{
+		std::cout<<"Mem addr is: " <<player_pointer[0 ].Get_Piece_Type()<<std::endl;
+		bool test_value= player_pointer[0 ].Get_Piece_Type()[0 ];
+		std::cout<<"Val in addr is: " << test_value<<std::endl;
+	}*/
+	
 	std::cout<<"Their piece type should not be '0' and is: " <<player_pointer[0 ].Get_Piece_Type()[0 ] <<std::endl <<std::endl;
 	
 	
