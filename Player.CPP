@@ -36,6 +36,14 @@ void Player::Set_Piece_Type(bool* new_piece_type )
 {
 	piece_type[0 ]= new_piece_type[0 ];
 }
+	//Debug	-Used for when there will be more than one player assigned to the pointer
+void Get_Stats(void )
+{
+	std::cout<<"Player Stats block:" <<std:endl;
+	std::cout<<"Player name is: " <<name[0 ] <<std::endl;
+	std::cout<<"Player win count is: " <<win_count[0 ] <<std::endl;
+	std::cout<<"Player piece type is: " <<piece_type[0 ] <<std::endl;
+}
 
 
 //Constructors

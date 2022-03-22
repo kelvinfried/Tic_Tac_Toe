@@ -26,6 +26,8 @@ class Player
 		//Piece
 		bool* Get_Piece_Type(void );
 		void Set_Piece_Type(bool* new_piece );
+		//Output- Used only for debug.
+		void Get_Stats(void );
 		
 	//Constructor- Called upon object creation
 		//Default
