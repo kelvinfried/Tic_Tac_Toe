@@ -32,7 +32,8 @@ class Player
 	Player(void );
 	
 		//Over Ridden
-	Player(std::string* start_name, bool* piece_type );
+	Player(std::string* start_name, bool* start_piece_type );
+	//Player(std::string* start_name, int* start_piece_type );
 	
 	//Destructor- //Will be used for when the vairables are made dynamic because of their lifespans
 	~Player(void );	

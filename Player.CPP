@@ -48,12 +48,20 @@ Player::Player(void )
 	piece_type= new bool(false );
 };
 	//Overridden
-Player::Player(std::string* start_name, bool* piece_type )
+Player::Player(std::string* start_name, bool* start_piece_type )
+//Player::Player(std::string* start_name, int* start_piece_type )
 {
 	//Forgot to dereferace the passed in name.
 	name= new std::string(start_name[0 ] );
 	win_count= new int(0 );	
-	piece_type= new bool(piece_type[0 ] );
+	piece_type= new bool(start_piece_type[0 ] );
+	/*switch(piece_type[0 ] )
+		case 1:
+			piece_type= new bool(true );
+			break;
+		default:
+			piece_type= new bool(false );
+			break;*/
 };
 
 //Destructor

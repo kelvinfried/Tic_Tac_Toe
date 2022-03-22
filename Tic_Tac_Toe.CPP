@@ -131,10 +131,10 @@ int main(void )
 	
 	//Dynamic version of the "test" object, using the default constructor	//Now Trying the constructor
 	std::string test_name= "Test Gaming Moment :sunglasses:";
-	bool test_piece= false;
+	bool test_piece= 0;
 	
 	Player* player_pointer= new Player(&test_name, &test_piece);
-	player_pointer[0 ].Set_Piece_Type(&test_piece );
+	//player_pointer[0 ].Set_Piece_Type(&test_piece );
 	
 	//Player* player_pointer= new Player();
 	
