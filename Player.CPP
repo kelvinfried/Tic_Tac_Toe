@@ -49,7 +49,6 @@ Player::Player(void )
 };
 	//Overridden
 Player::Player(std::string* start_name, bool* start_piece_type )
-//Player::Player(std::string* start_name, int* start_piece_type )
 {
 	//Forgot to dereferace the passed in name.
 	name= new std::string(start_name[0 ] );
