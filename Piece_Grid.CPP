@@ -132,7 +132,7 @@ int main(void )
 	}*/
 
 	//Dynamic 2D Array, rows defined with 
-	piece_identifier* dynamic_array_row= new piece_identifier[0 ];
+	/*piece_identifier* dynamic_array_row= new piece_identifier[0 ];
 		//define
 	dynamic_array_row[0 ]= { nought };
 	//Declare
@@ -141,24 +141,65 @@ int main(void )
 	dynamic_array_collum= &dynamic_array_row;	
 
 	std::cout<<"The value of row 0, collum 0 is " << dynamic_array_collum[0 ][0 ] <<std::endl;
-	dynamic_array_collum[1 ][0 ]= {cross };
-	std::cout<<"The value of row 1, collum 0 is " << dynamic_array_collum[1 ][0 ] <<std::endl;
+	//dynamic_array_collum[1 ][0 ]= {cross };
+	//std::cout<<"The value of row 1, collum 0 is " << dynamic_array_collum[1 ][0 ] <<std::endl;*/
 	
 	//Define values for the games grid correctly.
 		//Going to need to define one row, then define an additional two collums for it.
+		
+	int collums= 3;		
+	int rows= 3;
+		//declare - trial of passing nothing in as a value	
+	piece_identifier* board_row= new piece_identifier[rows ];
 		//declare
-	piece_identifier board_row= new piece_identifier[0 ];
-	piece_identifier** board_collum=  new piece_identifier*[0 ];
+	//piece_identifier** board_collum=  new piece_identifier*[3 ];
+	//This will be the board, it will hold 3 rows
+	piece_identifier** game_board= new piece_identifier*[collums ];
 		//define	- pass in mem addr;
-	board_collum= &board_row;
+	game_board[0 ]= &board_row[0 ];
+	game_board[1 ]= &board_row[1 ];
+	game_board[2 ]= &board_row[2 ];
+	
+	
+	//game_board[0 ][0 ] = nothing;
+	//std::cout<<"Trial is " <<game_board[0 ][0 ] <<std::endl;
+	
+	//Declare values "to default". - Create a "nothing" grid.
+	
+	for(int current_collum=0; current_collum< collums; current_collum++ )
+	{
+		std::cout<<"" <<std::endl;
+		for(int current_row=0; current_row< rows; current_row++ )
+		{
+			//game_board[current_collum ][current_row ]= nothing;
+			//std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
+			game_board[current_collum ][current_row ]= nothing;
+			std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
+		}
+	}
+	std::cout<<"Exit." <<std::endl;
+	//std::cout<<"Value is " <<board_collum[0 ][0 ] <<std::endl;
+	
+	/*for(int x1=0; x1< collums; x1++ )
+	{
+		//To seperate lines
+		std::cout<<""<<std::endl;
+		
+		//Access the row's elements
+		for(int y1=0; y1< rows; y1++ )
+		{
+			//std::cout<<"The Collum: "<<current_collum <<" and the collum: "<<current_row <<" has a value of " <<board_collum[x1 ][y1 ] <<std::endl;
+			std::cout<<"The Collum: "<<x1 <<" and the collum: "<<y1 <<" has a value of " <<board_collum[x1 ][y1 ] <<std::endl;
+		}
+	}*/
 	
 	
 	//cleanup code
 	delete[] board_row;
 	board_row= NULL;
 	
-	delete[] board_collum;
-	board_collum= NULL;
+	delete[] game_board;
+	game_board= NULL;
 
 
 	return 0;
