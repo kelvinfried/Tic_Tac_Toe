@@ -150,15 +150,17 @@ int main(void )
 	int collums= 3;		
 	int rows= 3;
 		//declare - trial of passing nothing in as a value	
-	piece_identifier* board_row= new piece_identifier[rows ];
+	piece_identifier* board_row_0= new piece_identifier[rows ];
+	piece_identifier* board_row_1= new piece_identifier[rows ];
+	piece_identifier* board_row_2= new piece_identifier[rows ];
 		//declare
 	//piece_identifier** board_collum=  new piece_identifier*[3 ];
 	//This will be the board, it will hold 3 rows
 	piece_identifier** game_board= new piece_identifier*[collums ];
-		//define	- pass in mem addr;
-	game_board[0 ]= &board_row[0 ];
-	game_board[1 ]= &board_row[1 ];
-	game_board[2 ]= &board_row[2 ];
+		//define	- ;
+	game_board[0 ]= board_row_0;
+	game_board[1 ]= board_row_1;
+	game_board[2 ]= board_row_2;
 	
 	
 	//game_board[0 ][0 ] = nothing;
@@ -173,7 +175,36 @@ int main(void )
 		{
 			//game_board[current_collum ][current_row ]= nothing;
 			//std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
-			game_board[current_collum ][current_row ]= nothing;
+			//game_board[current_collum ][current_row ]= nothing;
+			switch(current_row )
+				{
+				case 0:
+					game_board[current_collum ][current_row ]= nothing;
+					break;
+				case 1:
+					game_board[current_collum ][current_row ]= nought;
+					break;
+				default:
+					game_board[current_collum ][current_row ]= cross;
+					break;
+				}
+			
+			//USed to check that not all the rows are linked
+			if( current_collum== 2 )
+			{
+				std::cout<<"trigger"<<std::endl;
+				game_board[current_collum ][current_row ]= nothing;
+			}
+			
+			//std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
+		}
+	}
+	
+	for(int current_collum=0; current_collum< collums; current_collum++ )
+	{
+		std::cout<<"" <<std::endl;
+		for(int current_row=0; current_row< rows; current_row++ )
+		{	
 			std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
 		}
 	}
@@ -195,8 +226,12 @@ int main(void )
 	
 	
 	//cleanup code
-	delete[] board_row;
-	board_row= NULL;
+	delete[] board_row_0;
+	board_row_0= NULL;
+	delete[] board_row_1;
+	board_row_1= NULL;
+	delete[] board_row_2;
+	board_row_2= NULL;
 	
 	delete[] game_board;
 	game_board= NULL;
