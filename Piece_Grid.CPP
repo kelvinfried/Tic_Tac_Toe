@@ -141,8 +141,24 @@ int main(void )
 	dynamic_array_collum= &dynamic_array_row;	
 
 	std::cout<<"The value of row 0, collum 0 is " << dynamic_array_collum[0 ][0 ] <<std::endl;
-	dynamic_array_collum[1 ][0 ]= {nought };
+	dynamic_array_collum[1 ][0 ]= {cross };
 	std::cout<<"The value of row 1, collum 0 is " << dynamic_array_collum[1 ][0 ] <<std::endl;
+	
+	//Define values for the games grid correctly.
+		//Going to need to define one row, then define an additional two collums for it.
+		//declare
+	piece_identifier board_row= new piece_identifier[0 ];
+	piece_identifier** board_collum=  new piece_identifier*[0 ];
+		//define	- pass in mem addr;
+	board_collum= &board_row;
+	
+	
+	//cleanup code
+	delete[] board_row;
+	board_row= NULL;
+	
+	delete[] board_collum;
+	board_collum= NULL;
 
 
 	return 0;
