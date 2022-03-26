@@ -70,15 +70,19 @@ int main(void )
 				}
 		}
 	}
+	
 	//Output section
 	for(int current_collum=0; current_collum< collums; current_collum++ )
 	{
-		std::cout<<"" <<std::endl;
+		///std::cout<<"" <<std::endl;
 		for(int current_row=0; current_row< rows; current_row++ )
 		{	
 			std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
 		}
+		std::cout<<"" <<std::endl;
 	}
+	
+	//Create a function to check the grid
 	
 	//cleanup code
 	delete[] board_row_0;
