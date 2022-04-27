@@ -24,8 +24,8 @@ int main(void )
 		//Then need to set the starting value for it manually, it does not take up the enum types first vairable;
 		//dynamic array -2D
 			//value to pass in to declare the size.
-	int array_dimension_0= 1;
-	int array_dimension_1= 1;
+	//int array_dimension_0= 1;
+	//int array_dimension_1= 1;
 		//declare
 	//piece_identifier* dynamic_array_2d= new piece_identifier[array_dimension_0 ][array_dimension_1 ]( );
 	//Set up for pointer to pointer for a 2D array as the above causes issues with the compiler.
@@ -33,10 +33,38 @@ int main(void )
 	//piece_identifier* dynamic_array_row= new piece_identifier[array_dimension_0 ];
 	//piece_identifier** dynamic_array_collum= new piece_identifier*[array_dimension_1 ];
 	//piece_identifier** dynamic_array_collum= &(piece_identifier*[array_dimension_1 ] );
+	
+	//piece_identifier* dynamic_array_2d= new piece_identifier[3 ][3 ];
+	//int array[1 ][1 ]= {{ 0 }, {0 } };
+	//int* pntArray[1 ] = {&array[0 ] };
+	
+	/*int const array_x= 2;
+	int const array_y= 2;
+	
+	int* array_pointer= new int[array_x ][array_y ];
+	
+	int array[2 ][1 ];
+	
+	array[0 ][ 0 ]= 1;
+	array[1 ][ 0 ]= 1;
+	
+	int* point_to_array[2 ][1 ];
+	
+	point_to_array= &array;
+	
+	int size1= 0;
+	int size2= 0;
+	
+	point_to_array[0 ][0 ]= 1;*/
+
+	
+	
+	//piece_identifier* dynamic_2d_array[3 ]= new piece_identifier[3 ];
 	int collums= 3;		
-	int rows= 3;
+	int rows= 5;
+	
 		//declare - trial of passing nothing in as a value	
-	piece_identifier* board_row_0= new piece_identifier[rows ];
+	piece_identifier* board_row_0= new piece_identifier[rows ];	//1D [ 0, 0, 0 ];
 	piece_identifier* board_row_1= new piece_identifier[rows ];
 	piece_identifier* board_row_2= new piece_identifier[rows ];
 		//declare
@@ -70,6 +98,7 @@ int main(void )
 				}
 		}
 	}
+	
 	
 	//Output section
 	for(int current_collum=0; current_collum< collums; current_collum++ )
