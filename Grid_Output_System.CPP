@@ -28,8 +28,10 @@ int main()
 	Board_piece Nought(nought );
 	Board_piece Cross(cross );
 
-	std::cout<<"Test value_1 is " <<Nothing.Get_Type() <<std::endl;
-	//std::cout<<"Test value_2 is " <<Nought.Get_Type() <<std::endl;
+	//Testing for the external file classes for the pieces.
+	/*std::cout<<"Test value_1 is " <<Nothing.Get_Type() <<std::endl;
+	std::cout<<"Test value_2 is " <<Nought.Get_Type() <<std::endl;
+	std::cout<<"Test value_3 is " <<Cross.Get_Type() <<std::endl;*/
 
 	const int THREE= 3;
 	
@@ -78,13 +80,13 @@ int main()
 				{
 					//You can use either the enum value or what value is assigned literally.
 					case cross:
-						std::cout<<cross_array[current_layer ]<< space_character;
+						std::cout<<Cross.Get_Output()[current_layer ] <<space_character;
 						break;
 					case nought:
-						std::cout<<nought_array[current_layer ]<< space_character;
+						std::cout<<Nought.Get_Output()[current_layer ] <<space_character;
 						break;
 					default:
-						std::cout<<null_array[current_layer ]<< space_character;
+						std::cout<<Nothing.Get_Output()[current_layer ] <<space_character;
 						break;	
 				}
 			}
