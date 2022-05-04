@@ -6,8 +6,12 @@
 class Board_piece
 {
 	private:
+		//Used to store the 3 lines that store the ASCII Art 
 		std::string output[3 ];
+
+		//Stores the piece type.
 		piece_identifier type;
+
 
 	public: 
 	//Constructor
@@ -19,6 +23,6 @@ class Board_piece
 	//Getters
 		std::string* Get_Output(void );
 
-		piece_identifier Get_Type(void );
+		piece_identifier* Get_Type(void );
 };
 #endif

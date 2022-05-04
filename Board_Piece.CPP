@@ -6,9 +6,9 @@ std::string* Board_piece::Get_Output(void )
 	return (output );
 }
 
-piece_identifier Board_piece::Get_Type(void )
+piece_identifier* Board_piece::Get_Type(void )
 {
-	return type;
+	return &(type );
 }
 
 //Constructor
