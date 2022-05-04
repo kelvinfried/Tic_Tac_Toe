@@ -1,12 +1,12 @@
 //Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
 #include <iostream>
-#include "Board_piece.H"
+#include "Board_piece.CPP"
 
 int main(void )
 {
 	//To keep track of the array's dimensions.
-	int collums= 3;		
-	int rows= 3;
+	int game_board_collums= 3;		
+	int game_board_rows= 3;
 
 	//Keep hold of the piece data.	-Passed in board piece type.
 	Board_piece Nothing;
@@ -22,26 +22,26 @@ int main(void )
 	char space_character= 'X';
 
 	//Declared from the heap as they have a long life time.
-	piece_identifier* board_row_0= new piece_identifier[rows ];
+	//piece_identifier* board_row_0= new piece_identifier[rows ];
 
 	//Define the game board; Holds each of the subrows, so they can be accesed from a single part.
-	piece_identifier** game_board= new piece_identifier*[collums ];
+	piece_identifier** game_board= new piece_identifier*[game_board_collums ];
 		//Declares the rows. //game_board[0 ]= board_row_0; //game_board[3 ]= new piece_identifier[rows ];	//Old methods
 	//Iterative approach to have a dynamic size during runtime.
-	for( int x= 0; x< rows; x++ )
+	for( int creation_row= 0; creation_row< game_board_rows; creation_row++ )
 	{
-		game_board[x ]= new piece_identifier[rows ];
+		game_board[creation_row ]= new piece_identifier[game_board_collums ];
 	}
 	
 	//Used to set default values for the grid.
 		//Used to access each row at a time.
-	for(int current_collum=0; current_collum< collums; current_collum++ )
+	for(int setting_row= 0; setting_row< game_board_rows; setting_row++ )
 	{
 			//Used to access each element of the parent row.
-		for(int current_row=0; current_row< rows; current_row++ )
+		for(int setting_collum= 0; setting_collum< game_board_collums; setting_collum++ )
 		{
 				//Automated way to full up the game_board with a linear pattern
-			switch(current_row )
+			/*switch(current_row )
 			{
 				case 1:
 					game_board[current_collum ][current_row ]= nought;
@@ -52,64 +52,51 @@ int main(void )
 				default:
 					game_board[current_collum ][current_row ]= nothing;
 					break;
-			}
+			}*/
+			game_board[setting_row ][setting_collum ]= nothing;
 		}
 	}
-	
-	/*//old Output section
-	for(int current_collum=0; current_collum< collums; current_collum++ )
-	{
-		for(int current_row=0; current_row< rows; current_row++ )
-		{	
-			std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
-		}
-		std::cout<<"" <<std::endl;
-	}*/
-
 	//Grid Output Section -Main Loop:
-	for(int down= 0; down< collums; down++ )
+	for(int output_row= 0; output_row< game_board_rows; output_row++ )
 	{
 		//General Border Creation
-		for(int across= 0; across< rows; across++ )
+		for(int border_row= 0; border_row< game_board_rows; border_row++ )
 		{
-			std:;cout<<border_chunk <<border_divider;
+			std::cout<<border_chunk <<border_divider;
 		}
 		std::cout<<"" <<std::endl;
 
-		//Gameboard Piece Printing
-		for(int current_layer= 0; current_layer< OUTPUT_LINES; current_layer++ )
+		//Gameboard Piece Printing.
+		for(int output_collum= 0; output_collum< game_board_collums; output_collum++ )
 		{
-			for(int across= 0; across< rows; across++ )
+			//Used to print out each of the piece's layer, side by side, then break line.
+			for(int current_layer= 0; current_layer< OUTPUT_LINES; current_layer++ )
 			{
-				switch(game_board[down][across] )
+				//switch(game_board[output_row ][output_collum ] )
+				switch(1 )
 				{
 					case cross:
-						std::cout<<Cross.Get_Output()[current_layer ] <<space_character;
 						break;
-
+			
 					case nought:
-						std::cout<<Nought.Get_Output()[current_layer ] <<space_character;
 						break;
-
+	
 					default:
-						std::cout<<Nothing.Get_Output()[current_layer ] <<space_character;
 						break;
 				}
 			}
 		std::cout<<"" <<std::endl;
-		}
 
-		//Border Creation for the last output line.
-		if((down+= 1)== grid_x_length )
-		{
-			for(int across= 0; across< grid_y_length; across++ )
-			{
-				//Border Creation
-				std::cout<<border_chunk <<border_divider;
-			}
 		}
 	}
 
+	//End Border
+	for(int border_row= 0; border_row< game_board_rows; border_row++ )
+	{
+		std::cout<<border_chunk <<border_divider;
+	}
+
+	std::cout<<"" <<std::endl;
 	
 	
 	//Cleans up the game_board itself.
