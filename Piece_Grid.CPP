@@ -62,18 +62,16 @@ int main(void )
 	//Create a function to check the grid
 	
 
-	//Cleanup code, starting by deleting the subcomponents and working my way up.
-		//Need to test if this works from the parent.
-	delete[] board_row_0;
-	board_row_0= NULL;
-	delete[] board_row_1;
-	board_row_1= NULL;
-	delete[] board_row_2;
-	board_row_2= NULL;
-	
+	//Cleanup code, now deletes subcomponents row by row.
+	for(int x=0; x< rows; x++ )
+	{
+		delete[] game_board[x ];
+		game_board[x ]= NULL;
+	}
+
+	//Cleans up the game_board itself.
 	delete[] game_board;
 	game_board= NULL;
-
 
 	return 0;
 }
