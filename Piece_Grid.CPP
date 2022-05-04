@@ -1,5 +1,6 @@
 //Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
 #include <iostream>
+#include "Board_Piece.H"
 
 //Step 1 define a datatype or something to represent the grid pieces.
 	//Requirements are:
@@ -7,7 +8,7 @@
 			//I think trying out ENUM would be a valid thing to use for this case, as bool values would be outside of the scope
 //The idea is with this defined data type is that I am able to assign this to each of the "cells" in the 3x3 grid
 	//THen By calling the value I am able to call it as needed to then track where each player has placed down their pieces.
-enum piece_identifier
+/*enum piece_identifier
 {
 	//If nothing is on the grid place, show nothing
 	nothing= 0,
@@ -15,7 +16,7 @@ enum piece_identifier
 	nought= 1,
 	//Show an cross
 	cross= 2
-};
+};*/
 
 int main(void )
 {
