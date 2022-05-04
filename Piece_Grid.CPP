@@ -3,62 +3,39 @@
 #include "Board_Piece.H"
 
 //Step 1 define a datatype or something to represent the grid pieces.
-	//Requirements are:
-		//Holds 3 States: NULL (/empty), Piece type O, Piece type X;
-			//I think trying out ENUM would be a valid thing to use for this case, as bool values would be outside of the scope
+	//It needs to hold 3 States: NULL (/empty), Piece type O, Piece type X; <Enum does this.
 //The idea is with this defined data type is that I am able to assign this to each of the "cells" in the 3x3 grid
 	//THen By calling the value I am able to call it as needed to then track where each player has placed down their pieces.
-/*enum piece_identifier
-{
-	//If nothing is on the grid place, show nothing
-	nothing= 0,
-	//Show a circle
-	nought= 1,
-	//Show an cross
-	cross= 2
-};*/
 
 int main(void )
 {
-	//Declare a vairable with my enum type
-	//piece_identifier holding_variable;
-		//Then need to set the starting value for it manually, it does not take up the enum types first vairable;
-		//dynamic array -2D
-			//value to pass in to declare the size.
-	int array_dimension_0= 1;
-	int array_dimension_1= 1;
-		//declare
-	//piece_identifier* dynamic_array_2d= new piece_identifier[array_dimension_0 ][array_dimension_1 ]( );
-	//Set up for pointer to pointer for a 2D array as the above causes issues with the compiler.
-		//guidance give by Lecturer: Merhdad
-	//piece_identifier* dynamic_array_row= new piece_identifier[array_dimension_0 ];
-	//piece_identifier** dynamic_array_collum= new piece_identifier*[array_dimension_1 ];
-	//piece_identifier** dynamic_array_collum= &(piece_identifier*[array_dimension_1 ] );
+	//To keep track of the array's dimensions.
 	int collums= 3;		
 	int rows= 3;
-		//declare - trial of passing nothing in as a value	
+
+	//Current methods of declaring 3 rows for the grid: As it stands there are 3, 3 element long arrays which are "used" as a grid.
+	//Declared from the heap as they have a long life time.
 	piece_identifier* board_row_0= new piece_identifier[rows ];
 	piece_identifier* board_row_1= new piece_identifier[rows ];
 	piece_identifier* board_row_2= new piece_identifier[rows ];
-		//declare
-	//piece_identifier** board_collum=  new piece_identifier*[3 ];
-	//This will be the board, it will hold 3 rows
+
+	//Define the game board; Holds each of the subrows, so it can be accesed from a single part.
 	piece_identifier** game_board= new piece_identifier*[collums ];
-		//define	- ;
+		//Declares the rows.
 	game_board[0 ]= board_row_0;
 	game_board[1 ]= board_row_1;
 	game_board[2 ]= board_row_2;
 	
-	//Declare values "to default". - Create a "nothing" grid.
+	//Declare the game boards rows to all be set to to a grid of "nothing".
+		//Used to access each row at a time.
 	for(int current_collum=0; current_collum< collums; current_collum++ )
 	{
+			//Used to access each element of the parent row.
 		for(int current_row=0; current_row< rows; current_row++ )
 		{
-			//game_board[current_collum ][current_row ]= nothing;
-			//std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
-			//game_board[current_collum ][current_row ]= nothing;
+				//Automated way to full up the game_board with a linear pattern
 			switch(current_row )
-				{
+			{
 				case 1:
 					game_board[current_collum ][current_row ]= nought;
 					break;
@@ -68,14 +45,13 @@ int main(void )
 				default:
 					game_board[current_collum ][current_row ]= nothing;
 					break;
-				}
+			}
 		}
 	}
 	
-	//Output section
+	//Test Output Section- Verifies the grd is correctly output; Outdated needs to be replaced by the new system.
 	for(int current_collum=0; current_collum< collums; current_collum++ )
 	{
-		///std::cout<<"" <<std::endl;
 		for(int current_row=0; current_row< rows; current_row++ )
 		{	
 			std::cout<<"Current "<<current_collum <<", " <<current_row <<" is: " <<game_board[current_collum ][current_row ] <<std::endl;
@@ -85,7 +61,9 @@ int main(void )
 	
 	//Create a function to check the grid
 	
-	//cleanup code
+
+	//Cleanup code, starting by deleting the subcomponents and working my way up.
+		//Need to test if this works from the parent.
 	delete[] board_row_0;
 	board_row_0= NULL;
 	delete[] board_row_1;
