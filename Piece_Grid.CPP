@@ -5,8 +5,8 @@
 int main(void )
 {
 	//To keep track of the array's dimensions.
-	int game_board_collums= 3;		
-	int game_board_rows= 3;
+	int game_board_collums= 5;		
+	int game_board_rows= 5;
 
 	//Keep hold of the piece data.	-Passed in board piece type.
 	Board_piece Nothing;
@@ -59,6 +59,7 @@ int main(void )
 	//Grid Output Section -Main Loop:
 	for(int output_row= 0; output_row< game_board_rows; output_row++ )
 	{
+		std::cout<<"" <<std::endl;
 		//General Border Creation
 		for(int border_row= 0; border_row< game_board_rows; border_row++ )
 		{
@@ -67,21 +68,25 @@ int main(void )
 		std::cout<<"" <<std::endl;
 
 		//Gameboard Piece Printing.
-		for(int output_collum= 0; output_collum< game_board_collums; output_collum++ )
+		for(int current_layer= 0; current_layer< OUTPUT_LINES; current_layer++ )
 		{
 			//Used to print out each of the piece's layer, side by side, then break line.
-			for(int current_layer= 0; current_layer< OUTPUT_LINES; current_layer++ )
+			for(int output_collum= 0; output_collum< game_board_collums; output_collum++ )
 			{
-				//switch(game_board[output_row ][output_collum ] )
-				switch(1 )
+				//std::cout<< current_layer <<std::endl;
+				switch(game_board[output_row ][output_collum ] )
+				//switch(cross )
 				{
 					case cross:
+						std::cout<<Cross.Get_Output()[current_layer ] <<space_character;
 						break;
 			
 					case nought:
+						std::cout<<Nought.Get_Output()[current_layer ] <<space_character;
 						break;
 	
 					default:
+						std::cout<<Nothing.Get_Output()[current_layer ] <<space_character;
 						break;
 				}
 			}

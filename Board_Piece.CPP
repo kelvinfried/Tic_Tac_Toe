@@ -33,6 +33,38 @@ Board_piece::Board_piece(piece_identifier type_selected )
 	//Sets the value of the players piece.
 	type= type_selected;
 
+	/*if(type_selected== nought)
+	{
+		std::string line_3= "_#_";
+		std::string line_4= "#_#";
+		std::string line_5= "_#_";
+
+		output[0 ]= line_3;
+		output[1 ]= line_4; 
+		output[2 ]= line_5;
+	}
+
+	else if(type_selected== cross)
+	{
+		std::string line_6= "#_#";
+		std::string line_7= "_#_";
+		std::string line_8= "#_#";
+
+		output[0 ]= line_6;
+		output[1 ]= line_7;
+		output[2 ]= line_8;
+	}
+
+	else
+	{
+		std::string line_0= "___";
+		std::string line_1= "___";
+		std::string line_2= "___";
+
+		output[0 ]= line_0;
+		output[1 ]= line_1;
+		output[2 ]= line_2;
+	}*/
 	//Switch statment to set parameters.
 	switch(type_selected )
 	{
