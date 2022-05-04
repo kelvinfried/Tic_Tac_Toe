@@ -16,14 +16,6 @@ int main(void )
 	//Current methods of declaring 3 rows for the grid: As it stands there are 3, 3 element long arrays which are "used" as a grid.
 		//Declared from the heap as they have a long life time.
 	piece_identifier* board_row_0= new piece_identifier[rows ];
-	
-	int collums= 3;		
-	int rows= 5;
-	
-		//declare - trial of passing nothing in as a value	
-	/*piece_identifier* board_row_0= new piece_identifier[rows ];	//1D [ 0, 0, 0 ];
-	piece_identifier* board_row_1= new piece_identifier[rows ];
-	piece_identifier* board_row_2= new piece_identifier[rows ];*/
 
 	//Define the game board; Holds each of the subrows, so it can be accesed from a single part.
 	piece_identifier** game_board= new piece_identifier*[collums ];

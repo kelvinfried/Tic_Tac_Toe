@@ -1,5 +1,6 @@
 //CPP Program
 #include <iostream>
+#include "Board_Piece.CPP"
 
 int main() 
 {
@@ -35,16 +36,10 @@ int main()
 	char border_divider= '_';
 	char space_character= 'X';
 
-	//Specifies how large the grid is.
+	//Specifies how large the grid is. -To be replaced by size trackers
 	int grid_x_length= 5;
 	int grid_y_length= 1;
 
-	enum piece_identifier
-	{
-		nothing= 0,
-		nought= 1,
-		cross= 2
-	};
 
 	//Creates a point to a dynamic array that will change its depth to match the grids num of elements
 	piece_identifier* piece_row_type= new piece_identifier[grid_y_length ]; 
@@ -99,7 +94,6 @@ int main()
 			}
 		}
 	}
-
 
 	return 0;
 }

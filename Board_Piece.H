@@ -1,15 +1,20 @@
 #include <iostream>
+#include "Board_Piece_Type.H"
 #ifndef BOARD_PIECE_H
 #define BOARD_PIECE_H
 
-enum piece_identifier
+class Board_Piece
 {
-	//Empty Board Piece.
-	nothing,
-	//Represents a CIRCLE
-	nought,
-	//Represents a CROSS
-	cross
-};
+	private:
+		std::string output[3 ];
+		piece_identifier type;
 
+	public: 
+	//Constructor
+		//Default
+		Board_Piece(void );
+
+		Board_Piece(piece_identifier type_selected );
+	
+};
 #endif
