@@ -10,8 +10,8 @@
 int main(void )
 {
 	//To keep track of the array's dimensions.
-	int collums= 3;		
-	int rows= 3;
+	int collums= 5;		
+	int rows= 5;
 
 	//Current methods of declaring 3 rows for the grid: As it stands there are 3, 3 element long arrays which are "used" as a grid.
 	//Declared from the heap as they have a long life time.
@@ -22,9 +22,12 @@ int main(void )
 	//Define the game board; Holds each of the subrows, so it can be accesed from a single part.
 	piece_identifier** game_board= new piece_identifier*[collums ];
 		//Declares the rows.
-	game_board[0 ]= board_row_0;
-	game_board[1 ]= board_row_1;
-	game_board[2 ]= board_row_2;
+	//game_board[0 ]= board_row_0;
+	//game_board[3 ]= new piece_identifier[rows ];	//Test of 
+	for( int x= 0; x< rows; x++ )
+	{
+		game_board[x ]= new piece_identifier[rows ];
+	}
 	
 	//Declare the game boards rows to all be set to to a grid of "nothing".
 		//Used to access each row at a time.
@@ -60,18 +63,20 @@ int main(void )
 	}
 	
 	//Create a function to check the grid
-	
+	//std::cout<<"Test" <<std::endl;	//Verifies that it works independatly of the other elements.
+	//game_board[0][0]= cross;
 
+	//Causes faults with dynamic method, need to look into it.
 	//Cleanup code, now deletes subcomponents row by row.
-	for(int x=0; x< rows; x++ )
+	/*for(int x=0; x< rows; x++ )
 	{
 		delete[] game_board[x ];
 		game_board[x ]= NULL;
-	}
-
+	}*/
+	
 	//Cleans up the game_board itself.
 	delete[] game_board;
 	game_board= NULL;
 
-	return 0;
+	return 0;	
 }
