@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Board_Piece_Type.H"
+#include "Board_piece_type.H"
 #ifndef BOARD_PIECE_H
 #define BOARD_PIECE_H
 
-class Board_Piece
+class Board_piece
 {
 	private:
 		std::string output[3 ];
@@ -12,9 +12,13 @@ class Board_Piece
 	public: 
 	//Constructor
 		//Default
-		Board_Piece(void );
+		Board_piece(void );
 
-		Board_Piece(piece_identifier type_selected );
+		Board_piece(piece_identifier type_selected );
 	
+	//Getters
+		std::string* Get_Output(void );
+
+		piece_identifier Get_Type(void );
 };
 #endif

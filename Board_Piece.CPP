@@ -1,7 +1,18 @@
 #include "Board_Piece.H"
 
+//Getters
+std::string* Board_piece::Get_Output(void )
+{
+	return (output );
+}
+
+piece_identifier Board_piece::Get_Type(void )
+{
+	return type;
+}
+
 //Constructor
-Board_Piece::Board_Piece(void )
+Board_piece::Board_piece(void )
 {
 	//If nothing is passed in, which is an error; The default value will be the "nothing" piece.
 	type= nothing;
@@ -17,7 +28,7 @@ Board_Piece::Board_Piece(void )
 }
 
 //Over-Ridden Constuctor.
-Board_Piece::Board_Piece(piece_identifier type_selected )
+Board_piece::Board_piece(piece_identifier type_selected )
 {
 	//Sets the value of the players piece.
 	type= type_selected;
@@ -29,6 +40,7 @@ Board_Piece::Board_Piece(piece_identifier type_selected )
 			//Can call the lines in a more flexable manner.
 			//Nought Piece type.
 		case nought:
+		{
 			std::string line_3= "_#_";
 			std::string line_4= "#_#";
 			std::string line_5= "_#_";
@@ -37,9 +49,11 @@ Board_Piece::Board_Piece(piece_identifier type_selected )
 			output[1 ]= line_4; 
 			output[2 ]= line_5;
 			break;
+		}
 
 			//Cross Piece type.
 		case cross:
+		{
 			std::string line_6= "#_#";
 			std::string line_7= "_#_";
 			std::string line_8= "#_#";
@@ -48,9 +62,11 @@ Board_Piece::Board_Piece(piece_identifier type_selected )
 			output[1 ]= line_7;
 			output[2 ]= line_8;
 			break;
+		}
 
 			//Nothing Piece type.
 		default:
+		{
 			std::string line_0= "___";
 			std::string line_1= "___";
 			std::string line_2= "___";
@@ -59,5 +75,6 @@ Board_Piece::Board_Piece(piece_identifier type_selected )
 			output[1 ]= line_1;
 			output[2 ]= line_2;
 			break;
+		}
 	}
 }

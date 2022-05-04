@@ -1,6 +1,6 @@
 //CPP Program
 #include <iostream>
-#include "Board_Piece.CPP"
+#include "Board_piece.CPP"
 
 int main() 
 {
@@ -22,6 +22,14 @@ int main()
 	std::string  cross_2= "#_#";
 	std::string cross_array[3 ]= 
 		{cross_0, cross_1, cross_2 };
+
+	//Trail of class.
+	Board_piece Nothing;
+	Board_piece Nought(nought );
+	Board_piece Cross(cross );
+
+	std::cout<<"Test value_1 is " <<Nothing.Get_Type() <<std::endl;
+	//std::cout<<"Test value_2 is " <<Nought.Get_Type() <<std::endl;
 
 	const int THREE= 3;
 	
