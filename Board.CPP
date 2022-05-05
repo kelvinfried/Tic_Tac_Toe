@@ -175,10 +175,42 @@ int Input_Sanitization(int* test_data, int* test_case )
 	}
 }
 
+//To ensure that the insertion is valid.
+bool Insertion_Trial(int* row, int* collum, piece_identifier** board, Piece piece )
+{
+	//
+	//std::cout<<"Value is :" <<board[row[0 ] ][collum[0 ] ] <<std::endl;
+
+	if(board[row[0 ] ][collum[0 ] ]== nothing )
+	{	
+		//Allows for insertion.
+		//std::cout<<"true" <<std::endl;
+		return true;
+	}
+
+	//
+	else 
+	{
+		//std::cout<<"false" <<std::endl;
+		return false;
+	}
+}
+
 void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
 {
-	//board[row[0 ] ][collum[0 ] ]= piece.Get_Type();
-	board[row[0 ] ][collum[0 ] ]= cross;
+	//To check if the insertion is valid.
+	bool check= Insertion_Trial(row, collum, board, piece );
+
+	if(check )
+	{
+		board[row[0 ] ][collum[0 ] ]= piece.Get_Type()[0 ];
+	}
+
+	else
+	{
+		//Not valid.
+		//std::cout<<"Not valid." <<std::endl;
+	}
 }
 
 int main(void )
@@ -219,6 +251,10 @@ int main(void )
 	{
 		board[creation_row ]= new piece_identifier[board_collums ];
 	}
+
+	//void Default(int* rows, int* collums, piece_identifier** board )
+	Default(&(board_rows ), &(board_collums ), board );
+
 
 	//Vairables
 	int input_1, input_2; 
