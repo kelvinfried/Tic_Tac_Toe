@@ -225,8 +225,15 @@ int main(void )
 
 
 
+	//Cleans the border array
 	delete[] border_array;
 	border_array= NULL;
+
+	//Correct Deletion for the rows of the array, unlike before, prevent memory leak.
+	for(int deletion= 0; deletion< board_rows; deletion++ )
+	{
+		delete board[deletion ];
+	}
 
 	//Cleans up the game_board itself.
 	delete[] board;
