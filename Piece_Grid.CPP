@@ -2,16 +2,78 @@
 #include <iostream>
 #include "Board_piece.CPP"
 
+
+void Game_Piece_Output(void )
+{
+}
+
+//Outputs a border.
+void Game_Piece_Output_Border(int* collums, const int* OUTPUT_LINES, char* components )
+{
+	for(int current_collum= 0; current_collum< collums[0 ]; current_collum++ )
+	{
+		for(int piece_counter=0; piece_counter< 3; piece_counter++ )
+		{
+			std::cout<<components[0 ];
+		}
+		std::cout<<components[1 ];
+	}
+	//Used to break the line.
+	std::cout<<"" <<std::endl;
+}
+
+//Main Function for outputting the grid status.
+void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
+{
+	//Top border creation
+	Game_Piece_Output_Border(collums, OUTPUT_LINES, components );
+	
+	//Used to traverse between the 3 layers needed for the output.
+	for(int current_layer= 0; current_layer< OUTPUT_LINES[0 ]; current_layer++ )
+	{
+		//Used to create each segment based on the number of collums.
+		for(int current_collum= 0; current_collum< collums[0 ]; current_collum++ )
+		{
+			//Used to tell which output will be used.
+			switch(game_board[current_layer ][current_collum] )
+			{
+				case cross:
+					std::cout<<Board_pieces[nothing ].Get_Output()[current_layer ] <<components[0 ];
+					break;
+
+				case nought:
+					std::cout<<Board_pieces[nought ].Get_Output()[current_layer ] <<components[0 ];
+					break;
+
+				default:
+					std::cout<<Board_pieces[cross ].Get_Output()[current_layer ] <<components[0 ];
+					break;
+			}
+
+		}
+		std::cout<<"" <<std::endl;
+	}
+}
+
+
 int main(void )
 {
 	//To keep track of the array's dimensions.
-	int game_board_collums= 5;		
-	int game_board_rows= 5;
+	int game_board_collums= 3;		
+	int game_board_rows= 3;
 
 	//Keep hold of the piece data.	-Passed in board piece type.
 	Board_piece Nothing;
 	Board_piece Nought(nought );
 	Board_piece Cross(cross );
+
+	//Used for passing the piece data between functions
+	Board_piece* Board_pieces=new Board_piece[3 ];
+
+	Board_pieces[0 ]= Nothing;
+	Board_pieces[1 ]= Nought;
+	Board_pieces[2 ]= Cross;
+
 
 	//Stores how many lines the output has, used for printing.
 	constexpr int OUTPUT_LINES= 3;
@@ -20,6 +82,15 @@ int main(void )
 	std::string border_chunk= "XXX";
 	char border_divider= '_';
 	char space_character= 'X';
+
+	char space_character_1= 'X';
+	char divider_character='_';
+
+	//
+	char* border_array_pointer= new char[2 ];
+
+	border_array_pointer[0 ]= space_character_1;
+	border_array_pointer[1 ]= divider_character;
 
 	//Declared from the heap as they have a long life time.
 	//piece_identifier* board_row_0= new piece_identifier[rows ];
@@ -33,33 +104,19 @@ int main(void )
 		game_board[creation_row ]= new piece_identifier[game_board_collums ];
 	}
 	
-	//Used to set default values for the grid.
+	//Set Default Values:
 		//Used to access each row at a time.
 	for(int setting_row= 0; setting_row< game_board_rows; setting_row++ )
 	{
 			//Used to access each element of the parent row.
 		for(int setting_collum= 0; setting_collum< game_board_collums; setting_collum++ )
 		{
-				//Automated way to full up the game_board with a linear pattern
-			/*switch(current_row )
-			{
-				case 1:
-					game_board[current_collum ][current_row ]= nought;
-					break;
-				case 2:
-					game_board[current_collum ][current_row ]= cross;
-					break;
-				default:
-					game_board[current_collum ][current_row ]= nothing;
-					break;
-			}*/
 			game_board[setting_row ][setting_collum ]= nothing;
 		}
 	}
 	//Grid Output Section -Main Loop:
 	for(int output_row= 0; output_row< game_board_rows; output_row++ )
-	{
-		std::cout<<"" <<std::endl;
+	{	
 		//General Border Creation
 		for(int border_row= 0; border_row< game_board_rows; border_row++ )
 		{
@@ -108,5 +165,16 @@ int main(void )
 	delete[] game_board;
 	game_board= NULL;
 
+
+	std::cout<<"Border test creation" << std::endl;
+
+	//void Game_Piece_Output_Border(int* collums, int* OUTPUT_LINES, char* components )
+
+	Game_Piece_Output_Border(&(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer );
+	std::cout<<"" <<std::endl;
+	std::cout<<"Test string." <<std::endl;
+
+	delete[] border_array_pointer;
+	border_array_pointer= NULL;
 	return 0;	
 }
