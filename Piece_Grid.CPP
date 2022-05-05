@@ -2,11 +2,6 @@
 #include <iostream>
 #include "Board_piece.CPP"
 
-
-void Game_Piece_Output(void )
-{
-}
-
 //Outputs a border.
 void Game_Piece_Output_Border(int* collums, const int* OUTPUT_LINES, char* components )
 {
@@ -25,7 +20,6 @@ void Game_Piece_Output_Border(int* collums, const int* OUTPUT_LINES, char* compo
 //Outputs the grid
 void Game_Piece_Output_Grid_Row(int* current_row, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
 {
-
 	for(int current_layer= 0; current_layer< OUTPUT_LINES[0 ]; current_layer++ )
 	{
 		//Used to create each segment based on the number of collums.
@@ -51,11 +45,9 @@ void Game_Piece_Output_Grid_Row(int* current_row, int* collums, const int* OUTPU
 					//std::cout<<"___" <<components[0 ];
 					break;
 			}
-
 		}
 		std::cout<<"" <<std::endl;
-
-}
+	}
 }
 
 //Main Function for outputting the formatted game grid
@@ -78,8 +70,8 @@ void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, c
 int main(void )
 {
 	//To keep track of the array's dimensions.
-	int game_board_collums= 3;		
-	int game_board_rows= 3;
+	int game_board_collums= 5;		
+	int game_board_rows= 5;
 
 	//Keep hold of the piece data.	-Passed in board piece type.
 	Board_piece Nothing;
@@ -190,11 +182,14 @@ int main(void )
 
 //void Game_Piece_Output_Grid(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
 //void Game_Piece_Output_Grid_Row(int* current_row, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
-	int two= 2;
-	Game_Piece_Output_Grid_Row(&(two ), &(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
+	//int two= 2;
+	//Game_Piece_Output_Grid_Row(&(two ), &(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
 
 //void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
 	//Game_Piece_Output_Block(&(game_board_rows ), &(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
+
+//void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
+	Game_Piece_Output_Block(&(game_board_collums ), &(game_board_rows ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
 
 	delete[] border_array_pointer;
 	border_array_pointer= NULL;
