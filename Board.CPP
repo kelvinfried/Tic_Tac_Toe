@@ -240,7 +240,7 @@ int main(void )
 
 	//To allow the spacing character to be passed into functions.
 	char* border_array= new char[2 ];
-	//Declaire
+	//Declare
 		border_array[0 ]= space_character;
 		border_array[1 ]= divider_character;
 
@@ -252,59 +252,73 @@ int main(void )
 		board[creation_row ]= new piece_identifier[board_collums ];
 	}
 
-	//void Default(int* rows, int* collums, piece_identifier** board )
+	//Set default board values
 	Default(&(board_rows ), &(board_collums ), board );
 
 
 	//Vairables
-	int input_1, input_2; 
+	int input_1= 0;
+	int input_1_test= 0;
+
+	int input_2= 0; 
+	int input_2_test= 0;
+
 	bool loop= true;
 	bool input= true;
 
+
+	//Main loop prototype to check input.
 	while(loop )
 	{
 		while(input )
 		{
-			//Output block.
+			//Output block
 			std::cout<<"" <<std::endl;
-			std::cout<<"Please enter 2 values seperated by a space, input 99 on either to quit" <<std::endl;
-			std::cin>>input_1>>input_2;
+			std::cout<<"" <<std::endl;
+			std::cout<<"Please enter 2 vlaue seperated by a space. Input 99 to quit playing." <<std::endl;
+			//Takes a user input
+			std::cin>> input_1 >> input_2; 
 
-			//Exit case
+			//Input checking:
+			input_1_test= Input_Sanitization(&(board_rows ), &(input_1 ) );
+			input_2_test= Input_Sanitization(&(board_rows ), &(input_2 ) );
+			
+			//Exit clause
 			if((input_1== 99 )|| (input_2== 99 ) )
 			{
 				input= false;
 				loop= false;
 			}
-
-			else if((Input_Sanitization(&(board_rows ), &(input_1 ) )== 1 )|| (Input_Sanitization((&board_collums ), &(input_2 ) ) == 1 ) )
+			
+			else if((input_1_test== 1 )|| (input_2_test== 1 ) )
 			{
-				//Stops this intro segment looping.
 				input= false;
 			}
 
-			else 
+			else
 			{
 				input_1= 0;
 				input_2= 0;
 			}
 		}
-		//To reset it for the next time around.
-		input= true;
-		
-		input_1--;
-		input_2--;
 
+		//Resets it goes back to the input section.
+		input= true;
+
+		//Deincriment the values to make the index 0, with the index 1 board layout.
+		input_1 --;
+		input_2 --;
+
+		//Output section
 		if(loop== true )
 		{
 			Insertion(&(input_1 ), &(input_2 ), board, Cross );
-
 			std::cout<<"Update: " <<std::endl;
 
 			Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
 		}
 
-		else 
+		else
 		{
 		}
 	}
