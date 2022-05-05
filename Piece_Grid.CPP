@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Board_piece.CPP"
 
+//Function names are placeholders
 //Sets the defualt values of the gameboard.
 void Game_Piece_Default(int* rows, int* collums, piece_identifier** game_board )
 {
@@ -14,6 +15,20 @@ void Game_Piece_Default(int* rows, int* collums, piece_identifier** game_board )
 			game_board[setting_row ][setting_collum ]= nothing;
 		}
 	}
+}
+
+//Sets the defualt values of the gameboard.
+void Game_Piece_Default(int* rows, int* collums, piece_identifier** game_board, char overload_char )
+{
+
+	//Used to access each element of the parent row.
+	for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
+	{
+			game_board[rows[0 ] ][setting_collum ]= nothing;
+	}
+
+	//Adjust value of row to keep it updated.
+	rows[0 ]++;
 }
 
 //Overloaded function, used to put custom things on the map
@@ -95,6 +110,17 @@ void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, c
 	Game_Piece_Output_Border(collums, OUTPUT_LINES, components );
 }
 
+//To add a new row to the function, only updates the new row.
+void Game_Piece_New_Row(int* rows, int* collums, piece_identifier** game_board, Board_piece* Board_pieces)
+{
+	//Create a new row
+	game_board[rows[0 ] ]= new piece_identifier[collums[0 ] ];
+	
+	//Set new row to default.
+	//void Game_Piece_Default(int* rows, int* collums, piece_identifier** game_board, char overload_char )
+	Game_Piece_Default(rows, collums, game_board, 't' );
+}
+
 int main(void )
 {
 	//To keep track of the array's dimensions.
@@ -123,7 +149,7 @@ int main(void )
 	//To allow the spacing character to be passed into functions.
 	char* border_array_pointer= new char[2 ];
 	//Declaire
-		border_array_pointer[0 ]= space_character_1;
+		border_array_pointer[0 ]= space_character;
 		border_array_pointer[1 ]= divider_character;
 
 	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
@@ -150,10 +176,22 @@ int main(void )
 	//Game_Piece_Output_Block(&(game_board_rows ), &(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
 
 //void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
-	Game_Piece_Output_Block(&(game_board_collums ), &(game_board_rows ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
+	//Game_Piece_Output_Block(&(game_board_collums ), &(game_board_rows ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
 
 //void Game_Piece_Default(int* rows, int* collums, piece_identifier** game_board )
 	Game_Piece_Default(&(game_board_rows ), &(game_board_collums ), game_board, Cross );
+	std::cout<<"Before:" <<std::endl;
+	Game_Piece_Output_Block(&(game_board_collums ), &(game_board_rows ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
+
+
+//void Game_Piece_New_Row(int* rows, int* collums, piece_identifier** game_board, Board_piece* Board_pieces)
+	Game_Piece_New_Row(&(game_board_rows ), &(game_board_collums ), game_board, Board_pieces );
+
+	//Game_Piece_Default(&(game_board_rows ), &(game_board_collums ), game_board, 't' );
+
+	std::cout<<"" <<std::endl;
+	std::cout<<"After, rows is equal to= " <<game_board_rows <<std::endl;
+//void Game_Piece_New_Row(int* rows, int* collums, piece_identifier** game_board, Board_piece* Board_pieces)
 	Game_Piece_Output_Block(&(game_board_collums ), &(game_board_rows ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
  
 
