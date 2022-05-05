@@ -1,6 +1,6 @@
 #include <iostream>
-#ifndef BOARD_PIECE_TYPE_H
-#define BOARD_PIECE_TYPE_H
+#ifndef TYPE_H
+#define TYPE_H
 
 enum piece_identifier
 {
