@@ -72,6 +72,25 @@ void New_Row(int* rows, int* collums, piece_identifier** board )
 	Default(rows, collums, board, 't' );
 }
 
+//To delete a specified collum.
+void Remove_Collum(int* rows, int* collums, piece_identifier** board )
+{
+	collums[0 ]--;
+
+	for(int current_row= 0; current_row< rows[0 ]; current_row++ )
+	{
+		//delete board[current_row ][collums[0 ] ];
+		board[current_row ][collums[0 ] ]= nothing;
+	}
+}
+
+//To delete a specifed row
+void Remove_Row(int* rows, int* collums, piece_identifier** board )
+{
+	rows[0 ]--;
+
+	delete board[rows[0 ] ];
+}
 
 //Output Section:
 //Outputs the grid border.
@@ -193,6 +212,14 @@ int main(void )
 	//void New_Row(int* rows, int* collums, piece_identifier** board )
 	New_Row(&(board_rows ), &(board_collums ), board );
 	New_Collum(&(board_rows ), &(board_collums ), board );
+
+	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+
+	std::cout<<"New output:" <<std::endl;
+	std::cout<<"" <<std::endl;
+
+	Remove_Row(&(board_rows ), &(board_collums ), board );
+	Remove_Collum(&(board_rows ), &(board_collums ), board );
 
 	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
 
