@@ -22,37 +22,51 @@ void Game_Piece_Output_Border(int* collums, const int* OUTPUT_LINES, char* compo
 	std::cout<<"" <<std::endl;
 }
 
-//Main Function for outputting the grid status.
-void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
+//Outputs the grid
+void Game_Piece_Output_Grid(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
 {
-	//Top border creation
-	Game_Piece_Output_Border(collums, OUTPUT_LINES, components );
-	
-	//Used to traverse between the 3 layers needed for the output.
 	for(int current_layer= 0; current_layer< OUTPUT_LINES[0 ]; current_layer++ )
 	{
 		//Used to create each segment based on the number of collums.
 		for(int current_collum= 0; current_collum< collums[0 ]; current_collum++ )
 		{
 			//Used to tell which output will be used.
-			switch(game_board[current_layer ][current_collum] )
+			//switch(game_board[current_layer ][current_collum] )
+			switch(game_board[0 ][0 ] )
 			{
 				case cross:
-					std::cout<<Board_pieces[nothing ].Get_Output()[current_layer ] <<components[0 ];
+					//std::cout<<Board_pieces[nothing ].Get_Output()[current_layer ] <<components[0 ];
+					std::cout<<Board_pieces[2 ].Get_Output()[current_layer ] <<components[0 ];
 					break;
 
 				case nought:
-					std::cout<<Board_pieces[nought ].Get_Output()[current_layer ] <<components[0 ];
+					//std::cout<<Board_pieces[nought ].Get_Output()[current_layer ] <<components[0 ];
+					std::cout<<Board_pieces[1 ].Get_Output()[current_layer ] <<components[0 ];
 					break;
 
 				default:
-					std::cout<<Board_pieces[cross ].Get_Output()[current_layer ] <<components[0 ];
+					//std::cout<<Board_pieces[cross ].Get_Output()[current_layer ] <<components[0 ];
+					std::cout<<Board_pieces[0 ].Get_Output()[current_layer ] <<components[0 ];
+					//std::cout<<"___" <<components[0 ];
 					break;
 			}
 
 		}
 		std::cout<<"" <<std::endl;
 	}
+}
+
+//Main Function for outputting the formatted game grid
+void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
+{
+	//Top border creation
+	Game_Piece_Output_Border(collums, OUTPUT_LINES, components );
+
+	//Grid
+	Game_Piece_Output_Grid(rows, collums, OUTPUT_LINES, components, game_board, Board_pieces);
+
+	//Bottom Border.
+	Game_Piece_Output_Border(collums, OUTPUT_LINES, components );
 }
 
 
@@ -160,21 +174,27 @@ int main(void )
 
 	std::cout<<"" <<std::endl;
 	
-	
+
+	std::cout<<"Border test creation" << std::endl;
+
+	/*//void Game_Piece_Output_Border(int* collums, int* OUTPUT_LINES, char* components )
+
+	Game_Piece_Output_Border(&(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer );
+	std::cout<<"" <<std::endl;
+	std::cout<<"Test string." <<std::endl;*/
+
+//void Game_Piece_Output_Grid(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
+	Game_Piece_Output_Grid(&(game_board_rows ), &(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
+
+//void Game_Piece_Output_Block(int* rows, int* collums, const int* OUTPUT_LINES, char* components, piece_identifier** game_board, Board_piece* Board_pieces )
+	//Game_Piece_Output_Block(&(game_board_rows ), &(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer, game_board, Board_pieces );
+
+	delete[] border_array_pointer;
+	border_array_pointer= NULL;
+
 	//Cleans up the game_board itself.
 	delete[] game_board;
 	game_board= NULL;
 
-
-	std::cout<<"Border test creation" << std::endl;
-
-	//void Game_Piece_Output_Border(int* collums, int* OUTPUT_LINES, char* components )
-
-	Game_Piece_Output_Border(&(game_board_collums ), &(OUTPUT_LINES ), border_array_pointer );
-	std::cout<<"" <<std::endl;
-	std::cout<<"Test string." <<std::endl;
-
-	delete[] border_array_pointer;
-	border_array_pointer= NULL;
 	return 0;	
 }
