@@ -16,19 +16,6 @@ void Default(int* rows, int* collums, piece_identifier** board )
 	}
 }
 
-//Sets the defualt values for a row
-void Default(int* current_row, int* collums, piece_identifier** board, char overload_char )
-{
-	//Used to access each element of the passed in row
-	for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
-	{
-			board[current_row[0 ] ][setting_collum ]= nothing;
-	}
-
-	//Incriment the value of row to keep it updated.
-	current_row[0 ]++;
-}
-
 //Overloaded function, used to put custom pieces  on the map
 void Default(int* rows, int* collums, piece_identifier** board, Piece piece )
 {
@@ -43,20 +30,48 @@ void Default(int* rows, int* collums, piece_identifier** board, Piece piece )
 	}
 }
 
-//To add a new row to the function, only sets it to nothing.
+//Sets the defualt values for a row
+void Default(int* current_row, int* collums, piece_identifier** board, char overload_char )
+{
+	//Used to access each element of the passed in row
+	for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
+	{
+			board[current_row[0 ] ][setting_collum ]= nothing;
+	}
+
+	//Incriment the value of row to keep it updated.
+	current_row[0 ]++;
+}
+
+//Sets the default value for a collum 
+void Default(int* rows, int* collums, piece_identifier** board, int overload_int )
+{
+	//Extend exisiting dataset
+	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
+	{
+		board[setting_row ][collums[0 ] ]= nothing;
+	}
+
+	collums[0 ]++;
+}
+
+//Used first, to add a new collum; Then we add a new row so it has the same width.
+void New_Collum(int* rows, int* collums, piece_identifier** board )
+{
+	//Set new row to default.
+	Default(rows, collums, board, 1 );
+}
+
+//To add a new row to the board, row is set to nothing.
 void New_Row(int* rows, int* collums, piece_identifier** board )
 {
 	//Create a new row
 	board[rows[0 ] ]= new piece_identifier[collums[0 ] ];
 	
 	//Set new row to default.
-	//void Game_Piece_Default(int* rows, int* collums, piece_identifier** game_board, char overload_char )
 	Default(rows, collums, board, 't' );
 }
 
-void New_Collum(int* rows, int* collums, piece_identifier** board )
-{
-}
 
 //Output Section:
 //Outputs the grid border.
@@ -129,8 +144,8 @@ void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts
 int main(void )
 {
 	//To keep track of the array's dimensions.
-	int board_collums= 4;		
-	int board_rows= 4;
+	int board_collums= 3;		
+	int board_rows= 3;
 
 	//Keep hold of the piece data.	-Passed in board piece type.
 	Piece Nothing;
@@ -170,6 +185,18 @@ int main(void )
 
 	//void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts, piece_identifier** board, Piece* Pieces )
 	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+
+	std::cout<<"New output:" <<std::endl;
+	std::cout<<"" <<std::endl;
+
+	//New Row Trial
+	//void New_Row(int* rows, int* collums, piece_identifier** board )
+	New_Row(&(board_rows ), &(board_collums ), board );
+	New_Collum(&(board_rows ), &(board_collums ), board );
+
+	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+
+
 
 	delete[] border_array;
 	border_array= NULL;
