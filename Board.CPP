@@ -159,6 +159,27 @@ void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts
 	Output_Border(collums, OUTPUT_LINES, border_parts );
 }
 
+//Generic input sanitization:
+int Input_Sanitization(int* test_data, int* test_case )
+{
+	if((0< test_case[0 ] )&& (test_case[0 ]<= test_data[0 ] ) )
+	{
+		//Valid inputted number
+		return 1;
+	}
+
+	else
+	{
+		//Invalid number.
+		return -1;
+	}
+}
+
+void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
+{
+	//board[row[0 ] ][collum[0 ] ]= piece.Get_Type();
+	board[row[0 ] ][collum[0 ] ]= cross;
+}
 
 int main(void )
 {
@@ -198,32 +219,59 @@ int main(void )
 	{
 		board[creation_row ]= new piece_identifier[board_collums ];
 	}
- 
-	//Default for the entire row:		//(int* rows, int* collums, piece_identifier** board )
-	Default(&(board_rows ), &(board_collums ), board );
 
-	//void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts, piece_identifier** board, Piece* Pieces )
-	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+	//Vairables
+	int input_1, input_2; 
+	bool loop= true;
+	bool input= true;
 
-	std::cout<<"New output:" <<std::endl;
-	std::cout<<"" <<std::endl;
+	while(loop )
+	{
+		while(input )
+		{
+			//Output block.
+			std::cout<<"" <<std::endl;
+			std::cout<<"Please enter 2 values seperated by a space, input 99 on either to quit" <<std::endl;
+			std::cin>>input_1>>input_2;
 
-	//New Row Trial
-	//void New_Row(int* rows, int* collums, piece_identifier** board )
-	New_Row(&(board_rows ), &(board_collums ), board );
-	New_Collum(&(board_rows ), &(board_collums ), board );
+			//Exit case
+			if((input_1== 99 )|| (input_2== 99 ) )
+			{
+				input= false;
+				loop= false;
+			}
 
-	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+			else if((Input_Sanitization(&(board_rows ), &(input_1 ) )== 1 )|| (Input_Sanitization((&board_collums ), &(input_2 ) ) == 1 ) )
+			{
+				//Stops this intro segment looping.
+				input= false;
+			}
 
-	std::cout<<"New output:" <<std::endl;
-	std::cout<<"" <<std::endl;
+			else 
+			{
+				input_1= 0;
+				input_2= 0;
+			}
+		}
+		//To reset it for the next time around.
+		input= true;
+		
+		input_1--;
+		input_2--;
 
-	Remove_Row(&(board_rows ), &(board_collums ), board );
-	Remove_Collum(&(board_rows ), &(board_collums ), board );
+		if(loop== true )
+		{
+			Insertion(&(input_1 ), &(input_2 ), board, Cross );
 
-	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+			std::cout<<"Update: " <<std::endl;
 
+			Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+		}
 
+		else 
+		{
+		}
+	}
 
 	//Cleans the border array
 	delete[] border_array;
