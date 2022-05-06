@@ -183,6 +183,13 @@ int main(void )
 	value_2= 2;
 	Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) ); 
 
+	//Test of board expansion.
+	Expand(&(rows ), &(collums ), board );
+	value_1= 2;
+	value_2= 2;
+	Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) );
+
+
 	
 //Clean up section
 	delete[]  keyed_positions;
