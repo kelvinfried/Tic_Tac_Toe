@@ -1,7 +1,4 @@
 #include "Board.H"
-//Function Sheet for the Board
-
-
 //-----------------------------------------Set Up Section:
 //Sets the default value for the entire board.
 //Takes in the number of rows, collums and the board itself to write to
@@ -85,7 +82,7 @@ void Expand(int* rows, int* collums, piece_identifier** board )
 	New_Row(rows, collums, board );
 }
 
-//To delete a specified collum.
+//To delete a specified collum. //USed first
 void Remove_Collum(int* rows, int* collums, piece_identifier** board )
 {
 	//Updates the size tracking value 
@@ -186,9 +183,7 @@ void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts
 
 
 //-----------------------------------------Input Handling Section:
-//Generic input sanitization:
-//Updated to be a bool value returned so it can be used directly with the if statment.
-//int Input_Sanitization(int* test_data, int* test_case )
+//Generic input sanitization: //Updated to be a bool value returned so it can be used directly with the if statment.
 bool Input_Sanitization(int* test_data, int* test_case )
 {
 	//Used to see if the test case is within the bounds of the array

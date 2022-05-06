@@ -215,7 +215,7 @@ int main(void )
 	
 	int points_so_far= 0;
 
-	int value_1= 0;
+	/*int value_1= 0;
 	int value_2= 1;
 
 	//before
@@ -246,8 +246,9 @@ int main(void )
 
 	value_1= 2;
 	value_2= 2;
-	//Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) );
+	//Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) );*/
 
+	//Need to test for the board checking
 
 	
 //Clean up section
