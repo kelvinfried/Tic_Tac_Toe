@@ -18,6 +18,7 @@ bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_r
 	//To iterate the lenght of the 
 	for(int element= 0; element< iteration_length[0 ]; element +=2 )
 	{
+		std::cout<<"Array value is: " <<element <<std::endl;
 		array_value= element;
 
 		int check_1=  keyed_positions_pointer[array_value ];
@@ -26,6 +27,7 @@ bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_r
 		//Match found exit
 		if((current_row[0 ]== check_1 )&& (current_collum[0 ]== check_2 ) )
 		{
+			std::cout<<"Invalid" <<std::endl;
 			//A match was found so therefore the input is invalid from the game board.
 			return false;
 		}
@@ -34,6 +36,7 @@ bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_r
 		{
 		}
 	}
+	std::cout<<"valid" <<std::endl;
 	//Moved this to not make the check die early as it returns a value - Used to say there are no mathces from the array
 	return true;
 }
@@ -44,6 +47,7 @@ void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, in
 	//Insert the value in the next free slot.
 	//Next free slot is points so far * 2; Then ++ for the second value.
 	int element= 0;
+	int element_1= 0;
 
 	//To not divide by 0
 	switch(points_so_far[0 ] )
@@ -58,11 +62,13 @@ void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, in
 			//std::cout<< "After: " << points_so_far[0 ] <<std::endl;
 			break;
 	}
+	element_1= element+ 1;
 
 	std::cout<<"element is: "<<element <<std::endl;
+	std::cout<<"element 1 is: "<<element_1 <<std::endl;
 
 	keyed_positions_pointer[element ]= current_row[0 ];
-	keyed_positions_pointer[element ++ ]= current_collum[0 ];
+	keyed_positions_pointer[element_1 ]= current_collum[0 ];
 }
 
 void Keyed_Output(int* keyed_positions_pointer,  int* iteration_length )
@@ -76,7 +82,7 @@ void Keyed_Output(int* keyed_positions_pointer,  int* iteration_length )
 	{
 		for(int y= 0; y< 2; y++ )
 		{
-			std::cout<<"The " <<x <<", " <<y <<" value is: ";
+			std::cout<<"The " <<x <<", " <<y <<" has a: ";
 			std::cout<<keyed_positions_pointer[(x+ y ) ] <<std::endl;
 		}
 	}
@@ -98,7 +104,7 @@ void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* 
 
 	else
 	{
-		;
+		std::cout<<"Fail" <<std::endl;
 	}
 
 	Keyed_Output(keyed_positions_pointer, iteration_length );
@@ -129,10 +135,34 @@ int main(void )
 	int points_so_far= 0;
 
 	int value_1= 0;
-	int value_2= 0;
+	int value_2= 1;
+
+	//before
+	//Keyed_Output(keyed_positions, keyed_length );
+	std::cout<<"" <<std::endl;
 
 	//commit one length
 	Keyed_Position_Commit(keyed_positions, &(value_1 ), &(value_2 ), &(collums ), keyed_length, &(points_so_far ) );
 
-	return 0;
+
+	value_1= 2;
+	value_2= 2;
+	Keyed_Position_Commit(keyed_positions, &(value_1 ), &(value_2 ), &(collums ), keyed_length, &(points_so_far ) );
+
+	
+//Clean up section
+	delete keyed_length;
+	keyed_length= NULL;
+
+	delete[]  keyed_positions;
+	keyed_positions= NULL;
+
+	//Function used to delete the board rows.
+	Board_Wipe(&(rows ), board );
+
+	//Cleans up the game_board itself.
+	delete[] board;
+	board= NULL;
+
+	return 0;	
 }
