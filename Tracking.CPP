@@ -161,7 +161,7 @@ void Expand_Index(int* keyed_positions, int* row )
 //-----------------------------------------Win Check:
 //Offset by 5 turns.
 //int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far)
-void Keyed_Check(int* start_row, int* start_collum, piece_identifier** board, int* keyed_positions, 
+void Keyed_Check(int* start_row, int* start_collum, int* rows, int* collums, piece_identifier** board, Piece piece_type, int* keyed_positions, int* points_so_far )
 {
 	//Horizontal check
 		//Checks 
