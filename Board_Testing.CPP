@@ -1,6 +1,16 @@
 //Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
 #include "Board.CPP"
 
+//To clean out the int Arry for keeping track of found spaces.
+void Key_Position_Default(int* keyed_positions_pointer, int* iteration_length )
+{
+	for(int x= 0; x< iteration_length[0 ]; x++ )
+	{
+		//Set to minus one to not cause any conflicts when adding a 0, 0 array position.
+		keyed_positions_pointer[x ]= -1;
+	}
+}
+
 //Assuming the input passed all checks it will then be checked against the array to see if it has already been indeex by the program to not count it again.
 bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length )
 {
@@ -44,6 +54,23 @@ void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, in
 	keyed_positions_pointer[element ++ ]= current_collum[0 ];
 }
 
+void Keyed_Output(int* keyed_positions_pointer,  int* iteration_length )
+{
+	std::cout<<"" <<std::endl;
+	std::cout<<"Keyed_Output" <<std::endl;
+	
+	int half_itr= (iteration_length[0 ] ) /2;
+
+	for(int x= 0; x< half_itr; x++ )
+	{
+		for(int y= 0; y< 2; y++ )
+		{
+			std::cout<<"The " <<x <<", " <<y <<" value is: ";
+			std::cout<<keyed_positions_pointer[(x+ y ) ] <<std::endl;
+		}
+	}
+}
+
 void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length, int* points_so_far )
 {
 	bool check= Keyed_Position_Insertion_Check(keyed_positions_pointer, current_row, current_collum, number_of_rows, iteration_length );
@@ -52,14 +79,17 @@ void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* 
 	if(check )
 	{
 		Keyed_Position_Insertion(keyed_positions_pointer, current_row, current_collum, number_of_rows, points_so_far );
+
+		points_so_far++;	
 	}
 
 	else
 	{
 		;
 	}
-}
 
+	Keyed_Output(keyed_positions_pointer, iteration_length );
+}
 
 int main(void )
 {
@@ -219,8 +249,20 @@ int main(void )
 		std::cout<<"Not Gamer" <<std::endl;
 	}*/
 //Test condition for insertion.
+//void Key_Position_Default(int* keyed_positions_pointer, int* iteration_length )
+	Key_Position_Default(keyed_positions_pointer, &(keyed_length ) );
+	int points_so_far= 0;
+
+	//Commit a set of lengths
+	for(int x=0; x< keyed_length; x++ )
+	{
+		int value_1= x;
+		int value_2= x;
+
+		Keyed_Position_Commit(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ), &(points_so_far ) );
+	}
 //Automated fill.
-	int value_1= 1;
+	/*int value_1= 1;
 	int value_2= 1;
 
 	for(int x= 0; x< 3; x++ )
@@ -237,10 +279,10 @@ int main(void )
 		{
 			std::cout<<"Not Gamer" <<std::endl;
 		}
-	}
+	}*/
 
 //Trying to trigger conflict.
-	value_1= 1;
+	/*value_1= 1;
 	value_2= 1;
 
 	//bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length )
@@ -252,7 +294,7 @@ int main(void )
 	else
 	{
 		std::cout<<"Not Gamer" <<std::endl;
-	}
+	}*/
 
 	//Clean up section
 	delete[] border_array;
