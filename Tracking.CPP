@@ -174,9 +174,14 @@ int main(void )
 	Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) ); 
 
 
-	//value_1= 2;
-	//value_2= 2;
-	//Keyed_Position_Commit(keyed_positions, &(value_1 ), &(value_2 ), &(collums ), keyed_length, &(points_so_far ) );
+	value_1= 2;
+	value_2= 2;
+	Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) ); 
+
+	//Test of a duplicate- Handles it correclty.
+	value_1= 2;
+	value_2= 2;
+	Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) ); 
 
 	
 //Clean up section
