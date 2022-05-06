@@ -141,14 +141,15 @@ void Keyed_Position_Commit(int* keyed_positions, int* current_row, int* current_
 //Used to account for the board increasing in size, sets the default values for the new values.
 void Expand_Index(int* keyed_positions, int* row )
 {
-	//
+	//Base for how much will be needed
 	int element= row[0 ];
+	//Gets the value and works back to adjust for the array lay out.
 	element*= 2;
 	element= element- 1;
 
 	int element_1= element;
 	element_1= element_1- 1;
-
+	//Sets the newly created values to default.
 	keyed_positions[element ]= -1;
 	keyed_positions[element_1 ]= -1;
 }
@@ -199,9 +200,9 @@ int main(void )
 	Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) ); 
 
 	//Test of board expansion.
-	std::cout<<"Rows was at " <<rows;
+	//std::cout<<"Rows was at " <<rows;
 	Expand(&(rows ), &(collums ), board );
-	std::cout<<"Rows is at " <<rows;
+	//std::cout<<"Rows is at " <<rows;
 	Expand_Index(keyed_positions, &(rows ) );
 	
 	Keyed_Output(keyed_positions, &(rows ) );

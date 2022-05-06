@@ -243,44 +243,6 @@ void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
 	}
 }
 
-
-//-----------------------------------------Win Check:
-//Offset by 5 turns.
-//Previos positions:
-	//Array of [collum length]  *Dynamic to work. Keep track of positions.	
-	//Int Points so far
-	//
-void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far)
-{
-	//Generate 2d Array
-
-	//Horizontal check
-		//Checks 
-
-		//Clean up code here	-Reset Any Trackers.
-		points_so_far[0 ]= 0;
-	
-	//Verticel check
-		//Checks 
-
-		//Clean up code here
-	//Diagonal_1
-		//Checks 
-
-		//Clean up code here
-	//Diagonal_2
-		//Checks 
-
-		//Clean up code here
-
-	//Clean up
-	//Cleaning the 2D Array
-	//Wipe_2D_Array(rows, keyed_positions );
-	//Default(rows, collums, keyed_positions );
-	//
-}
-
-
 //-----------------------------------------Clean Up:
 //To Destory the board.
 void Board_Wipe(int* rows, piece_identifier** array )
