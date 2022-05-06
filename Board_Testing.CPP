@@ -1,10 +1,8 @@
-#include "Board.H"
-//Function Sheet for the Board
+//Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
+#include "Piece.CPP"
 
-
-//-----------------------------------------Set Up Section:
-//Sets the default value for the entire board.
-//Takes in the number of rows, collums and the board itself to write to
+//Function names are placeholders
+//Sets the defualt values of the entire board.
 void Default(int* rows, int* collums, piece_identifier** board )
 {
 	//Used to access each row at a time.
@@ -18,7 +16,21 @@ void Default(int* rows, int* collums, piece_identifier** board )
 	}
 }
 
-//Overloaded function, used to fill the board with the passed in piece type.
+//Sets the defualt values of the entire board.
+void Default(int* rows, int* collums, int** array)
+{
+	//Used to access each row at a time.
+	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
+	{
+		//Used to access each element of the parent row.
+		for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
+		{
+			array[setting_row ][setting_collum ]= nothing;
+		}
+	}
+}
+
+//Overloaded function, used to put custom pieces  on the map
 void Default(int* rows, int* collums, piece_identifier** board, Piece piece )
 {
 	//Used to access each row at a time.
@@ -32,9 +44,7 @@ void Default(int* rows, int* collums, piece_identifier** board, Piece piece )
 	}
 }
 
-//Next two are used for when the board expands
-//Used to set the default values for a specified row
-//Pass in current row which is the current upper limit of the array, overload_char is only to allow you to overload the function to call it.
+//Sets the defualt values for a row
 void Default(int* current_row, int* collums, piece_identifier** board, char overload_char )
 {
 	//Used to access each element of the passed in row
@@ -59,9 +69,7 @@ void Default(int* rows, int* collums, piece_identifier** board, int overload_int
 	collums[0 ]++;
 }
 
-
-//-----------------------------------------Size Management Section:
-//Used first, to add new collums; Then we add a new row so the same width is used.
+//Used first, to add a new collum; Then we add a new row so it has the same width.
 void New_Collum(int* rows, int* collums, piece_identifier** board )
 {
 	//Set new row to default.
@@ -78,23 +86,13 @@ void New_Row(int* rows, int* collums, piece_identifier** board )
 	Default(rows, collums, board, 't' );
 }
 
-//Combines the two seperate expansion functions into on neat package.
-void Expand(int* rows, int* collums, piece_identifier** board )
-{
-	New_Collum(rows, collums, board );
-	New_Row(rows, collums, board );
-}
-
 //To delete a specified collum.
 void Remove_Collum(int* rows, int* collums, piece_identifier** board )
 {
-	//Updates the size tracking value 
 	collums[0 ]--;
 
 	for(int current_row= 0; current_row< rows[0 ]; current_row++ )
 	{
-		//I am unable to delete indivudal collum elements so they're just set to nothing.
-			//To delete elemnents and rezise the array I seem to need to use vectors for this.
 		//delete board[current_row ][collums[0 ] ];
 		board[current_row ][collums[0 ] ]= nothing;
 	}
@@ -105,19 +103,10 @@ void Remove_Row(int* rows, int* collums, piece_identifier** board )
 {
 	rows[0 ]--;
 
-	//Delething rows is something I can do to save on memory when the parts are no longer being drawn.
 	delete board[rows[0 ] ];
 }
 
-//Combines the two seperate deleting methods into one function.
-void Shrink()
-{
-	Remove_Collum(int* rows, int* collums, piece_identifier** board );
-	Remove_Row(int* rows, int* collums, piece_identifier** board );
-}
-
-
-//-----------------------------------------Output Section:
+//Output Section:
 //Outputs the grid border.
 void Output_Border(int* collums, const int* OUTPUT_LINES, char* border_parts )
 {
@@ -184,48 +173,43 @@ void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts
 	Output_Border(collums, OUTPUT_LINES, border_parts );
 }
 
-
-//-----------------------------------------Input Handling Section:
 //Generic input sanitization:
-//Updated to be a bool value returned so it can be used directly with the if statment.
-//int Input_Sanitization(int* test_data, int* test_case )
-bool Input_Sanitization(int* test_data, int* test_case )
+int Input_Sanitization(int* test_data, int* test_case )
 {
-	//Used to see if the test case is within the bounds of the array
 	if((0< test_case[0 ] )&& (test_case[0 ]<= test_data[0 ] ) )
 	{
 		//Valid inputted number
-		return true;
+		return 1;
 	}
 
 	else
 	{
 		//Invalid number.
-		return false;
+		return -1;
 	}
 }
 
-//To ensure that the insertion is valid before doing it.
+//To ensure that the insertion is valid.
 bool Insertion_Trial(int* row, int* collum, piece_identifier** board, Piece piece )
 {
-	piece_identifier current_value= board[row[0 ] ][collum[0 ] ];
+	//
+	//std::cout<<"Value is :" <<board[row[0 ] ][collum[0 ] ] <<std::endl;
 
-	//If there is nothing on the board in that place, allow the user to place their type of piece.
-	if(current_value== nothing )
+	if(board[row[0 ] ][collum[0 ] ]== nothing )
 	{	
 		//Allows for insertion.
-		std::cout<<"true" <<std::endl;
+		//std::cout<<"true" <<std::endl;
 		return true;
 	}
 
+	//
 	else 
 	{
-		std::cout<<"false" <<std::endl;
+		//std::cout<<"false" <<std::endl;
 		return false;
 	}
 }
 
-//The actual insertion into the board, incorporates the checks and if valid will draw onto the board.
 void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
 {
 	//To check if the insertion is valid.
@@ -233,17 +217,17 @@ void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
 
 	if(check )
 	{
-		//Writing the piece type to the board to be displayed.
 		board[row[0 ] ][collum[0 ] ]= piece.Get_Type()[0 ];
 	}
 
 	else
 	{
 		//Not valid.
+		//std::cout<<"Not valid." <<std::endl;
 	}
 }
 
-//To Destory the board.
+//To clean the board.
 void Board_Wipe(int* rows, piece_identifier** array )
 {
 	for(int deletion= 0; deletion< rows[0 ]; deletion ++ )
@@ -251,6 +235,14 @@ void Board_Wipe(int* rows, piece_identifier** array )
 		delete array[deletion ];
 	}
 }
+
+//
+void Keyed_Position_Insert(int* keyed_positions_pointer, int* current_row, int* current_collum )
+{
+	;
+}
+
+
 
 //Offset by 5 turns.
 //Previos positions:
@@ -285,4 +277,167 @@ void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_ide
 	//Wipe_2D_Array(rows, keyed_positions );
 	//Default(rows, collums, keyed_positions );
 	//
+}
+
+int main(void )
+{
+	//To keep track of the array's dimensions.
+	int board_collums= 3;		
+	int board_rows= 3;
+
+	//Keep hold of the piece data.	-Passed in board piece type.
+	Piece Nothing;
+	Piece Nought(nought );
+	Piece Cross(cross );
+
+	//Used for passing the piece data between functions
+	Piece* Pieces=new Piece[3 ];
+	//Assigning the values.
+		Pieces[0 ]= Nothing;
+		Pieces[1 ]= Nought;
+		Pieces[2 ]= Cross;
+
+	//Stores how many lines the board piece output has, used for printing.
+	constexpr int OUTPUT_LINES= 3;
+
+	//Used for spacing out the output for the program.
+	char space_character= 'X';
+	char divider_character='_';
+
+	//To allow the spacing character to be passed into functions.
+	char* border_array= new char[2 ];
+	//Declare
+		border_array[0 ]= space_character;
+		border_array[1 ]= divider_character;
+
+	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
+	piece_identifier** board= new piece_identifier*[board_collums ];
+		//Declares the rows, Iterative approach to have a dynamic size during runtime.
+	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
+	{
+		board[creation_row ]= new piece_identifier[board_collums ];
+	}
+
+	//Set default board values
+	Default(&(board_rows ), &(board_collums ), board );
+
+	//Testing stage inputs for the player character 
+	//Vairables
+	int input_1= 0;
+	bool input_1_test= 0;
+
+	int input_2= 0; 
+	bool input_2_test= 0;
+
+	bool loop= true;
+	bool input= true;
+
+	//Array to key positions already discorvered.
+		//2 Positions for one row (x) and one collum (y) value.
+	/*int** keyed_positions_pointer= new int*[2 ];
+		//Declares the rows, with an iterative apporach:
+	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
+	{
+		keyed_positions_pointer[creation_row ]= new int[2 ];
+	}
+	//eDfine values for the array.
+	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
+	{
+		for(int two= 0; two< 2 ; two ++ )
+		{
+			keyed_positions_pointer[creation_row ][two ]= 0;
+		}
+	}*/
+
+	//Used to keep track of the length of the 
+	int keyed_length= 2* board_collums; 
+	//Array to store already discovered positions.
+		//A 1D Array, segmented by every 2 elements, as that is what is needed, much simpler this way.
+	int* keyed_positions_pointer= new int[keyed_length ];
+	//Sets a defualt value for the arrray.
+	for(int creation= 0; creation< keyed_length; creation ++ )
+	{
+		keyed_positions_pointer[creation ]= 0;
+	}
+
+	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+
+	/*//Main loop prototype to check input.
+	while(loop )
+	{
+		while(input )
+		{
+			//Output block
+			std::cout<<"" <<std::endl;
+			std::cout<<"" <<std::endl;
+			std::cout<<"Please enter 2 vlaue seperated by a space. Input 99 to quit playing." <<std::endl;
+			//Takes a user input
+			std::cin>> input_1 >> input_2; 
+
+			//Input checking:
+			input_1_test= Input_Sanitization(&(board_rows ), &(input_1 ) );
+			input_2_test= Input_Sanitization(&(board_rows ), &(input_2 ) );
+			
+			//Exit clause
+			if((input_1== 99 )|| (input_2== 99 ) )
+			{
+				input= false;
+				loop= false;
+			}
+			
+			else if((input_1_test== 1 )|| (input_2_test== 1 ) )
+			else if((input_1_test )|| (input_2_test ) )
+			{
+				input= false;
+			}
+
+			else
+			{
+				input_1= 0;
+				input_2= 0;
+			}
+		}
+
+		//Resets it goes back to the input section.
+		input= true;
+
+		//Deincriment the values to make the index 0, with the index 1 board layout.
+		input_1 --;
+		input_2 --;
+
+		//Output section
+		if(loop== true )
+		{
+			Insertion(&(input_1 ), &(input_2 ), board, Cross );
+			std::cout<<"Update: " <<std::endl;
+
+			Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+		}
+
+		else
+		{
+		}
+	}*/
+
+	//Clean up section
+	delete[] border_array;
+	border_array= NULL;
+
+	delete[]  keyed_positions_pointer;
+	keyed_positions_pointer= NULL;
+
+	//Correct Deletion for the rows of the array, unlike before, prevent memory leak.
+	/*for(int deletion= 0; deletion< board_rows; deletion ++ )
+	{
+		delete board[deletion ];
+	}*/
+	//void Board_Wipe(int* rows, piece_identifier** array )
+	//Function used to delete the board rows.
+	Board_Wipe(&(board_rows ), board );
+
+	//Cleans up the game_board itself.
+	delete[] board;
+	board= NULL;
+
+	return 0;	
 }
