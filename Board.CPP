@@ -16,6 +16,20 @@ void Default(int* rows, int* collums, piece_identifier** board )
 	}
 }
 
+//Sets the defualt values of the entire board.
+void Default(int* rows, int* collums, int** array)
+{
+	//Used to access each row at a time.
+	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
+	{
+		//Used to access each element of the parent row.
+		for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
+		{
+			array[setting_row ][setting_collum ]= nothing;
+		}
+	}
+}
+
 //Overloaded function, used to put custom pieces  on the map
 void Default(int* rows, int* collums, piece_identifier** board, Piece piece )
 {
@@ -213,6 +227,59 @@ void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
 	}
 }
 
+void Wipe_2D_Array(int* rows, int** array )
+{
+	for(int deletion= 0; deletion< rows[0 ]; deletion ++ )
+	{
+		delete array[deletion ];
+	}
+}
+
+void Wipe_2D_Array(int* rows, piece_identifier** array )
+{
+	for(int deletion= 0; deletion< rows[0 ]; deletion ++ )
+	{
+		delete array[deletion ];
+	}
+}
+
+
+
+//Offset by 5 turns.
+//Previos positions:
+	//Array of [collum length]  *Dynamic to work. Keep track of positions.	
+	//Int Points so far
+	//
+void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far)
+{
+	//Generate 2d Array
+
+	//Horizontal check
+		//Checks 
+
+		//Clean up code here	-Reset Any Trackers.
+		points_so_far[0 ]= 0;
+	
+	//Verticel check
+		//Checks 
+
+		//Clean up code here
+	//Diagonal_1
+		//Checks 
+
+		//Clean up code here
+	//Diagonal_2
+		//Checks 
+
+		//Clean up code here
+
+	//Clean up
+	//Cleaning the 2D Array
+	Wipe_2D_Array(rows, keyed_positions );
+	Default(rows, collums, keyed_positions );
+	//
+}
+
 int main(void )
 {
 	//To keep track of the array's dimensions.
@@ -247,7 +314,7 @@ int main(void )
 	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
 	piece_identifier** board= new piece_identifier*[board_collums ];
 		//Declares the rows, Iterative approach to have a dynamic size during runtime.
-	for( int creation_row= 0; creation_row< board_rows; creation_row++ )
+	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
 	{
 		board[creation_row ]= new piece_identifier[board_collums ];
 	}
@@ -265,8 +332,37 @@ int main(void )
 	bool loop= true;
 	bool input= true;
 
+	//Array to key positions already discorvered.
+		//2 Positions for one row (x) and one collum (y) value.
+	/*int** keyed_positions_pointer= new int*[2 ];
+		//Declares the rows, with an iterative apporach:
+	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
+	{
+		keyed_positions_pointer[creation_row ]= new int[2 ];
+	}
+	//eDfine values for the array.
+	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
+	{
+		for(int two= 0; two< 2 ; two ++ )
+		{
+			keyed_positions_pointer[creation_row ][two ]= 0;
+		}
+	}*/
 
-	//Main loop prototype to check input.
+	//Used to keep track of the length of the 
+	int keyed_length= 2* board_collums; 
+	//Array to store already discovered positions.
+		//A 1D Array, segmented by every 2 elements, as that is what is needed, much simpler this way.
+	int* keyed_positions_pointer= new int[keyed_length ];
+	//Sets a defualt value for the arrray.
+	for(int creation= 0; creation< keyed_length; creation ++ )
+	{
+		keyed_positions_pointer[creation ]= 0;
+	}
+
+	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+
+	/*//Main loop prototype to check input.
 	while(loop )
 	{
 		while(input )
@@ -320,14 +416,17 @@ int main(void )
 		else
 		{
 		}
-	}
+	}*/
 
-	//Cleans the border array
+	//Clean up section
 	delete[] border_array;
 	border_array= NULL;
 
+	delete[]  keyed_positions_pointer;
+	keyed_positions_pointer= NULL;
+
 	//Correct Deletion for the rows of the array, unlike before, prevent memory leak.
-	for(int deletion= 0; deletion< board_rows; deletion++ )
+	for(int deletion= 0; deletion< board_rows; deletion ++ )
 	{
 		delete board[deletion ];
 	}
