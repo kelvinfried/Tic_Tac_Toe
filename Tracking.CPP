@@ -1,6 +1,4 @@
-//Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
 #include "Board.CPP"
-
 //To clean out the int Arry for keeping track of found spaces.
 void Key_Position_Default(int* keyed_positions_pointer, int* iteration_length )
 {
@@ -106,36 +104,11 @@ void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* 
 	Keyed_Output(keyed_positions_pointer, iteration_length );
 }
 
+
 int main(void )
 {
-	//To keep track of the array's dimensions.
-	int board_collums= 3;		
-	int board_rows= 3;
-
-	//Keep hold of the piece data.	-Passed in board piece type.
-	Piece Nothing;
-	Piece Nought(nought );
-	Piece Cross(cross );
-
-//Assing one of these to the player class.
-	//Used for passing the piece data between functions
-	Piece* Pieces=new Piece[3 ];
-	//Assigning the values.
-		Pieces[0 ]= Nothing;
-		Pieces[1 ]= Nought;
-		Pieces[2 ]= Cross;
-
-	//Stores how many lines the board piece output has, used for printing.
-	constexpr int OUTPUT_LINES= 3;
-
-	//Used for spacing out the output for the program.
-	char space_character= 'X';
-	char divider_character='_';
-	//To allow the spacing character to be passed into functions.
-	char* border_array= new char[2 ];
-	//Declare
-		border_array[0 ]= space_character;
-		border_array[1 ]= divider_character;
+	int collums= 3;
+	int rows= 3;
 
 	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
 	piece_identifier** board= new piece_identifier*[board_collums ];
@@ -144,72 +117,22 @@ int main(void )
 	{
 		board[creation_row ]= new piece_identifier[board_collums ];
 	}
-
 	//Set default board values
 	Default(&(board_rows ), &(board_collums ), board );
 
-//Testing stage inputs for the player character 
-	//Vairables
-	int input_1= 0;
+	
+	int* keyed_length= new int(collums* 2 );
 
-	int input_2= 0; 
-
-	//These would be general and shared between the loop
-	bool input_1_test= 0;
-	bool input_2_test= 0;
-
-	bool loop= true;
-	bool input= true;
-
-	//Used to keep track of the length of the 
-	//int keyed_length= 2* board_collums; 
-	int keyed_length= 5; 
-	//Array to store already discovered positions.
-		//A 1D Array, segmented by every 2 elements, as that is what is needed, much simpler this way.
-	int* keyed_positions_pointer= new int[keyed_length ];
-	//Sets a defualt value for the arrray.
-	for(int creation= 0; creation< keyed_length; creation ++ )
-	{
-		keyed_positions_pointer[creation ]= 0;
-	}
-
-	//Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
-
-//Test condition for insertion.
-//void Key_Position_Default(int* keyed_positions_pointer, int* iteration_length )
-	Key_Position_Default(keyed_positions_pointer, &(keyed_length ) );
+	int* keyed_positions= new int[keyed_length ];
+	Key_Position_Default(keyed_positions, keyed_length );
+	
 	int points_so_far= 0;
 
 	int value_1= 0;
 	int value_2= 0;
 
-	//Commit a set of lengths
-	for(int x=0; x< keyed_length; x +=2 )
-	{
-		//std::cout<< "print x: " <<x <<std::endl;
-		value_1= x;
-		value_2= x;
-		value_2++ ;
-		std::cout<<"Value 1= "<<value_1 <<std::endl;
-		std::cout<<"Value 2 = "<<value_2 <<std::endl;
+	//commit one length
+	Keyed_Position_Commit(keyed_positions, &(value_1 ), &(value_2 ), &(collums ), keyed_length, &(points_so_far ) );
 
-		Keyed_Position_Commit(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ), &(points_so_far ) );
-	}
-
-
-	//Clean up section
-	delete[] border_array;
-	border_array= NULL;
-
-	delete[]  keyed_positions_pointer;
-	keyed_positions_pointer= NULL;
-
-	//Function used to delete the board rows.
-	Board_Wipe(&(board_rows ), board );
-
-	//Cleans up the game_board itself.
-	delete[] board;
-	board= NULL;
-
-	return 0;	
+	return 0;
 }
