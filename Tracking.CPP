@@ -111,19 +111,19 @@ int main(void )
 	int rows= 3;
 
 	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
-	piece_identifier** board= new piece_identifier*[board_collums ];
+	piece_identifier** board= new piece_identifier*[collums ];
 		//Declares the rows, Iterative approach to have a dynamic size during runtime.
-	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
+	for(int creation_row= 0; creation_row< rows; creation_row ++ )
 	{
-		board[creation_row ]= new piece_identifier[board_collums ];
+		board[creation_row ]= new piece_identifier[collums ];
 	}
 	//Set default board values
-	Default(&(board_rows ), &(board_collums ), board );
+	Default(&(rows ), &(collums ), board );
 
 	
 	int* keyed_length= new int(collums* 2 );
 
-	int* keyed_positions= new int[keyed_length ];
+	int* keyed_positions= new int[keyed_length[0 ] ];
 	Key_Position_Default(keyed_positions, keyed_length );
 	
 	int points_so_far= 0;
