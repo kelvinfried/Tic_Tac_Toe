@@ -255,7 +255,6 @@ int main(void )
 	//Set default board values
 	Default(&(board_rows ), &(board_collums ), board );
 
-
 	//Vairables
 	int input_1= 0;
 	int input_1_test= 0;
