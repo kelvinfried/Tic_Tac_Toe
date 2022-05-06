@@ -1,7 +1,7 @@
-#include <iostream>
-#ifndef BOARD_PIECE_TYPE_H
-#define BOARD_PIECE_TYPE_H
+#ifndef TYPE_H
+#define TYPE_H
 
+#include <iostream>
 enum piece_identifier
 {
 	//Empty Board Piece.

@@ -1,25 +1,26 @@
-#include <iostream>
-#include "Board_piece_type.H"
-#ifndef BOARD_PIECE_H
-#define BOARD_PIECE_H
+#ifndef PIECE_H
+#define PIECE_H
 
-class Board_piece
+#include "Type.H"
+#include <iostream>
+
+class Piece
 {
 	private:
-		//Used to store the 3 lines that store the ASCII Art 
+		//Used to store the 3 lines that store the ASCII Art
 		std::string output[3 ];
 
 		//Stores the piece type.
 		piece_identifier type;
 
 
-	public: 
+	public:
 	//Constructor
 		//Default
-		Board_piece(void );
+		Piece(void );
 
-		Board_piece(piece_identifier type_selected );
-	
+		Piece(piece_identifier type_selected );
+
 	//Getters
 		std::string* Get_Output(void );
 
