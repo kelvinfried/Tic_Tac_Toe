@@ -155,6 +155,43 @@ void Expand_Index(int* keyed_positions, int* row )
 }
 
 
+//-----------------------------------------Board Check:
+ 
+
+//-----------------------------------------Win Check:
+//Offset by 5 turns.
+//int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far)
+void Keyed_Check(int* start_row, int* start_collum, piece_identifier** board, int* keyed_positions, 
+{
+	//Horizontal check
+		//Checks 
+
+		//Clean up code here	-Reset Any Trackers.
+		points_so_far[0 ]= 0;
+		Keyed_Position_Default(keyed_positions, rows );
+	
+	//Verticel check
+		//Checks 
+
+		//Clean up code here
+		points_so_far[0 ]= 0;
+		Keyed_Position_Default(keyed_positions, rows );
+	//Diagonal_1
+		//Checks 
+
+		//Clean up code here
+			points_so_far[0 ]= 0;
+		Keyed_Position_Default(keyed_positions, rows );
+	//Diagonal_2
+		//Checks 
+
+		//Clean up code here
+		points_so_far[0 ]= 0;
+		Keyed_Position_Default(keyed_positions, rows );
+
+}
+
+
 int main(void )
 {
 	int collums= 3;
