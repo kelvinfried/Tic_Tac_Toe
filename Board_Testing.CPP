@@ -28,12 +28,13 @@ bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_r
 		
 		else
 		{
-			return true;
 		}
 	}
+	//Moved this to not make the check die early as it returns a value 
+	return true;
 }
 
-
+//Used for inserting the value into the correct slot.
 void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* points_so_far )
 {
 	//Insert the value in the next free slot.
@@ -47,7 +48,9 @@ void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, in
 		case 0:
 			element= 0;
 		default:
+			//std::cout<< "before: " << points_so_far[0 ] <<std::endl;
 			element= (points_so_far[0 ] )* 2;
+			//std::cout<< "After: " << points_so_far[0 ] <<std::endl;
 	}
 
 	keyed_positions_pointer[element ]= current_row[0 ];
@@ -80,7 +83,9 @@ void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* 
 	{
 		Keyed_Position_Insertion(keyed_positions_pointer, current_row, current_collum, number_of_rows, points_so_far );
 
-		points_so_far++;	
+		//Forgot to dereferance it.
+		points_so_far[0 ]++;	
+		std::cout<<"print test, points so far is :" <<points_so_far[0 ] <<std::endl;
 	}
 
 	else
@@ -146,23 +151,6 @@ int main(void )
 
 	bool loop= true;
 	bool input= true;
-
-	//Array to key positions already discorvered.
-		//2 Positions for one row (x) and one collum (y) value.
-	/*int** keyed_positions_pointer= new int*[2 ];
-		//Declares the rows, with an iterative apporach:
-	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
-	{
-		keyed_positions_pointer[creation_row ]= new int[2 ];
-	}
-	//eDfine values for the array.
-	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
-	{
-		for(int two= 0; two< 2 ; two ++ )
-		{
-			keyed_positions_pointer[creation_row ][two ]= 0;
-		}
-	}*/
 
 	//Used to keep track of the length of the 
 	int keyed_length= 2* board_collums; 
@@ -254,10 +242,11 @@ int main(void )
 	int points_so_far= 0;
 
 	//Commit a set of lengths
-	for(int x=0; x< keyed_length; x++ )
+	for(int x=0; x< keyed_length; x +=2 )
 	{
+		std::cout<< "print x: " <<x <<std::endl;
 		int value_1= x;
-		int value_2= x;
+		int value_2= x++ ;
 
 		Keyed_Position_Commit(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ), &(points_so_far ) );
 	}
