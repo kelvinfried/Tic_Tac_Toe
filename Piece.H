@@ -1,6 +1,8 @@
-#include "Type.H"
 #ifndef PIECE_H
 #define PIECE_H
+
+#include "Type.H"
+#include <iostream>
 
 class Piece
 {

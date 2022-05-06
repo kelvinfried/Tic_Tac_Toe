@@ -110,10 +110,10 @@ void Remove_Row(int* rows, int* collums, piece_identifier** board )
 }
 
 //Combines the two seperate deleting methods into one function.
-void Shrink()
+void Shrink(int* rows, int* collums, piece_identifier** board)
 {
-	Remove_Collum(int* rows, int* collums, piece_identifier** board );
-	Remove_Row(int* rows, int* collums, piece_identifier** board );
+	Remove_Collum(rows, collums, board );
+	Remove_Row(rows, collums, board );
 }
 
 
@@ -243,15 +243,8 @@ void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
 	}
 }
 
-//To Destory the board.
-void Board_Wipe(int* rows, piece_identifier** array )
-{
-	for(int deletion= 0; deletion< rows[0 ]; deletion ++ )
-	{
-		delete array[deletion ];
-	}
-}
 
+//-----------------------------------------Win Check:
 //Offset by 5 turns.
 //Previos positions:
 	//Array of [collum length]  *Dynamic to work. Keep track of positions.	
@@ -285,4 +278,15 @@ void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_ide
 	//Wipe_2D_Array(rows, keyed_positions );
 	//Default(rows, collums, keyed_positions );
 	//
+}
+
+
+//-----------------------------------------Clean Up:
+//To Destory the board.
+void Board_Wipe(int* rows, piece_identifier** array )
+{
+	for(int deletion= 0; deletion< rows[0 ]; deletion ++ )
+	{
+		delete array[deletion ];
+	}
 }

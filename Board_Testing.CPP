@@ -1,283 +1,65 @@
 //Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
-#include "Piece.CPP"
+#include "Board.CPP"
 
-//Function names are placeholders
-//Sets the defualt values of the entire board.
-void Default(int* rows, int* collums, piece_identifier** board )
+//Assuming the input passed all checks it will then be checked against the array to see if it has already been indeex by the program to not count it again.
+bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length )
 {
-	//Used to access each row at a time.
-	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
+	//To iterate the lenght of the 
+	for(int element= 0; element< iteration_length[0 ]; element +=2 )
 	{
-		//Used to access each element of the parent row.
-		for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
+		int check_1=  keyed_positions_pointer[element ];
+		int check_2= keyed_positions_pointer[element+ 1 ];
+
+		//Match found exit
+		if((current_row[0 ]== check_1 )&& (current_collum[0 ]== check_2 ) )
 		{
-			board[setting_row ][setting_collum ]= nothing;
+			return false;
+		}
+		
+		else
+		{
+			return true;
 		}
 	}
 }
 
-//Sets the defualt values of the entire board.
-void Default(int* rows, int* collums, int** array)
-{
-	//Used to access each row at a time.
-	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
-	{
-		//Used to access each element of the parent row.
-		for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
-		{
-			array[setting_row ][setting_collum ]= nothing;
-		}
-	}
-}
 
-//Overloaded function, used to put custom pieces  on the map
-void Default(int* rows, int* collums, piece_identifier** board, Piece piece )
+void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* points_so_far )
 {
-	//Used to access each row at a time.
-	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
-	{
-		//Used to access each element of the parent row.
-		for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
-		{
-			board[setting_row ][setting_collum ]= piece.Get_Type()[0 ];
-		}
-	}
-}
+	//Insert the value in the next free slot.
+	//Next free slot is points so far * 2; Then ++ for the second value.
 
-//Sets the defualt values for a row
-void Default(int* current_row, int* collums, piece_identifier** board, char overload_char )
-{
-	//Used to access each element of the passed in row
-	for(int setting_collum= 0; setting_collum< collums[0 ]; setting_collum++ )
+	int element= 0;
+
+	//To not divide by 0
+	switch(points_so_far[0 ] )
 	{
-			board[current_row[0 ] ][setting_collum ]= nothing;
+		case 0:
+			element= 0;
+		default:
+			element= (points_so_far[0 ] )* 2;
 	}
 
-	//Incriment the value of row to keep it updated.
-	current_row[0 ]++;
+	keyed_positions_pointer[element ]= current_row[0 ];
+	keyed_positions_pointer[element ++ ]= current_collum[0 ];
 }
 
-//Sets the default value for a collum 
-void Default(int* rows, int* collums, piece_identifier** board, int overload_int )
+void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length, int* points_so_far )
 {
-	//Extend exisiting dataset
-	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
-	{
-		board[setting_row ][collums[0 ] ]= nothing;
-	}
-
-	collums[0 ]++;
-}
-
-//Used first, to add a new collum; Then we add a new row so it has the same width.
-void New_Collum(int* rows, int* collums, piece_identifier** board )
-{
-	//Set new row to default.
-	Default(rows, collums, board, 1 );
-}
-
-//To add a new row to the board, row is set to nothing.
-void New_Row(int* rows, int* collums, piece_identifier** board )
-{
-	//Create a new row
-	board[rows[0 ] ]= new piece_identifier[collums[0 ] ];
+	bool check= Keyed_Position_Insertion_Check(keyed_positions_pointer, current_row, current_collum, number_of_rows, iteration_length );
 	
-	//Set new row to default.
-	Default(rows, collums, board, 't' );
-}
-
-//To delete a specified collum.
-void Remove_Collum(int* rows, int* collums, piece_identifier** board )
-{
-	collums[0 ]--;
-
-	for(int current_row= 0; current_row< rows[0 ]; current_row++ )
-	{
-		//delete board[current_row ][collums[0 ] ];
-		board[current_row ][collums[0 ] ]= nothing;
-	}
-}
-
-//To delete a specifed row
-void Remove_Row(int* rows, int* collums, piece_identifier** board )
-{
-	rows[0 ]--;
-
-	delete board[rows[0 ] ];
-}
-
-//Output Section:
-//Outputs the grid border.
-void Output_Border(int* collums, const int* OUTPUT_LINES, char* border_parts )
-{
-	//for iterating across the row
-	for(int current_collum= 0; current_collum< collums[0 ]; current_collum++ )
-	{
-		//Used to print out the middle spaces. Uses char unlike the string before.
-		for(int middle= 0; middle< 3; middle++ )
-		{
-			//Middle part
-			std::cout<<border_parts[0 ];
-		}
-		//Spacer segment
-		std::cout<<border_parts[1 ];
-	}
-	//Used to break the line for the next function.
-	std::cout<<"" <<std::endl;
-}
-
-//Outputs the row of the game grid passed in.
-void Output_Row(int* current_row, int* collums, const int* OUTPUT_LINES, char* border_parts, piece_identifier** board, Piece* Pieces )
-{
-	//Used to traverse between the 3 layers that the output is stored in.
-	for(int current_layer= 0; current_layer< OUTPUT_LINES[0 ]; current_layer++ )
-	{
-		//Used to determin how many pieces there are on on row.
-		for(int current_collum= 0; current_collum< collums[0 ]; current_collum++ )
-		{
-			//To tell which line of the piece it should use-Ended with a space 
-			switch(board[current_row[0 ] ][current_collum] )
-			{
-				case cross:
-					std::cout<<Pieces[cross ].Get_Output()[current_layer ] <<border_parts[0 ];
-					break;
-
-				case nought:
-					std::cout<<Pieces[nought ].Get_Output()[current_layer ] <<border_parts[0 ];
-					break;
-
-				default:
-					std::cout<<Pieces[nothing ].Get_Output()[current_layer ] <<border_parts[0 ];
-					break;
-			}
-		}
-		//Breaks the line for the next output statement.
-		std::cout<<"" <<std::endl;
-	}
-}
-
-//Main Function for outputting the formatted game grid
-void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts, piece_identifier** board, Piece* Pieces )
-{
-	//Main Part
-	for(int current_row=0; current_row< rows[0 ]; current_row++ )
-	{
-		//Top border creation
-		Output_Border(collums, OUTPUT_LINES, border_parts );
-
-		//Grid Output Section:
-		Output_Row(&(current_row ), collums, OUTPUT_LINES, border_parts, board, Pieces );
-	}
-
-	//Bottom Border.
-	Output_Border(collums, OUTPUT_LINES, border_parts );
-}
-
-//Generic input sanitization:
-int Input_Sanitization(int* test_data, int* test_case )
-{
-	if((0< test_case[0 ] )&& (test_case[0 ]<= test_data[0 ] ) )
-	{
-		//Valid inputted number
-		return 1;
-	}
-
-	else
-	{
-		//Invalid number.
-		return -1;
-	}
-}
-
-//To ensure that the insertion is valid.
-bool Insertion_Trial(int* row, int* collum, piece_identifier** board, Piece piece )
-{
-	//
-	//std::cout<<"Value is :" <<board[row[0 ] ][collum[0 ] ] <<std::endl;
-
-	if(board[row[0 ] ][collum[0 ] ]== nothing )
-	{	
-		//Allows for insertion.
-		//std::cout<<"true" <<std::endl;
-		return true;
-	}
-
-	//
-	else 
-	{
-		//std::cout<<"false" <<std::endl;
-		return false;
-	}
-}
-
-void Insertion(int* row, int* collum, piece_identifier** board, Piece piece )
-{
-	//To check if the insertion is valid.
-	bool check= Insertion_Trial(row, collum, board, piece );
-
+	//If it is a valid number commit it to the array.
 	if(check )
 	{
-		board[row[0 ] ][collum[0 ] ]= piece.Get_Type()[0 ];
+		Keyed_Position_Insertion(keyed_positions_pointer, current_row, current_collum, number_of_rows, points_so_far );
 	}
 
 	else
 	{
-		//Not valid.
-		//std::cout<<"Not valid." <<std::endl;
+		;
 	}
 }
 
-//To clean the board.
-void Board_Wipe(int* rows, piece_identifier** array )
-{
-	for(int deletion= 0; deletion< rows[0 ]; deletion ++ )
-	{
-		delete array[deletion ];
-	}
-}
-
-//
-void Keyed_Position_Insert(int* keyed_positions_pointer, int* current_row, int* current_collum )
-{
-	;
-}
-
-
-
-//Offset by 5 turns.
-//Previos positions:
-	//Array of [collum length]  *Dynamic to work. Keep track of positions.	
-	//Int Points so far
-	//
-void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far)
-{
-	//Generate 2d Array
-
-	//Horizontal check
-		//Checks 
-
-		//Clean up code here	-Reset Any Trackers.
-		points_so_far[0 ]= 0;
-	
-	//Verticel check
-		//Checks 
-
-		//Clean up code here
-	//Diagonal_1
-		//Checks 
-
-		//Clean up code here
-	//Diagonal_2
-		//Checks 
-
-		//Clean up code here
-
-	//Clean up
-	//Cleaning the 2D Array
-	//Wipe_2D_Array(rows, keyed_positions );
-	//Default(rows, collums, keyed_positions );
-	//
-}
 
 int main(void )
 {
@@ -290,6 +72,7 @@ int main(void )
 	Piece Nought(nought );
 	Piece Cross(cross );
 
+//Assing one of these to the player class.
 	//Used for passing the piece data between functions
 	Piece* Pieces=new Piece[3 ];
 	//Assigning the values.
@@ -321,12 +104,14 @@ int main(void )
 	//Set default board values
 	Default(&(board_rows ), &(board_collums ), board );
 
-	//Testing stage inputs for the player character 
+//Testing stage inputs for the player character 
 	//Vairables
 	int input_1= 0;
-	bool input_1_test= 0;
 
 	int input_2= 0; 
+
+	//These would be general and shared between the loop
+	bool input_1_test= 0;
 	bool input_2_test= 0;
 
 	bool loop= true;
@@ -360,7 +145,7 @@ int main(void )
 		keyed_positions_pointer[creation ]= 0;
 	}
 
-	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+	//Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
 
 	/*//Main loop prototype to check input.
 	while(loop )
@@ -418,6 +203,56 @@ int main(void )
 		{
 		}
 	}*/
+
+/*	//Test 1
+	int value_1= 1;
+	int value_2 =1;
+
+//bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length )
+	if(Keyed_Position_Insertion_Check(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ) )== true )
+	{
+		std::cout<<"Gammer" <<std::endl;
+	}
+
+	else
+	{
+		std::cout<<"Not Gamer" <<std::endl;
+	}*/
+//Test condition for insertion.
+//Automated fill.
+	int value_1= 1;
+	int value_2= 1;
+
+	for(int x= 0; x< 3; x++ )
+	{
+		int value_1= x;
+		int value_2= x;
+
+		if(Keyed_Position_Insertion_Check(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ) )== true )
+		{
+			std::cout<<"Gammer" <<std::endl;
+		}
+
+		else
+		{
+			std::cout<<"Not Gamer" <<std::endl;
+		}
+	}
+
+//Trying to trigger conflict.
+	value_1= 1;
+	value_2= 1;
+
+	//bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length )
+	if(Keyed_Position_Insertion_Check(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ) )== true )
+	{
+		std::cout<<"Gmmer" <<std::endl;
+	}
+
+	else
+	{
+		std::cout<<"Not Gamer" <<std::endl;
+	}
 
 	//Clean up section
 	delete[] border_array;
