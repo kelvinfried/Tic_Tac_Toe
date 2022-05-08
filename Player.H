@@ -16,6 +16,16 @@ class Player
 		bool* piece_type;
 		
 	public:
+		//Constructor- Called upon object creation
+			//Default
+		Player(void );
+		
+			//Over Ridden
+		Player(std::string* start_name, bool* start_piece_type );
+		
+		//Destructor- //Will be used for when the vairables are made dynamic because of their lifespans
+		~Player(void );	
+
 	//Getters and Setters - Function Prototypes
 		//Name- Now returns a string pointer, so it will carry the memory address of the name so it can be printed.
 		std::string* Get_Name(void );
@@ -30,14 +40,5 @@ class Player
 		//Output- Used only for debug.
 		void Get_Stats(void );
 		
-	//Constructor- Called upon object creation
-		//Default
-	Player(void );
-	
-		//Over Ridden
-	Player(std::string* start_name, bool* start_piece_type );
-	
-	//Destructor- //Will be used for when the vairables are made dynamic because of their lifespans
-	~Player(void );	
 };
 #endif

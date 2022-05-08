@@ -240,52 +240,12 @@ void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* 
 	Keyed_Output(keyed_positions_pointer, iteration_length );*/
 }
 
+//==================############################--------------------------=================
 int main(void )
 {
-	/*//To keep track of the array's dimensions.
-	int board_collums= 3;		
-	int board_rows= 3;
-
-	//Keep hold of the piece data.	-Passed in board piece type.
-	Piece Nothing;
-	Piece Nought(nought );
-	Piece Cross(cross );
-
-//Assing one of these to the player class.
-	//Used for passing the piece data between functions
-	Piece* Pieces=new Piece[3 ];
-	//Assigning the values.
-		Pieces[0 ]= Nothing;
-		Pieces[1 ]= Nought;
-		Pieces[2 ]= Cross;
-
-	//Stores how many lines the board piece output has, used for printing.
-	constexpr int OUTPUT_LINES= 3;
-
-	//Used for spacing out the output for the program.
-	char space_character= 'X';
-	char divider_character='_';
-	//To allow the spacing character to be passed into functions.
-	char* border_array= new char[2 ];
-	//Declare
-		border_array[0 ]= space_character;
-		border_array[1 ]= divider_character;
-
-	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
-	piece_identifier** board= new piece_identifier*[board_collums ];
-		//Declares the rows, Iterative approach to have a dynamic size during runtime.
-	for(int creation_row= 0; creation_row< board_rows; creation_row ++ )
-	{
-		board[creation_row ]= new piece_identifier[board_collums ];
-	}
-
-	//Set default board values
-	Default(&(board_rows ), &(board_collums ), board );
-
-//Testing stage inputs for the player character 
+	/*//Testing stage inputs for the player character 
 	//Vairables
 	int input_1= 0;
-
 	int input_2= 0; 
 
 	//These would be general and shared between the loop
@@ -330,26 +290,11 @@ int main(void )
 		Keyed_Position_Commit(keyed_positions_pointer, &(value_1 ), &(value_2 ), &(board_rows ), &(keyed_length ), &(points_so_far ) );
 	}
 
-
-	//Clean up section
-	delete[] border_array;
-	border_array= NULL;
-
-	delete[]  keyed_positions_pointer;
-	keyed_positions_pointer= NULL;
-
-	//Function used to delete the board rows.
-	Board_Wipe(&(board_rows ), board );
-
-	//Cleans up the game_board itself.
-	delete[] board;
-	board= NULL;
-
 	return 0;	*/
 
 	//To keep track of the array's dimensions.
-	int collums= 3;		
-	int rows= 3;
+	int collums= 8;		
+	int rows= 8;
 
 	//Keep hold of the piece data.	-Passed in board piece type.
 	Piece Nothing;
@@ -376,21 +321,28 @@ int main(void )
 		border_parts[0 ]= space_character;
 		border_parts[1 ]= divider_character;
 
-	/*piece_identifier** board= new piece_identifier*[collums ];
+//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
+	piece_identifier** board= new piece_identifier*[collums];
 		//Declares the rows, Iterative approach to have a dynamic size during runtime.
 	for(int creation_row= 0; creation_row< rows; creation_row ++ )
 	{
-		board[creation_row ]= new piece_identifier[collums ];
-	}*/
-
-//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
-	piece_identifier** board= Setup(board, &(rows ), &(collums ) );
+		board[creation_row ]= new piece_identifier[collums];
+	}
 
 	//inht* keyed_positions= Setup(keyed_positions, &(rows ) );
-	int length= (rows* 2 ) + 1;
-	int* keyed_positions= new int[length ];
+	int length_1= (rows* 2 ) + 1;
 
-	Default(keyed_positions, &(rows ) );
+	length_1= 2* rows;
+
+	int* keyed_positions= new int[length_1 ];
+
+	for(int x=0; x< length_1; x++ )
+	{
+		//Sets the values to their default, not 0 as that conflicts with the board's 0,n parts.
+		keyed_positions[x ]= -1;
+	}
+
+	//Default(keyed_positions, &(rows ) );
 
 /*//Test 1 Output- Then extend and output.
 	//Set default board values
@@ -457,11 +409,20 @@ int main(void )
 
 //Test 3 Checkout board printing.
 	//Expand(keyed_positions, &(rows ) );
-	Expand(board, &(rows ), &(collums ) );
+	//Expand(keyed_positions, &(rows ) );
+	Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
+
+	for(int x= 0; x< 5; x++ )
+	{
+		std::cout<<"This is the " <<x <<"th iteration" <<std::endl;
+		Expand(board, &(rows ), &(collums ) );
+		//Output(keyed_positions, &(rows ) );
+		Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
+	}
 
 	//Expand(keyed_positions, &(rows ) );
-	Expand(board, &(rows ), &(collums ) );
-	std::cout<<"makes it outside, row count is "<< rows <<std::endl;
+	//std::cout<<"makes it outside, row count is "<< rows <<std::endl;
+
 
 	/*std::cout<<"Before: " <<std::endl;
 	Output(keyed_positions, &(rows ) );
@@ -487,7 +448,21 @@ int main(void )
 
 	Wipe(board, &(rows ) );
 
+	//delete[] board;
+	board= NULL;
+	std::cout<<"Board gone." <<std::endl;
 
 
+	delete[] keyed_positions;
+	keyed_positions= NULL;
+	std::cout<<"Keyed gone" <<std::endl;
+
+	delete[] border_parts;
+	border_parts= NULL;
+
+	delete[] Pieces;
+	Pieces= NULL;
+
+	std::cout<< "DIE" <<std::endl;
 	return 0;
 }
