@@ -342,9 +342,43 @@ int main(void )
 		
 		//std::cout<<"Input 1 is: " <<input <<" Input 2 is: " <<input_1 <<std::endl;
 
-
-		if(input!= 99 )
+		switch(input )
 		{
+			case 99:
+				Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
+				Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
+				break;
+
+			case 2:
+				std::cout<<"Expand dong" <<std::endl;
+				Expand(board, &(rows ), &(collums ) );
+				Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
+				Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
+				break;
+
+			case 1:
+			case 3:
+			case 4:
+				Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
+				Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
+				break;
+
+			default:
+				std::cout<<"Exit clause" <<std::endl;
+				loop= false; 
+				break;
+		}
+
+		/*if(input!= 99 )
+		{
+			Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
+			Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
+		}
+
+		else if( (input!= 99 )&& (input== 2 ) )
+		{
+			std::cout<<"Expand dong" <<std::endl;
+			Expand(board, &(rows ), &(collums ) );
 			Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
 			Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
 		}
@@ -353,9 +387,11 @@ int main(void )
 		{
 			std::cout<<"Exit clause" <<std::endl;
 			loop= false; 
-		}
+		}*/
 
 	}
+
+	Wipe(board, &(rows ) );
 
 	return 0;
 }
