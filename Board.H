@@ -4,41 +4,68 @@
 #include "Piece.CPP"
 #include <iostream>
 
-//-----------------------------------------Set Up Section:
-void Default(int* rows, int* collums, piece_identifier** board );
+//-----------------------------------------Board Set Up Section:
+piece_identifier** Setup(piece_identifier** board, int* rows, int* collums );
 
-void Default(int* rows, int* collums, piece_identifier** board, Piece piece );
+//----------------------For Setting Defaults Across the board:
+//Sets the default value for the entire board. -Takes in the board, and the number of rows, collums
+void Default(piece_identifier** board, int* rows, int* collums );
 
-void Default(int* current_row, int* collums, piece_identifier** board, char overload_char );
+//Overloaded function, used to fill the board with the passed in piece type.
+void Default(piece_identifier** board, Piece* piece, int* rows, int* collums );
 
-void Default(int* rows, int* collums, piece_identifier** board, int overload_int );
+//----------------------For Board Expansion:
+//To add anoter row, the current row, overload_char is only for overloading. Used first.
+void Default(piece_identifier** board, int* rows, int* collums, char overload_char );
 
-//-----------------------------------------Size Management Section:
-void New_Collum(int* rows, int* collums, piece_identifier** board );
+//To add another collum to the end.
+void Default(piece_identifier** board, int* rows, int* collums, int overload_int );
 
-void New_Row(int* rows, int* collums, piece_identifier** board );
 
-void Expand(int* rows, int* collums, piece_identifier** board );
+//-----------------------------------------Board Size Management Section:
+//----------------------Board Increase In Size:
+//Used first, to add new collums to the board.
+void New_Collum(piece_identifier** board, int* rows, int* collums );
 
-void Remove_Collum(int* rows, int* collums, piece_identifier** board );
+//To add a new row to the board, row is set to nothing.
+void New_Row(piece_identifier** board, int* rows, int* collums );
 
-void Remove_Row(int* rows, int* collums, piece_identifier** board );
+//Combines the two seperate expansion functions into on neat package.
+void Expand(piece_identifier** board, int* rows, int* collums );
 
-void Shrink(int* rows, int* collums, piece_identifier** board);
+//----------------------Board Decrease In Size:
+//To delete a specified collum. //Used first
+void Remove(piece_identifier** board, int* rows, int* collums );
+
+//To delete a specifed row
+void Remove(piece_identifier** board, int* rows);
+
+//Combines the two seperate deleting methods into one function.
+void Shrink(piece_identifier** board, int* rows, int* collums );
 
 //-----------------------------------------Output Section:
+//----------------------Output Segments:
+//Outputs the board border.
 void Output_Border(int* collums, const int* OUTPUT_LINES, char* border_parts );
 
-void Output_Row(int* current_row, int* collums, const int* OUTPUT_LINES, char* border_parts, piece_identifier** board, Piece* Pieces );
+//Outputs the passed in row of the board
+void Output_Row(piece_identifier** board, Piece* Pieces, int* current_row, int* collums, const int* OUTPUT_LINES, char* border_parts );
 
-void Output(int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts, piece_identifier** board, Piece* Pieces );
+//----------------------Outputs Whole:
+void Output(piece_identifier** board, Piece* Pieces, int* rows, int* collums, const int* OUTPUT_LINES, char* border_parts  );
+
 
 //-----------------------------------------Input Handling Section:
-bool Input_Sanitization(int* test_data, int* test_case );
+//----------------------Handle Input:
+//Test case weight against upper limit //Updated to have a bool return, to be used directly with if statments.
+bool Input_Sanitization(int* test_data, int* upper_limit );
 
-bool Insertion_Trial(int* row, int* collum, piece_identifier** board, Piece piece );
+//To ensure that the insertion is valid before doing it.
+bool Insertion_Trial(piece_identifier** board, int* current_row, int* current_collum );
 
-void Insertion(int* row, int* collum, piece_identifier** board, Piece piece );
+//----------------------Draw Input to the board:
+//The actual insertion into the board, incorporates the checks and if valid will draw onto the board.
+void Insertion(piece_identifier** board, Piece* Piece, int* rows, int* collums, int* current_row, int* current_collum );
 
 
 //-----------------------------------------Win Check:
@@ -46,6 +73,7 @@ void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_ide
 
 
 //-----------------------------------------Clean Up:
-void Board_Wipe(int* rows, piece_identifier** array );
+//To Destory the board.
+void Wipe(piece_identifier** board, int* rows );
 
 #endif

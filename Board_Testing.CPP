@@ -1,17 +1,145 @@
 //Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
 #include "Board.CPP"
-
-//To clean out the int Arry for keeping track of found spaces.
-void Key_Position_Default(int* keyed_positions_pointer, int* iteration_length )
+//-----------------------------------------Tracking Array Set Up Section:
+//Creates the array and (also sets default values) returns it.
+int* Setup(int* keyed_positions, int* rows )
 {
-	for(int x= 0; x< iteration_length[0 ]; x++ )
+	/*//Used to keep track of the length of the 
+	//int keyed_length= 2* board_collums; 
+	int keyed_length= 5; 
+	//Array to store already discovered positions.
+		//A 1D Array, segmented by every 2 elements, as that is what is needed, much simpler this way.
+	int* keyed_positions_pointer= new int[keyed_length ];
+	//Sets a defualt value for the arrray.
+	for(int creation= 0; creation< keyed_length; creation ++ )
+	{
+		keyed_positions_pointer[creation ]= 0;
+	}*/
+
+	//Has to be double the rows count, to hold 2 data points per position on the grid.
+	int length= 2* rows[0 ];
+
+	keyed_positions= new int[length ];
+
+	for(int x=0; x< length; x++ )
+	{
+		//Sets the values to their default, not 0 as that conflicts with the board's 0,n parts.
+		keyed_positions[x ]= -1;
+	}
+
+	return keyed_positions;
+}
+
+//----------------------For Setting Defaults Across the board:
+//To clean out the int Arry and reset its value.
+void Default(int* keyed_positions, int* rows )
+{
+	int length= 2* rows[0 ];
+
+	for(int x= 0; x< length; x++ )
 	{
 		//Set to minus one to not cause any conflicts when adding a 0, 0 array position; shows an element is defualt.
-		keyed_positions_pointer[x ]= -1;
+		keyed_positions[x ]= -1;
 	}
 }
 
-//Assuming the input passed all checks it will then be checked against the array to see if it has already been indeex by the program to not count it again.
+//-----------------------------------------Array Size Management Section:
+//Called before the Expand function so the correct row value is passed into the function.
+void Expand(int* keyed_positions, int* rows )
+{
+	int keyed_row= rows[0 ];
+	keyed_row*= 2;
+
+	int keyed_collum= keyed_row;
+	keyed_collum++;
+
+	std::cout<<"row value is:" <<keyed_row;
+	std::cout<<"   ,collum value is: " <<keyed_collum <<std::endl;
+
+	keyed_positions[keyed_row ]= -4;
+	keyed_positions[keyed_collum ]= -1;
+
+	std::cout<<"   ,collum value is: " <<keyed_collum <<std::endl;
+
+}
+
+
+
+//-----------------------------------------Output Section:
+void Output(int* keyed_positions, int* rows )
+{
+	std::cout<<"" <<std::endl;
+	std::cout<<"Keyed_Output" <<std::endl;
+			
+	//Used Itearate the correct number of times to parse the values in the array.
+	for(int x= 0; x< rows[0 ]; x++ )
+	{
+		int current_row= x;
+		current_row*= 2;
+
+		int current_collum= x;
+		current_collum++;
+
+		std::cout<<"The " <<x <<"th value has a position of: ";
+		std::cout<<"[ "<< keyed_positions[current_row ] <<", " <<keyed_positions[current_collum ] <<" ]" <<std::endl;
+	}
+
+	/*old code 
+	for(int x= 0; x< lenght; x++ )
+	{
+		for(int y= 0; y< two; y++ )
+		{
+			std::cout<<"The [ " <<x <<", "<<y <<" ] is: ";
+			std::cout<<keyed_positions[(x+ y ) ] <<std::endl; 
+		}
+	}*/
+
+	/*int half_itr= (iteration_length[0 ] ) /2;
+
+	for(int x= 0; x< half_itr; x++ )
+	{
+		for(int y= 0; y< 2; y++ )
+		{
+			std::cout<<"The " <<x <<", " <<y <<" value is: ";
+			std::cout<<keyed_positions_pointer[(x+ y ) ] <<std::endl;
+		}
+	}*/
+}
+
+
+//-----------------------------------------Array Insertion/ Input:
+//Input was checked before so its not needed. Now inputs are checked against the array to see if it already has been index to not count it again.
+bool Insertion_Trial(int* keyed_positions, int* rows, int* current_row, int* current_collum )
+{
+	std::cout<<"" <<std::endl;
+	std::cout<<"Insertion Trial" <<std::endl;
+
+
+	//Used Itearate the correct number of times to parse the values in the array.
+	for(int x= 0; x< rows[0 ]; x++ )
+	{
+		int keyed_row= x;
+		keyed_row*= 2;
+
+		int keyed_collum= x;
+		keyed_collum++;
+
+		if((keyed_positions[keyed_row ]== current_row[0 ] )&& ( keyed_positions[keyed_collum ]== current_collum[0 ] ) )
+		{
+			std::cout<<"The value is already in the array" <<std::endl;
+			return false;
+		}
+
+		else
+		{
+		}
+	}
+	
+	std::cout<<"The value is not already in the array" <<std::endl;
+	return true;
+}
+
+//bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* iteration_length )
 bool Keyed_Position_Insertion_Check(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length )
 {
 	//Used to not modify the iterative value.
@@ -67,26 +195,10 @@ void Keyed_Position_Insertion(int* keyed_positions_pointer, int* current_row, in
 	keyed_positions_pointer[element ++ ]= current_collum[0 ];
 }
 
-void Keyed_Output(int* keyed_positions_pointer,  int* iteration_length )
-{
-	std::cout<<"" <<std::endl;
-	std::cout<<"Keyed_Output" <<std::endl;
-	
-	int half_itr= (iteration_length[0 ] ) /2;
-
-	for(int x= 0; x< half_itr; x++ )
-	{
-		for(int y= 0; y< 2; y++ )
-		{
-			std::cout<<"The " <<x <<", " <<y <<" value is: ";
-			std::cout<<keyed_positions_pointer[(x+ y ) ] <<std::endl;
-		}
-	}
-}
 
 void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* current_collum, int* number_of_rows, int* iteration_length, int* points_so_far )
 {
-	bool check= Keyed_Position_Insertion_Check(keyed_positions_pointer, current_row, current_collum, number_of_rows, iteration_length );
+	/*bool check= Keyed_Position_Insertion_Check(keyed_positions_pointer, current_row, current_collum, number_of_rows, iteration_length );
 	
 	//If it is a valid number commit it to the array.
 	if(check )
@@ -103,7 +215,7 @@ void Keyed_Position_Commit(int* keyed_positions_pointer, int* current_row, int* 
 		;
 	}
 
-	Keyed_Output(keyed_positions_pointer, iteration_length );
+	Keyed_Output(keyed_positions_pointer, iteration_length );*/
 }
 
 int main(void )
@@ -213,8 +325,6 @@ int main(void )
 
 	return 0;	*/
 
-	int main(void )
-{
 	//To keep track of the array's dimensions.
 	int collums= 3;		
 	int rows= 3;
@@ -244,7 +354,6 @@ int main(void )
 		border_parts[0 ]= space_character;
 		border_parts[1 ]= divider_character;
 
-//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
 	/*piece_identifier** board= new piece_identifier*[collums ];
 		//Declares the rows, Iterative approach to have a dynamic size during runtime.
 	for(int creation_row= 0; creation_row< rows; creation_row ++ )
@@ -252,7 +361,13 @@ int main(void )
 		board[creation_row ]= new piece_identifier[collums ];
 	}*/
 
+//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
 	piece_identifier** board= Setup(board, &(rows ), &(collums ) );
+
+	//int* keyed_positions= Setup(keyed_positions, &(rows ) );
+	int* keyed_positions= new int[rows* 2 ];
+
+	Default(keyed_positions, &(rows ) );
 
 /*//Test 1 Output- Then extend and output.
 	//Set default board values
@@ -282,7 +397,7 @@ int main(void )
 
 	Piece Piece(cross );
 
-	while(loop )
+	/*while(loop )
 	{
 		std::cout<<"Enter two inputs seperated by a single space" <<std::endl;
 		std::cin>>input >>input_1;
@@ -315,9 +430,37 @@ int main(void )
 				loop= false; 
 				break;
 		}
-	}
+	}*/
+
+//Test 3 Checkout board printing.
+	std::cout<<"Before: " <<std::endl;
+	//Output(keyed_positions, &(rows ) );
+
+	std::cout<<"value at 0,0 is " <<keyed_positions[0 ] <<std::endl;
+	std::cout<<"value at 3,3 is " <<keyed_positions[5 ] <<std::endl;
+	std::cout<<"value at 4,1 is " <<keyed_positions[7 ] <<std::endl;
+
+	//Expand(keyed_positions, &(rows ) );
+	Expand(board, &(rows ), &(collums ) );
+
+	/*std::cout<<"value at 0,0 is " <<keyed_positions[0 ] <<std::endl;
+	std::cout<<"value at 3,3 is " <<keyed_positions[5 ] <<std::endl;
+	std::cout<<"value at 4,1 is " <<keyed_positions[6 ] <<std::endl;*/
+	//Output(keyed_positions, &(rows ) );
+
+
+	keyed_positions[3 ]= 2;
+	keyed_positions[0 ]= 1;
+	std::cout<<"After: " <<std::endl;
+	std::cout<<" " <<std::endl;
+	Output(keyed_positions, &(rows ) );
+
+	delete[] keyed_positions;
+	keyed_positions= NULL;
 
 	Wipe(board, &(rows ) );
+
+
 
 	return 0;
 }

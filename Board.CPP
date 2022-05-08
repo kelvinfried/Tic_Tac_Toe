@@ -1,5 +1,6 @@
 #include "Board.H"
 //-----------------------------------------Board Set Up Section:
+//Creates the board and returns it.
 piece_identifier** Setup(piece_identifier** board, int* rows, int* collums )
 {
 	board= new piece_identifier*[collums[0 ] ];
