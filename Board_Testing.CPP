@@ -258,6 +258,11 @@ int main(void )
 	Board* Board_Class= new Board();
 
 	Board_Class->Output(Pieces );
+
+	std::cout<<"Gaming" <<std::endl;
+
+	Board_Class->Shrink();
+	Board_Class->Output(Pieces );
 	
 	delete Board_Class;
 

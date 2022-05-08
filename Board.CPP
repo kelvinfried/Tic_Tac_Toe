@@ -240,7 +240,7 @@ void Board::Remove(int current_row )
 	Deincriment_Row();
 
 	//Delething rows is something I can do to save on memory when the parts are no longer being drawn.
-	delete board[current_row ];
+	delete[] board[current_row ];
 }
 
 //Combines the two seperate deleting methods into one function.
