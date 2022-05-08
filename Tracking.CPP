@@ -108,12 +108,12 @@ void Keyed_Position_Commit(int* keyed_positions, int* current_row, int* current_
 	{
 		Keyed_Position_Insertion(keyed_positions, current_row, current_collum, points_so_far );
 
-		std::cout<<"Points so far is now: " <<points_so_far[0 ] <<std::endl;
+		//std::cout<<"Points so far is now: " <<points_so_far[0 ] <<std::endl;
 	}
 
 	else 
 	{
-		std::cout<<"Fail on check" <<std::endl;
+		//std::cout<<"Fail on check" <<std::endl;
 	}
 }
 
@@ -155,8 +155,80 @@ void Expand_Index(int* keyed_positions, int* row )
 }
 
 
+bool Index_Check(int* test_data, int* test_case )
+{
+	//Used to see if the test case is within the bounds of the array
+	if((-1< test_case[0 ] )&& (test_case[0 ]< test_data[0 ] ) )
+	{
+		//Valid inputted number
+		return true;
+	}
+
+	else
+	{
+		//Invalid number.
+		return false;
+	}
+}
+
+
 //-----------------------------------------Board Check:
- 
+//Horizontal Check; So Input one row, collum; Then the entire row gets checked from the starting point.
+//Originally bool, but changed to void so there the other recursions can fall throught
+void Win_Check(piece_identifier** board, int* rows, int* current_row, int* current_collum, Piece piece, int* keyed_positions, int* points_so_far )
+{
+	std::cout<<"a" <<std::endl;
+//bool Input_Sanitization(int* test_data, int* test_case )
+	//Row Check- To see if the value is value to pass in, done to prevent access issues.
+	if( Index_Check(rows, current_collum )== true )
+	{
+		//If the value is not equal it means 
+		//while(points_so_far[0 ] != rows[0 ] )
+		if(points_so_far[0 ] != rows[0 ] )
+		{
+			//To Test if the value has already been found or not.
+//void Keyed_Position_Commit(int* keyed_positions, int* current_row, int* current_collum, int* points_so_far )
+			Keyed_Position_Commit(keyed_positions, current_row, current_collum, points_so_far, rows );
+
+			//prepair for the next recursive call
+			int next_collum= current_collum[0 ];
+			int next_collum_1= next_collum;
+
+			//Onee to check the previous, one to check the next collum
+			next_collum++;
+			next_collum_1--;
+
+			//recursive call to check the rest of the row.
+			Win_Check(board, rows, current_row, &(next_collum ), piece, keyed_positions, points_so_far );
+			Win_Check(board, rows, current_row, &(next_collum_1 ), piece, keyed_positions, points_so_far );
+		}
+
+		else
+		{
+		}
+	}
+
+	else
+	{
+	}
+
+}
+
+/*//Vertical Check- Horizontal Overloaded;
+bool Win_Check(piece_identifier** board, int* start_row, int* start_collum, Piece piece, int* keyed_positions, int* points_so_far, char overload_char )
+{
+}
+
+//Linear Check (x- y)
+bool Win_Check(piece_identifier** board, int* start_row, int* start_collum, Piece piece, int* keyed_positions, int* points_so_far, bool overload_bool)
+{
+}
+
+//Linear Check (y- x)- Linear Overloaded.
+bool Win_Check(piece_identifier** board, int* start_row, int* start_collum, Piece piece, int* keyed_positions, int* points_so_far, int overload_int )
+{
+}
+*/
 
 //-----------------------------------------Win Check:
 //Offset by 5 turns.
@@ -196,6 +268,8 @@ int main(void )
 {
 	int collums= 3;
 	int rows= 3;
+
+	Piece piece(nought );
 
 	//Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
 	piece_identifier** board= new piece_identifier*[collums ];
@@ -249,6 +323,25 @@ int main(void )
 	//Keyed_Position_Commit(keyed_positions, &(value_1 ), (&value_2 ), &(points_so_far ), &(rows ) );*/
 
 	//Need to test for the board checking
+	int start_x= 0;
+	int start_y= 0;
+	//Set values.
+	board[0 ][0 ]= cross;
+	board[0 ][1 ]= cross;
+	board[0 ][2 ]= nothing;
+
+//void Win_Check(piece_identifier** board, int* rows, int* current_row, int* current_collum, Piece piece, int* keyed_positions, int* points_so_far )
+	/*Win_Check(board, &(rows ), &(start_x ), &(start_y ), piece, keyed_positions, &(points_so_far ) );
+
+	if( points_so_far== rows )
+	{
+		std::cout<<"Win!" <<std::endl;
+	}
+
+	else
+	{
+		std::cout<<"You have " <<points_so_far <<" This is Not win" <<std::endl;
+	}*/
 
 	
 //Clean up section

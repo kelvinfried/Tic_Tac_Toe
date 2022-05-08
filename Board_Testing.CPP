@@ -173,7 +173,7 @@ int main(void )
 		keyed_positions_pointer[creation ]= 0;
 	}
 
-	//Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
+	Output(&(board_rows ), &(board_collums ), &(OUTPUT_LINES ), border_array, board, Pieces );
 
 //Test condition for insertion.
 //void Key_Position_Default(int* keyed_positions_pointer, int* iteration_length )
