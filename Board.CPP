@@ -1,5 +1,16 @@
 #include "Board.H"
 //-----------------------------------------Board Set Up Section:
+piece_identifier** Setup(piece_identifier** board, int* rows, int* collums )
+{
+	board= new piece_identifier*[collums[0 ] ];
+		//Declares the rows, Iterative approach to have a dynamic size during runtime.
+	for(int creation_row= 0; creation_row< rows[0 ]; creation_row ++ )
+	{
+		board[creation_row ]= new piece_identifier[collums[0 ] ];
+	}
+
+	return board;
+}
 //----------------------For Setting Defaults Across the board:
 //Sets the default value for the entire board. -Takes in the board, and the number of rows, collums
 void Default(piece_identifier** board, int* rows, int* collums )
@@ -300,12 +311,14 @@ int main(void )
 		border_parts[1 ]= divider_character;
 
 //Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
-	piece_identifier** board= new piece_identifier*[collums ];
+	/*piece_identifier** board= new piece_identifier*[collums ];
 		//Declares the rows, Iterative approach to have a dynamic size during runtime.
 	for(int creation_row= 0; creation_row< rows; creation_row ++ )
 	{
 		board[creation_row ]= new piece_identifier[collums ];
-	}
+	}*/
+
+	piece_identifier** board= Setup(board, &(rows ), &(collums ) );
 
 /*//Test 1 Output- Then extend and output.
 	//Set default board values
@@ -368,27 +381,6 @@ int main(void )
 				loop= false; 
 				break;
 		}
-
-		/*if(input!= 99 )
-		{
-			Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
-			Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
-		}
-
-		else if( (input!= 99 )&& (input== 2 ) )
-		{
-			std::cout<<"Expand dong" <<std::endl;
-			Expand(board, &(rows ), &(collums ) );
-			Insertion(board, &(Piece ), &(rows ), &(collums ), &(input ), &(input_1 ) );
-			Output(board, Pieces, &(rows ), &(collums ), &(OUTPUT_LINES ), border_parts );
-		}
-
-		else		
-		{
-			std::cout<<"Exit clause" <<std::endl;
-			loop= false; 
-		}*/
-
 	}
 
 	Wipe(board, &(rows ) );
