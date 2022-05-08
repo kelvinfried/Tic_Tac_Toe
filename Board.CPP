@@ -61,10 +61,12 @@ void Default(piece_identifier** board, int* rows, int* collums, int overload_int
 	//Extend exisiting dataset
 	for(int setting_row= 0; setting_row< rows[0 ]; setting_row++ )
 	{
+		std::cout<<"Row number: " <<setting_row <<", out of: " <<rows[0 ] <<std::endl;
 		board[setting_row ][collums[0 ] ]= nothing;
 	}
 	//Incriment the value of the collum to keep it updated.
 	collums[0 ]++;
+	std::cout<<"incriment thing." <<std::endl;
 }
 
 
@@ -73,18 +75,22 @@ void Default(piece_identifier** board, int* rows, int* collums, int overload_int
 //Used first, to add new collums to the board.
 void New_Collum(piece_identifier** board, int* rows, int* collums )
 {
+	std::cout<<"Created the new collum." <<std::endl;
 	//Adds an extra collum to the end of each row, they're set to default. 
 	Default(board, rows, collums, 1 );
 }
 
-//To add a new row to the board, row is set to nothing.
+//To add a new row to the board, row is set to nothing.	--Causing issues
 void New_Row(piece_identifier** board, int* rows, int* collums )
 {
+	//std::cout<<"(After Row) Rows value is: " <<rows[0 ] <<" Collums value is: " <<collums[0 ] <<std::endl;
 	//Create a new row in the array to address it
 	board[rows[0 ] ]= new piece_identifier[collums[0 ] ];
 	
+	//std::cout<<"Created the new row." <<std::endl;
 	//Set new row to default.
 	Default(board, rows, collums, 't' );
+	//std::cout<<"Created the new row." <<std::endl;
 }
 
 //Combines the two seperate expansion functions into on neat package.
@@ -92,6 +98,7 @@ void Expand(piece_identifier** board, int* rows, int* collums )
 {
 	New_Collum(board, rows, collums );
 	New_Row(board, rows, collums );
+	std::cout<<"ends" <<std::endl;
 }
 
 //----------------------Board Decrease In Size:
@@ -276,6 +283,7 @@ void Wipe(piece_identifier** board, int* rows )
 {
 	for(int row_to_delete= 0; row_to_delete< rows[0 ]; row_to_delete ++ )
 	{
+		std::cout<<"level " <<row_to_delete <<std::endl;
 		delete board[row_to_delete ];
 	}
 }

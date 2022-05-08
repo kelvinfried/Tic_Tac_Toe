@@ -53,14 +53,16 @@ void Expand(int* keyed_positions, int* rows )
 	int keyed_collum= keyed_row;
 	keyed_collum++;
 
-	std::cout<<"row value is:" <<keyed_row;
-	std::cout<<"   ,collum value is: " <<keyed_collum <<std::endl;
+	//std::cout<<"row value is:" <<keyed_row;
+	//std::cout<<"   ,collum value is: " <<keyed_collum <<std::endl;
+	std::cout<<"Row value is: " <<rows[0 ] <<std::endl;
+	std::cout<<"keyed row value is: " <<keyed_row <<std::endl;
+	std::cout<<"keyed collum value is: " <<keyed_collum <<std::endl;
 
-	keyed_positions[keyed_row ]= -4;
-	keyed_positions[keyed_collum ]= -1;
+	/*keyed_positions[keyed_row ]= -1;
+	keyed_positions[keyed_collum ]= -1;*/
 
-	std::cout<<"   ,collum value is: " <<keyed_collum <<std::endl;
-
+	//std::cout<<"done" <<std::endl;
 }
 
 
@@ -70,19 +72,39 @@ void Output(int* keyed_positions, int* rows )
 {
 	std::cout<<"" <<std::endl;
 	std::cout<<"Keyed_Output" <<std::endl;
-			
-	//Used Itearate the correct number of times to parse the values in the array.
-	for(int x= 0; x< rows[0 ]; x++ )
+	
+	int counter= 0;
+	int current_collum= 0;
+	int current_row= 0;
+
+	int length= rows[0 ];
+	length*= 2;
+
+	for(int x=0; x< length; x+= 2 )
 	{
+		counter++;
+
+		current_row= x;
+
+		current_collum= current_row;
+		current_collum++;
+
+		std::cout<<"The '" <<counter <<"' has a value of:";
+		std::cout<<keyed_positions[current_row ] <<" and " <<keyed_positions[current_collum ] <<std::endl;
+	}
+	//Used Itearate the correct number of times to parse the values in the array.
+	/*for(int x= 0; x< rows[0 ]; x++ )
+	{
+		
 		int current_row= x;
 		current_row*= 2;
 
 		int current_collum= x;
 		current_collum++;
 
-		std::cout<<"The " <<x <<"th value has a position of: ";
-		std::cout<<"[ "<< keyed_positions[current_row ] <<", " <<keyed_positions[current_collum ] <<" ]" <<std::endl;
-	}
+		//std::cout<<"The " <<x <<"th (" <<current_row <<", " <<current_collum <<")  value has a position of: ";
+		//std::cout<<"[ "<< keyed_positions[current_row ] <<", " <<keyed_positions[current_collum ] <<" ]" <<std::endl;
+	}*/
 
 	/*old code 
 	for(int x= 0; x< lenght; x++ )
@@ -364,8 +386,9 @@ int main(void )
 //Declared from heap due to long life time and to be dynamic: Holds each of the rows, so they can be accesed from a single part
 	piece_identifier** board= Setup(board, &(rows ), &(collums ) );
 
-	//int* keyed_positions= Setup(keyed_positions, &(rows ) );
-	int* keyed_positions= new int[rows* 2 ];
+	//inht* keyed_positions= Setup(keyed_positions, &(rows ) );
+	int length= (rows* 2 ) + 1;
+	int* keyed_positions= new int[length ];
 
 	Default(keyed_positions, &(rows ) );
 
@@ -433,30 +456,34 @@ int main(void )
 	}*/
 
 //Test 3 Checkout board printing.
-	std::cout<<"Before: " <<std::endl;
-	//Output(keyed_positions, &(rows ) );
+	//Expand(keyed_positions, &(rows ) );
+	Expand(board, &(rows ), &(collums ) );
 
-	std::cout<<"value at 0,0 is " <<keyed_positions[0 ] <<std::endl;
-	std::cout<<"value at 3,3 is " <<keyed_positions[5 ] <<std::endl;
-	std::cout<<"value at 4,1 is " <<keyed_positions[7 ] <<std::endl;
+	//Expand(keyed_positions, &(rows ) );
+	Expand(board, &(rows ), &(collums ) );
+	std::cout<<"makes it outside, row count is "<< rows <<std::endl;
+
+	/*std::cout<<"Before: " <<std::endl;
+	Output(keyed_positions, &(rows ) );
+
 
 	//Expand(keyed_positions, &(rows ) );
 	Expand(board, &(rows ), &(collums ) );
 
-	/*std::cout<<"value at 0,0 is " <<keyed_positions[0 ] <<std::endl;
-	std::cout<<"value at 3,3 is " <<keyed_positions[5 ] <<std::endl;
-	std::cout<<"value at 4,1 is " <<keyed_positions[6 ] <<std::endl;*/
-	//Output(keyed_positions, &(rows ) );
+	keyed_positions[6 ]= 1;
+	keyed_positions[7 ]= 4;
+
+	Output(keyed_positions, &(rows ) );
 
 
-	keyed_positions[3 ]= 2;
+/*	keyed_positions[3 ]= 2;
 	keyed_positions[0 ]= 1;
 	std::cout<<"After: " <<std::endl;
 	std::cout<<" " <<std::endl;
-	Output(keyed_positions, &(rows ) );
+	Output(keyed_positions, &(rows ) );*/
 
-	delete[] keyed_positions;
-	keyed_positions= NULL;
+	/*delete[] keyed_positions;
+	keyed_positions= NULL;*/
 
 	Wipe(board, &(rows ) );
 
