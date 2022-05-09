@@ -132,8 +132,11 @@ class Board
 		//Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
 		void Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char );
 
-		//Linear check, checks for diagonals. i.e x -> y or y -> x
-		void Linear_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
+		//Linear check, checks for diagonals. i.e x -> y and reverse
+		void Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
+
+		//Linear check, checks for diagonals. i.e y -> x and reverse
+		void Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char );
 
 		//Combines all the checks into one function with additional information.
 		void Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );

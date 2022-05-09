@@ -777,8 +777,129 @@ void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 }
 
 //Linear check, checks for diagonals. i.e x -> y or y -> x
-void Board::Linear_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
+void Board::Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board[(start_row[ 0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+
+				//offset vairables 
+					//"Forward"
+				int next_row= start_row[0 ];
+				next_row++;
+
+				int next_collum= start_collum[0 ];
+				next_collum++;
+
+					//"Backwards"
+				int previous_row= start_row[0 ];
+				previous_row--;
+
+				int previous_collum= start_collum[0 ];
+				previous_collum--;
+
+				std::cout<<"Called next set" <<std::endl;
+				Linear_Check(&(next_row ), &(next_collum ), Piece, points_so_far );
+				Linear_Check(&(previous_row ), &(previous_collum ), Piece, points_so_far );
+			}
+			
+			else
+			{
+				std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		else
+		{
+			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+		
+	//Outside of the boards bound:
+	else
+	{
+		std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
+	}
+}
+
+//Linear check, checks for diagonals. i.e y -> x and reverse
+void Board::Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
+{
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board[(start_row[ 0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+
+				//offset vairables 
+					//"Forward"
+				int next_row= start_row[0 ];
+				next_row++;
+
+				int next_collum= start_collum[0 ];
+				next_collum++;
+
+					//"Backwards"
+				int previous_row= start_row[0 ];
+				previous_row--;
+
+				int previous_collum= start_collum[0 ];
+				previous_collum--;
+
+				std::cout<<"Called next set" <<std::endl;
+				Linear_Check(&(previous_row ), &(next_collum ), Piece, points_so_far, 't' );
+				Linear_Check(&(next_row ), &(previous_collum ), Piece, points_so_far, 't' );
+			}
+			
+			else
+			{
+				std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		else
+		{
+			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+		
+	//Outside of the boards bound:
+	else
+	{
+		std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
+	}
 }
 
 //Combines all the checks into one function with additional information.
