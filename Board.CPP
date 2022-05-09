@@ -628,3 +628,24 @@ void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 		std::cout<<"fail" <<std::endl;
 	}
 }
+
+//-----------------------------------------Win Checks:
+//Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
+bool Board::Horizontal_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far )
+{
+}
+
+//Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
+bool Board::Vertical_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
+{
+}
+
+//Linear check, checks for diagonals. i.e x -> y or y -> x
+bool Board::Linear_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
+{
+}
+
+//Combines all the checks into one function with additional information.
+bool Board::Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
+{
+}

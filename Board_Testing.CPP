@@ -27,7 +27,7 @@ int main(void )
 	std::cout<<"Default state" <<std::endl;
 	Board_Class->Output(Pieces );
 
-	//Insertion Checks:
+	//"Automated" Insertion Checks:
 	for(int x= 1; x< 6; x++ )
 	{
 		//Draw 3 pieces 

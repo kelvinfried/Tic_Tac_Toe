@@ -104,6 +104,12 @@ class Board
 		//Used to shrink the array size to match the board size.
 		void Shrink(char overload_char );
 
+
+		//-----------------------------------------Output Section:
+		//----------------------Output Segments:
+		void Output(char overload_char );
+
+
 		//-----------------------------------------Array Insertion/ Input:
 		//Input was checked before so its not needed. Now inputs are checked against the array to see if it already has been index to not count it again.
 		bool Insertion_Check(int* current_row, int* current_collum );
@@ -114,11 +120,18 @@ class Board
 		//Used to above functions to create one function way for check and insertion.
 		void Commit(int* current_row, int* current_collum, int* points_so_far );
 
-		//-----------------------------------------Output Section:
-		//----------------------Output Segments:
-		void Output(char overload_char );
 
-		//-----------------------------------------Win Check:
-		//void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far);
+		//-----------------------------------------Win Checks:
+		//Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
+		bool Horizontal_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far );
+
+		//Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
+		bool Vertical_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
+
+		//Linear check, checks for diagonals. i.e x -> y or y -> x
+		bool Linear_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
+
+		//Combines all the checks into one function with additional information.
+		bool Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
 };
 #endif
