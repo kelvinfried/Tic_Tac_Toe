@@ -4,25 +4,37 @@
 	//Default
 Player::Player(void )
 {
+//Attrubutes
+	//Used  to store the name passed by the player.
 	name= new std::string("Player_name" );
-	//This is always the same regardless of the input so it stays as zero
+
+	//Keeps track of how many wins each player has
 	win_count= new int(0 );
-	piece_type= new bool(false );
+
+	//Shows which piece the player has using the piece identifier data type
+	Piece= new Piece(nothing );
+
+	//To store inputs
+	input_1= 0;
+	input_2= 0;
 };
+
 	//Overridden
-Player::Player(std::string* start_name, bool* start_piece_type )
+Player::Player(std::string* start_name, int piece )
 {
-	//Forgot to dereferace the passed in name.
+//Attrubutes
+	//Used  to store the name passed by the player.
 	name= new std::string(start_name[0 ] );
+
+	//Keeps track of how many wins each player has
 	win_count= new int(0 );	
-	piece_type= new bool(start_piece_type[0 ] );
-	/*switch(piece_type[0 ] )
-		case 1:
-			piece_type= new bool(true );
-			break;
-		default:
-			piece_type= new bool(false );
-			break;*/
+
+	//Shows which piece the player has using the piece identifier data type
+	Piece= new Piece(piece );
+
+	//To store inputs
+	input_1= 0;
+	input_2= 0;
 };
 
 //Destructor
@@ -38,9 +50,11 @@ Player::~Player(void )
 	win_count= NULL;
 	
 	//Piece_type
-	delete piece_type;
-	piece_type= NULL;
+	delete Piece;
+	Piece= NULL;
 }
+
+
 //Getters and Setters
 	//Name
 std::string* Player::Get_Name(void )
@@ -54,6 +68,7 @@ void Player::Set_Name(std::string* new_name )
 	//Added dereferancing so the pointer is not overwritten but the value is.
 	name[0 ]= new_name[0 ];
 }
+
 	//Win count
 int* Player::Get_Win_Count(void )
 {
@@ -63,22 +78,41 @@ int* Player::Get_Win_Count(void )
 void Player::Incriment_Win_Count(void )
 {
 	//Incriment wins up by one.
-	//wins[0 ]++;
 	//(win_count[0 ] )++;
 	(win_count[0 ] )+= 1;
 }
+
 	//Piece
-bool* Player::Get_Piece_Type(void )
+piece_identifier* Player::Get_Type(void )
 {
-	return piece_type;
+	return &(type );
 }
 
-void Player::Set_Piece_Type(bool* new_piece_type )
+	//Input handling
+int Player::Get_Input_1(void )
 {
-	piece_type[0 ]= new_piece_type[0 ];
+	return input_1;
 }
-	//Debug	-Used for when there will be more than one player assigned to the pointer
-void Get_Stats(void )
+
+void Player::Set_Input_1(int new_input )
+{
+	input_1= new_input;
+}
+
+int Player::Get_Input_2(void )
+{
+	return input_2;
+}
+
+void Player::Set_Input_2(int new_input )
+{
+	input_2= new_input;
+}
+
+
+
+//Debug	-Used for when there will be more than one player assigned to the pointer
+void Player::Get_Stats(void )
 {
 	std::cout<<"Player Stats block:" <<std:endl;
 	std::cout<<"Player name is: " <<name[0 ] <<std::endl;
