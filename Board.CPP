@@ -368,8 +368,25 @@ void Board::Output(Piece* Pieces )
 
 //-----------------------------------------Input Handling Section:
 //----------------------Handle Input:
-//Test case weight against upper limit //Updated to have a bool return, to be used directly with if statments.
 bool Board::Input_Sanitization(int* test_data, int* upper_limit )
+{
+	//Used to see if the test data is within the bounds of the array
+		//Upper limit set to equal to so the player inputs value with a 1 index, rather than 0 to make it more intuitive.
+	if((-1< test_data[0 ] )&& (test_data[0 ] <upper_limit[0 ] ) )
+	{
+		//Valid inputted number
+		return true;
+	}
+
+	else
+	{
+		//Invalid number.
+		return false;
+	}
+}
+//overloaded
+//Test case weight against upper limit //Updated to have a bool return, to be used directly with if statments.
+bool Board::Input_Sanitization(int* test_data, int* upper_limit, char overload_char )
 {
 	//Used to see if the test data is within the bounds of the array
 		//Upper limit set to equal to so the player inputs value with a 1 index, rather than 0 to make it more intuitive.
@@ -614,17 +631,25 @@ void Board::Insertion(int* current_row, int* current_collum, int* points_so_far 
 }
 
 //Used to above functions to create one function way for check and insertion.
-void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
+bool Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 {
 	bool check= Insertion_Check(current_row, current_collum );
 
 	if(check )
 	{
 		Insertion(current_row, current_collum, points_so_far );
+		//Incriments points to update it for the next value to be passed in.
+		points_so_far[0 ]++;
+		std::cout<<"incriment point" <<std::endl;
+
+		Output('t' );
+
+		return true;
 	}
 
 	else
 	{
+		return false;
 		//std::cout<<"fail" <<std::endl;
 	}
 }
@@ -632,8 +657,104 @@ void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 //-----------------------------------------Win Checks:
 //Note input must be handeled before it is passed
 //Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
-void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
-{
+bool Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+{	
+	//Here to catch any extra recursions.
+	if(points_so_far[0 ]== 3 )
+	{	
+		std::cout<<"Win moment" <<std::endl;
+		return true;
+	}
+
+	else
+	{
+		;
+	}
+
+	//Out of bounds check
+	int garbage= 0;
+	bool check_1= Input_Sanitization(start_row, &(rows ) ); 
+	//In bounds
+	if(check_1 )
+	{
+		//std::cout<<"1st pass" <<std::endl;
+		//Check to see if the piece is a valid one for the player.
+		piece_identifier current_piece= board[start_row[0 ] ][start_collum[0 ] ];
+		
+		//If it is pass it into the tracking array to test it.
+		if(current_piece== Piece->Get_Type()[0 ] )
+		{
+			//std::cout<<"Gaming output" <<std::endl;
+			//Key it 
+			if( Commit(start_row, start_collum, points_so_far ) )
+			{
+				//std::cout<<"commiting went correctly" <<std::endl;
+				std::cout<<"Points so far is: " <<points_so_far[0 ] <<std::endl;
+				std::cout<<"Rows is: " <<rows <<std::endl;
+
+				//Define values for the next cycle
+				int next_row, previous_row;
+				next_row= start_row[0 ];
+				previous_row= next_row;
+				
+				std::cout<<"input part:" <<std::endl;
+				std::cin>>garbage;
+				//Offsets
+				//next_row++;
+				//previous_row--;
+
+				//Output('t' );
+
+				//Recursive call to keep on checking.
+				if(points_so_far[0 ]== 3 )
+				{	
+					std::cout<<"Win moment" <<std::endl;
+					return true;
+				}
+
+				else 
+				{
+					std::cout<<"keep searching" <<std::endl;
+					Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
+					Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+				}
+	
+				/*if((points_so_far[0 ] )!= Get_Rows() )
+				{
+					Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
+					Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+				}
+
+				else if((points_so_far[0 ]== rows ) )
+				{
+					return true;
+				}
+
+				else
+				{
+					std::cout<<"haha funny if passed" <<std::endl;
+				}*/
+			}
+
+			//If the commit does not work
+			else
+			{
+				//std::cout<<"commiting went correctly" <<std::endl;;
+			}
+		}
+
+		//If the piece does not match the type on the board.
+		else
+		{
+			;
+		}
+	}
+
+	//Ending conditions
+	std::cout<<"Not yet" <<std::endl;
+	return false;
+
+
 	/*if(points_so_far[0 ]== rows )
 	{
 		std::cout<< "end clause true" <<std::endl;

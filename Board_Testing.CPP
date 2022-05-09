@@ -24,8 +24,8 @@ int main(void )
 	int points_so_far= 0;
 
 	Board_Class->Default(true );
-	std::cout<<"Default state" <<std::endl;
-	Board_Class->Output(Pieces );
+	//std::cout<<"Default state" <<std::endl;
+	//Board_Class->Output(Pieces );
 
 	//"Automated" Insertion Checks:
 	for(int x= 1; x< 6; x++ )
@@ -35,9 +35,9 @@ int main(void )
 		Board_Class->Insertion(&(Cross ), &(x ), &(input_1 ) ); 
 	}
 
-	std::cout<<"" <<std::endl;
-	std::cout<<"Edited state" <<std::endl;
-	Board_Class->Output(Pieces );
+	//std::cout<<"" <<std::endl;
+	//std::cout<<"Edited state" <<std::endl;
+	//Board_Class->Output(Pieces );
 
 	int temp_1= input_1;
 	temp_1--;
@@ -45,11 +45,20 @@ int main(void )
 	int temp_2= input_2;
 	temp_2--;
 
-	std::cout<<"input 1 lines up with array index: " <<temp_1;
-	std::cout<<"input 2 lines up with array index: " <<temp_2;
+	//std::cout<<"input 1 lines up with array index: " <<temp_1;
+	//std::cout<<"input 2 lines up with array index: " <<temp_2;
+	std::cout<<"Rows value is: " <<Board_Class->Get_Rows() <<std::endl;
+	bool check= Board_Class->Horizontal_Check(&(temp_1 ), &(temp_2 ), &(Pieces[2 ] ), &(points_so_far ) );
+	
+	if(check )
+	{
+		std::cout<<"Non Stinkers wins so far: " <<points_so_far <<std::endl;
+	}
 
-	Board_Class->Horizontal_Check(&(temp_1 ), &(temp_2 ), &(Pieces[2 ] ), &(points_so_far ) );
-
+	else
+	{
+		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
+	}
 	delete Board_Class;
 
 	delete[] Pieces;

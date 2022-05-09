@@ -80,8 +80,12 @@ class Board
 
 		//-----------------------------------------Input Handling Section:
 		//----------------------Handle Input:
+		//Used For Inputs
 		//Test case weight against upper limit //Updated to have a bool return, to be used directly with if statments.
 		bool Input_Sanitization(int* test_data, int* upper_limit );
+		//Used For Inputs
+		//Test case weight against upper limit //Updated to have a bool return, to be used directly with if statments.
+		bool Input_Sanitization(int* test_data, int* upper_limit, char overload_char );
 
 		//To ensure that the insertion is valid before doing it.
 		bool Insertion_Trial(int* current_row, int* current_collum );
@@ -118,12 +122,13 @@ class Board
 		void Insertion(int* current_row, int* current_collum, int* points_so_far );
 
 		//Used to above functions to create one function way for check and insertion.
-		void Commit(int* current_row, int* current_collum, int* points_so_far );
+		//Now returns a boolean value used to ensure it went correctly, used in the win checks.
+		bool Commit(int* current_row, int* current_collum, int* points_so_far );
 
 
 		//-----------------------------------------Win Checks:
 		//Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
-		void Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
+		bool Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
 
 		//Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
 		void Vertical_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
