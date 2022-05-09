@@ -698,28 +698,28 @@ void Board::Vertical_Check(int* start_row, int* start_collum, Piece* Piece, int*
 				int previous_row= start_row[0 ];
 				previous_row--;
 
-				std::cout<<"Called next set" <<std::endl;
+				//std::cout<<"Called next set" <<std::endl;
 				Vertical_Check(&(next_row ), start_collum, Piece, points_so_far );
 				Vertical_Check(&(previous_row ), start_collum, Piece, points_so_far );
 			}
 
 			else
 			{
-				std::cout<<"Test commit failed: " <<std::endl;
+				//std::cout<<"Test commit failed: " <<std::endl;
 			}
 		}
 
 		//If the piece type does not match
 		else
 		{
-			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
 		}
 	}
 	
 	//Outside of the Board Bounds.
 	else
 	{
-		std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
+		//std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
 	}
 }
 
@@ -755,28 +755,28 @@ void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 				int previous_collum= start_collum[0 ];
 				previous_collum--;
 
-				std::cout<<"Called next set" <<std::endl;
+				//std::cout<<"Called next set" <<std::endl;
 				Horizontal_Check(start_row, &(next_collum ), Piece, points_so_far, 't' );
 				Horizontal_Check(start_row, &(previous_collum ), Piece, points_so_far, 't' );
 			}
 
 			else
 			{
-				std::cout<<"Test commit failed: " <<std::endl;
+				//std::cout<<"Test commit failed: " <<std::endl;
 			}
 		}
 
 		//If the piece type does not match
 		else
 		{
-			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
 		}
 	}
 	
 	//Outside of the Board Bounds.
 	else
 	{
-		std::cout<<start_collum[0 ] <<" is out of bounds." <<std::endl;
+		//std::cout<<start_collum[0 ] <<" is out of bounds." <<std::endl;
 	}
 }
 
@@ -819,27 +819,27 @@ void Board::Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* p
 				int previous_collum= start_collum[0 ];
 				previous_collum--;
 
-				std::cout<<"Called next set" <<std::endl;
+				//std::cout<<"Called next set" <<std::endl;
 				Linear_Check(&(next_row ), &(next_collum ), Piece, points_so_far );
 				Linear_Check(&(previous_row ), &(previous_collum ), Piece, points_so_far );
 			}
 			
 			else
 			{
-				std::cout<<"Test commit failed: " <<std::endl;
+				//std::cout<<"Test commit failed: " <<std::endl;
 			}
 		}
 
 		else
 		{
-			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
 		}
 	}
 		
 	//Outside of the boards bound:
 	else
 	{
-		std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
+		//std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
 	}
 }
 
@@ -882,27 +882,27 @@ void Board::Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* p
 				int previous_collum= start_collum[0 ];
 				previous_collum--;
 
-				std::cout<<"Called next set" <<std::endl;
+				//std::cout<<"Called next set" <<std::endl;
 				Linear_Check(&(previous_row ), &(next_collum ), Piece, points_so_far, 't' );
 				Linear_Check(&(next_row ), &(previous_collum ), Piece, points_so_far, 't' );
 			}
 			
 			else
 			{
-				std::cout<<"Test commit failed: " <<std::endl;
+				//std::cout<<"Test commit failed: " <<std::endl;
 			}
 		}
 
 		else
 		{
-			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
 		}
 	}
 		
 	//Outside of the boards bound:
 	else
 	{
-		std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
+		//std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
 	}
 }
 
@@ -923,14 +923,14 @@ bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_s
 	//If the win condition was met.
 	if(points_so_far[0 ]== Get_Rows() )
 	{
-		std::cout<<"First check passed." <<std::endl;
+		//std::cout<<"First check passed." <<std::endl;
 		return true;
 	}
 	
 	else
 	{
-		std::cout<<"First check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
-		std::cout<<"" <<std::endl;//Passed
+		//std::cout<<"First check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
 	}
 
 	//Horzontal
@@ -947,14 +947,14 @@ bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_s
 	//If the win condition was met.
 	if(points_so_far[0 ]== Get_Rows() )
 	{
-		std::cout<<"First check passed." <<std::endl;
+		//std::cout<<"First check passed." <<std::endl;
 		return true;
 	}
 	
 	else
 	{
-		std::cout<<"Second check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows()  <<std::endl;//Passed
-		std::cout<<"" <<std::endl;//Passed
+		//std::cout<<"Second check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows()  <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
 	}
 
 	//Linear (1)
@@ -971,14 +971,14 @@ bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_s
 	//If the win condition was met.
 	if(points_so_far[0 ]== Get_Rows() )
 	{
-		std::cout<<"First check passed." <<std::endl;
+		//std::cout<<"First check passed." <<std::endl;
 		return true;
 	}
 	
 	else
 	{
-		std::cout<<"Third check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
-		std::cout<<"" <<std::endl;//Passed
+		//std::cout<<"Third check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
 	}
 
 	//Linear (2)
@@ -995,16 +995,16 @@ bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_s
 	//If the win condition was met.
 	if(points_so_far[0 ]== Get_Rows() )
 	{
-		std::cout<<"First check passed." <<std::endl;
+		//std::cout<<"First check passed." <<std::endl;
 		return true;
 	}
 	
 	else
 	{
-		std::cout<<"Forth check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
-		std::cout<<"" <<std::endl;//Passed
+		//std::cout<<"Forth check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
 	}
 
-	std::cout<<"No win" <<std::endl;
+	//std::cout<<"No win" <<std::endl;
 	return false;
 }

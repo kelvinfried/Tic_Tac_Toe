@@ -157,7 +157,7 @@ int main(void )
 	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
 	Board_Class->Output(Pieces );
 
-	bool test_case= Board_Class->Check(&(input_3 ), &(input_3 ), &(Cross ), &(points_so_far ) );
+	//bool test_case= Board_Class->Check(&(input_3 ), &(input_3 ), &(Cross ), &(points_so_far ) );
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ), 't' );
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ) );
 
@@ -171,7 +171,7 @@ int main(void )
 		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
 	}*/
 
-	if(test_case )
+	/*if(test_case )
 	{
 		std::cout<<"Win Moment" <<std::endl;
 	}
@@ -179,7 +179,7 @@ int main(void )
 	else
 	{
 		std::cout<<"Not Win Moment" <<std::endl;
-	}
+	}*/
 
 	delete Board_Class;
 
