@@ -196,7 +196,7 @@ int main(void )
 	{
 		std::cout<<"Not Win Moment" <<std::endl;
 	}*/
-
+ 
 	delete Board_Class;
 
 	delete[] Pieces;
