@@ -96,6 +96,19 @@
 	}
 
 //Public Functions
+//-----------------------------------------Getters:
+//Used to pass these values in to other areas used later on in the game.
+int Get_Rows(void )
+{
+	return rows;
+}
+
+int Get_Collums(void )
+{
+	return collums;
+}
+
+
 //-----------------------------------------Board Set Up Section:
 //Creates the board and returns it.
 piece_identifier** Board::Setup(void )

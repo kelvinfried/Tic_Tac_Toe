@@ -25,6 +25,11 @@ class Board
 		//Destructors 
 		~Board(void );
 
+		//-----------------------------------------Getters:
+		//Used to pass these values in to other areas used later on in the game.
+		int Get_Rows(void );
+
+		int Get_Collums(void );
 
 		//-----------------------------------------Board Set Up Section:
 		piece_identifier** Setup(void );
@@ -93,10 +98,10 @@ class Board
 
 
 		//-----------------------------------------Array Size Management Section:
-		//Called before the Expand function so the correct row value is passed into the function.
+		//Used to expand the array size to match the board size.
 		void Expand(char overload_char );
 
-		//Called before the Expand function so the correct row value is passed into the function.
+		//Used to shrink the array size to match the board size.
 		void Shrink(char overload_char );
 
 		//-----------------------------------------Array Insertion/ Input:
