@@ -256,12 +256,14 @@ int main(void )
 		Pieces[1 ]= Nought;
 		Pieces[2 ]= Cross;
 	Board* Board_Class= new Board();
+	Board_Class->Default();
 
-	//Board_Class->Output(Pieces );
+	int input_1= 1;
+	int input_2= 1;
 
-	//std::cout<<"]" <<std::endl;
 
 	//Board_Class->Shrink();
+	Board_Class->Insertion(&(Pieces[2 ] ), &(input_1 ), &(input_2 ) );
 	Board_Class->Expand();
 	Board_Class->Output(Pieces );
 
@@ -273,14 +275,28 @@ int main(void )
 
 	Board_Class->Expand();
 	Board_Class->Output(Pieces );
-	
 
 	Board_Class->Expand();
 	Board_Class->Output(Pieces );
 
-
-	Board_Class->Expand();
+	Board_Class->Shrink();
 	Board_Class->Output(Pieces );
+
+	Board_Class->Shrink();
+	Board_Class->Output(Pieces );
+
+	Board_Class->Shrink();
+	Board_Class->Output(Pieces );
+
+	Board_Class->Shrink();
+	Board_Class->Output(Pieces );
+
+	Board_Class->Shrink();
+	Board_Class->Output(Pieces );
+
+	Board_Class->Shrink();
+	Board_Class->Output(Pieces );
+
 	delete Board_Class;
 
 	return 0;

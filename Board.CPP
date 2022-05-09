@@ -157,72 +157,68 @@ void Board::Incriment_Collum(void )
 //Rewritten expansion.
 void Board::Expand(void )
 {
-	Incriment_Collum();
-	Incriment_Row();
-
-	//Create a new larger board
-	piece_identifier** new_board= new piece_identifier*[collums ];
-	for(int creation_row= 0; creation_row< rows; creation_row ++ )
+	if((rows!=5 )|| (collums!= 5) )
 	{
-		//std::cout<<"Row number: " <<creation_row <<std::endl;
-		//std::cout<<"" <<std::endl;
-		new_board[creation_row ]= new piece_identifier[collums ];
-	}
+		Incriment_Collum();
+		Incriment_Row();
 
-
-	//transfter then clean up
-	int previous_rows= rows;
-	previous_rows--;
-
-	int previous_collums= collums;
-	previous_collums--;
-
-	/*std::cout<<"old rows is "<< previous_rows;
-	std::cout<<"old collums is "<< previous_collums <<std::endl;
-	std::cout<<"new rows is "<< rows;
-	std::cout<<"new collums is "<< collums <<std::endl;*/
-
-	for(int x= 0; x< rows; x++ )
-	{
-		for(int y= 0; y< collums; y++ )
+		//Create a new larger board
+		piece_identifier** new_board= new piece_identifier*[collums ];
+		for(int creation_row= 0; creation_row< rows; creation_row ++ )
 		{
-			if((x< previous_rows )&& (y< previous_collums ) )
-			{
-				/*std::cout<<"X is currently" <<x <<" against the previous x of: " <<previous_rows <<std::endl;
-				std::cout<<"Y is currently: " <<y <<" against the previous Y of: " <<previous_collums <<std::endl;
-				std::cout<<"9 times~" <<std::endl;*/
-				new_board[x ][y ]= board[x ][y ];
-			}
-
-			else
-			{
-				//std::cout<<"7 times" <<std::endl;
-				new_board[x ][y ]= nothing;
-			}
-
-			//Delete the row after it was copied
-			if(x< previous_rows )
-			{
-				//std::cout<<"Delete" <<std::endl;
-				//delete[] board[x ];
-			}
-			/*//When within the original range, copy values over
-			if((x< previous_rows )|| (y< previous_rows ) )
-			{
-				std::cout<<"9 times~" <<std::endl;
-				new_board[x ][y ]= board[x ][y ];
-			}
-			//Set default.
-			else
-			{
-				std::cout<<"7 times" <<std::endl;
-				new_board[x ][y ]= nothing;
-			}*/
+			//std::cout<<"Row number: " <<creation_row <<std::endl;
+			//std::cout<<"" <<std::endl;
+			new_board[creation_row ]= new piece_identifier[collums ];
 		}
+
+
+		//transfter then clean up
+		int previous_rows= rows;
+		previous_rows--;
+
+		int previous_collums= collums;
+		previous_collums--;
+
+		/*std::cout<<"old rows is "<< previous_rows;
+		std::cout<<"old collums is "<< previous_collums <<std::endl;
+		std::cout<<"new rows is "<< rows;
+		std::cout<<"new collums is "<< collums <<std::endl;*/
+
+		for(int x= 0; x< rows; x++ )
+		{
+			for(int y= 0; y< collums; y++ )
+			{
+				if((x< previous_rows )&& (y< previous_collums ) )
+				{
+					/*std::cout<<"X is currently" <<x <<" against the previous x of: " <<previous_rows <<std::endl;
+					std::cout<<"Y is currently: " <<y <<" against the previous Y of: " <<previous_collums <<std::endl;
+					std::cout<<"9 times~" <<std::endl;*/
+					new_board[x ][y ]= board[x ][y ];
+				}
+
+				else
+				{
+					//std::cout<<"7 times" <<std::endl;
+					new_board[x ][y ]= nothing;
+				}
+			}
+		}
+
+		for(int z= 0; z< previous_rows; z++ )
+		{
+			//std::cout<<"Delete: row number" <<z <<std::endl;
+			delete[] board[z ];
+		}
+
+		board= new_board;
+		//Null the pointer
+		new_board= NULL;
 	}
-	board= new_board;
-	//Null the pointer
-	new_board= NULL;
+
+	else
+	{
+		std::cout<<"Invlaid Grow." <<std::endl;
+	}
 }
 
 //----------------------Board Decrease In Size:
@@ -232,43 +228,58 @@ void Board::Deincriment_Collum(void )
 	collums--;
 }
 
-void Board::Remove(void )
-{
-	//Updates the size tracking value 
-	Deincriment_Collum();
-
-	for(int current_row= 0; current_row< rows; current_row++ )
-	{
-		//I am unable to delete indivudal collum elements so they're just set to nothing.
-			//To delete elemnents and rezise the array I seem to need to use vectors for this.
-		board[current_row ][collums ]= nothing;
-		//std::cout<<"nothing" <<std::endl;
-	}
-}
-
 //To delete a specifed row
 void Board::Deincriment_Row(void )
 {
 	rows--;
 }
 
-void Board::Remove(int current_row )
-{
-	//Updates the size tracking value 
-	Deincriment_Row();
-
-	//Delething rows is something I can do to save on memory when the parts are no longer being drawn.
-	/*for(int current_collum= 0; current_collum< collums; current_collum++ )	{
-		delete board[current_row ][current_collum ];
-	}*/
-	delete board[current_row ];
-}
 
 //Combines the two seperate deleting methods into one function.
 void Board::Shrink(void )
 {
-	Remove();
-	Remove(rows );
+	if((rows!= 2 )|| (collums!= 2 ) )
+	{
+		Deincriment_Collum();
+		Deincriment_Row();
+
+		//Create a smaller board
+		piece_identifier** new_board= new piece_identifier*[collums ];
+		for(int creation_row= 0; creation_row< rows; creation_row ++ )
+		{
+			//std::cout<<"Row number: " <<creation_row <<std::endl;
+			//std::cout<<"" <<std::endl;
+			new_board[creation_row ]= new piece_identifier[collums ];
+		}
+
+
+		//transfter then clean up
+		int previous_rows= rows;
+		previous_rows++;
+
+		for(int x= 0; x< rows; x++ )
+		{
+			for(int y= 0;y< collums; y++ )
+			{
+				new_board[x ][y ]= board[x ][y ];
+			}
+		}
+
+		for(int x= 0; x< previous_rows; x++ )
+		{
+			delete[] board[x ];
+		}
+		
+
+		board= new_board;
+		//Null the pointer
+		new_board= NULL;
+	}
+
+	else
+	{
+		std::cout<<"Invlaid shrink." <<std::endl;
+	}
 }
 
 
@@ -398,7 +409,7 @@ void Board::Insertion(Piece* Piece, int* current_row, int* current_collum )
 		if(Insertion_Trial(current_row, current_collum ) )
 		{
 			//Writing the piece type to the board to be displayed.
-			std::cout<<"Piece written to board index [" <<current_row <<", " <<current_collum <<std::endl;
+			std::cout<<"Piece written to board index [" <<current_row[0 ] <<", " <<current_collum[0 ] <<"]" <<std::endl;
 			board[current_row[0 ] ][current_collum[0 ] ]= Piece[0 ].Get_Type()[0 ];
 		}
 
