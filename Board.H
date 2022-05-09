@@ -54,11 +54,9 @@ class Board
 		//----------------------Board Decrease In Size:
 		//To delete a specified collum. //Used first
 		void Deincriment_Collum(void );
-		void Remove(void );
 
 		//To delete a specifed row
 		void Deincriment_Row(void );
-		void Remove(int current_row );
 
 		//Combines the two seperate deleting methods into one function.
 		void Shrink(void );
@@ -88,7 +86,34 @@ class Board
 		void Insertion(Piece* Piece, int* current_row, int* current_collum );
 
 
+		//-----------------------------------------Tracking Array Set Up Section:
+		//----------------------For Setting Defaults Across the board:
+		//To clean out the int Arry and reset its value.
+		void Default(bool overload_bool );
+
+
+		//-----------------------------------------Array Size Management Section:
+		//Called before the Expand function so the correct row value is passed into the function.
+		void Expand(char overload_char );
+
+		//Called before the Expand function so the correct row value is passed into the function.
+		void Shrink(char overload_char );
+
+		//-----------------------------------------Array Insertion/ Input:
+		//Input was checked before so its not needed. Now inputs are checked against the array to see if it already has been index to not count it again.
+		bool Insertion_Check(int* current_row, int* current_collum );
+
+		//Used for inserting the value into the correct slot.
+		void Insertion(int* current_row, int* current_collum, int* points_so_far );
+
+		//Used to above functions to create one function way for check and insertion.
+		void Commit(int* current_row, int* current_collum, int* points_so_far );
+
+		//-----------------------------------------Output Section:
+		//----------------------Output Segments:
+		void Output(char overload_char );
+
 		//-----------------------------------------Win Check:
 		//void Check(int* start_row, int* start_collum, int* rows, int* collums, piece_identifier piece_type, piece_identifier** board, int** keyed_positions, int* points_so_far);
-	};
+};
 #endif

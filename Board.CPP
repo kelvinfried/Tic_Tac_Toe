@@ -424,3 +424,189 @@ void Board::Insertion(Piece* Piece, int* current_row, int* current_collum )
 		std::cout<<"Insertion not valid, input out of range." <<std::endl;
 	}
 }
+
+
+//-----------------------------------------Tracking Array Set Up Section:
+//----------------------For Setting Defaults Across the board:
+//To clean out the int Arry and reset its value.
+void Board::Default(bool overload_bool )
+{
+	int length= 2* rows;
+
+	for(int x= 0; x< length; x++ )
+	{
+		//Set to minus one to not cause any conflicts when adding a 0, 0 array position; shows an element is defualt.
+		keyed_positions[x ]= -1;
+	}
+}
+
+
+//-----------------------------------------Array Size Management Section:
+//Called before the Expand function so the correct row value is passed into the function.
+void Board::Expand(char overload_char )
+{
+	int length= rows;
+	length*= 2;
+
+	//Create a smaller array
+	int* new_array= new int[length ];
+
+
+	//transfter then clean up
+	int previous_length= length;
+	previous_length-= 2;
+
+	for(int x= 0; x< length; x++ )
+	{
+		//Transfer old ones over
+		if(x< previous_length )
+		{
+			new_array[x ]= keyed_positions[x ];
+		}
+
+		//Set default for new ones.
+		else
+		{
+			new_array[x ]= -1;
+		}
+	}
+	//Clean up and adjust points.
+	delete[] keyed_positions;
+	
+	keyed_positions= new_array;
+	//Null the pointer
+	new_array= NULL;
+}
+
+//Called before the Expand function so the correct row value is passed into the function.
+void Board::Shrink(char overload_char )
+{
+	//Fetch current size to figure out how many elements are required.
+	int length= rows;
+	length*= 2;
+
+	//Create a smaller array
+	int* new_array= new int[length ];
+
+	//transfter then clean up
+	int previous_length= rows;
+	previous_length+= 2;
+
+	for(int x= 0; x< length; x++ )
+	{
+		new_array[x ]= keyed_positions[x ];
+	}
+	//Clean up and adjust points.
+	delete[] keyed_positions;
+	
+	keyed_positions= new_array;
+	//Null the pointer
+	new_array= NULL;
+}
+
+
+//-----------------------------------------Output Section:
+//----------------------Output Segments:
+void Board::Output(char overload_char )
+{
+	std::cout<<"" <<std::endl;
+	std::cout<<"Keyed_Output" <<std::endl;
+	
+	int counter= 0;
+	int current_collum= 0;
+	int current_row= 0;
+
+	int length= rows;
+	length*= 2;
+
+	for(int x=0; x< length; x+= 2 )
+	{
+		counter++;
+
+		current_row= x;
+
+		current_collum= current_row;
+		current_collum++;
+
+		std::cout<<"The '" <<counter <<"' has a value of:";
+		std::cout<<keyed_positions[current_row ] <<" and " <<keyed_positions[current_collum ] <<std::endl;
+	}
+}
+
+//-----------------------------------------Array Insertion/ Input:
+//Input was checked before so its not needed. Now inputs are checked against the array to see if it already has been index to not count it again.
+bool Board::Insertion_Check(int* current_row, int* current_collum )
+{
+	//Used to not modify the iterative value.
+	int array_value= 0;
+	int check_1, check_2;
+
+	int length= rows;
+	length*= 2;
+
+	//To iterate the lenght of the 
+	for(int element= 0; element< length; element +=2 )
+	{
+		array_value= element;
+
+		check_1=  keyed_positions[array_value ];
+		check_2= keyed_positions[array_value+= 1 ];
+
+		//Match found exit
+		if((current_row[0 ]== check_1 )&& (current_collum[0 ]== check_2 ) )
+		{
+			//A match was found so therefore the input is invalid from the game board.
+			return false;
+		}
+		
+		else
+		{
+		}
+	}
+	//Moved this to not make the check die early as it returns a value - Used to say there are no mathces from the array
+	return true;
+}
+
+//Used for inserting the value into the correct slot.
+void Board::Insertion(int* current_row, int* current_collum, int* points_so_far )
+{
+	//Insert the value in the next free slot.
+	//Next free slot is points so far * 2; Then ++ for the second value.
+	int element= 0;
+
+	//To not divide by 0
+	switch(points_so_far[0 ] )
+	{
+		case 0:
+			element= 0;
+			break;
+
+		default:
+			//std::cout<< "before: " << points_so_far[0 ] <<std::endl;
+			element= points_so_far[0 ];
+			element*= 2;
+			//std::cout<< "After: " << points_so_far[0 ] <<std::endl;
+			break;
+	}
+
+	std::cout<<"element is: "<<element <<std::endl;
+
+	keyed_positions[element ]= current_row[0 ];
+	keyed_positions[element++ ]= current_collum[0 ];
+}
+
+//Used to above functions to create one function way for check and insertion.
+void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
+{
+	bool check= Insertion_Check(current_row, current_collum );
+
+	if(check )
+	{
+		Insertion(current_row, current_collum, points_so_far );
+	}
+
+	else
+	{
+		std::cout<<"fail" <<std::endl;
+	}
+}
