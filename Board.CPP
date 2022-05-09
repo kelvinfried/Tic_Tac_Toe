@@ -173,7 +173,6 @@ void Board::Default(int overload_int )
 	}
 	//Incriment the value of the collum to keep it updated.
 	//std::cout<<"incriment thing." <<std::endl;
-	Incriment_Collum();
 }
 
 
@@ -184,6 +183,14 @@ void Board::New_Collum(void )
 {
 	//std::cout<<"Created the new collum." <<std::endl;
 	//Adds an extra collum to the end of each row, they're set to default. 
+	/*for(int current_row= 0; current_row< rows; current_row++ )
+	{
+		//board[current_row ][collums ]= new piece_identifier nothing;
+	}*/
+	Incriment_Collum();
+
+	//new_board= piece_identifier**
+
 	Default(1 );
 }
 
@@ -203,9 +210,75 @@ void Board::New_Row(void )
 //Combines the two seperate expansion functions into on neat package.
 void Board::Expand(void )
 {
-	New_Collum();
-	New_Row();
-	//std::cout<<"ends" <<std::endl;
+	/*New_Collum();
+	New_Row();*/
+	Incriment_Collum();
+	Incriment_Row();
+
+	//Create a new larger board
+	piece_identifier** new_board= new piece_identifier*[collums ];
+	for(int creation_row= 0; creation_row< rows; creation_row ++ )
+	{
+		//std::cout<<"Row number: " <<creation_row <<std::endl;
+		//std::cout<<"" <<std::endl;
+		new_board[creation_row ]= new piece_identifier[collums ];
+	}
+
+
+	//transfter then clean up
+	int previous_rows= rows;
+	previous_rows--;
+
+	int previous_collums= collums;
+	previous_collums--;
+
+	/*std::cout<<"old rows is "<< previous_rows;
+	std::cout<<"old collums is "<< previous_collums <<std::endl;
+
+	std::cout<<"new rows is "<< rows;
+	std::cout<<"new collums is "<< collums <<std::endl;*/
+
+	for(int x= 0; x< rows; x++ )
+	{
+		for(int y= 0; y< collums; y++ )
+		{
+			if((x< previous_rows )&& (y< previous_collums ) )
+			{
+				/*std::cout<<"X is currently" <<x <<" against the previous x of: " <<previous_rows <<std::endl;
+				std::cout<<"Y is currently: " <<y <<" against the previous Y of: " <<previous_collums <<std::endl;
+				std::cout<<"9 times~" <<std::endl;*/
+				new_board[x ][y ]= board[x ][y ];
+			}
+
+			else
+			{
+				//std::cout<<"7 times" <<std::endl;
+				new_board[x ][y ]= nothing;
+			}
+
+			//Delete the row after it was copied
+			if(x< previous_rows )
+			{
+				//std::cout<<"Delete" <<std::endl;
+				//delete[] board[x ];
+			}
+			/*//When within the original range, copy values over
+			if((x< previous_rows )|| (y< previous_rows ) )
+			{
+				std::cout<<"9 times~" <<std::endl;
+				new_board[x ][y ]= board[x ][y ];
+			}
+			//Set default.
+			else
+			{
+				std::cout<<"7 times" <<std::endl;
+				new_board[x ][y ]= nothing;
+			}*/
+		}
+	}
+	board= new_board;
+	//Null the pointer
+	new_board= NULL;
 }
 
 //----------------------Board Decrease In Size:
@@ -225,13 +298,14 @@ void Board::Remove(void )
 		//I am unable to delete indivudal collum elements so they're just set to nothing.
 			//To delete elemnents and rezise the array I seem to need to use vectors for this.
 		board[current_row ][collums ]= nothing;
+		//std::cout<<"nothing" <<std::endl;
 	}
 }
 
 //To delete a specifed row
 void Board::Deincriment_Row(void )
 {
-	Deincriment_Row();
+	rows--;
 }
 
 void Board::Remove(int current_row )
@@ -240,7 +314,10 @@ void Board::Remove(int current_row )
 	Deincriment_Row();
 
 	//Delething rows is something I can do to save on memory when the parts are no longer being drawn.
-	delete[] board[current_row ];
+	/*for(int current_collum= 0; current_collum< collums; current_collum++ )	{
+		delete board[current_row ][current_collum ];
+	}*/
+	delete board[current_row ];
 }
 
 //Combines the two seperate deleting methods into one function.

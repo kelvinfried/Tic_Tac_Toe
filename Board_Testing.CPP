@@ -257,13 +257,30 @@ int main(void )
 		Pieces[2 ]= Cross;
 	Board* Board_Class= new Board();
 
+	//Board_Class->Output(Pieces );
+
+	//std::cout<<"]" <<std::endl;
+
+	//Board_Class->Shrink();
+	Board_Class->Expand();
 	Board_Class->Output(Pieces );
 
-	std::cout<<"Gaming" <<std::endl;
+	Board_Class->Expand();
+	Board_Class->Output(Pieces );
 
-	Board_Class->Shrink();
+	Board_Class->Expand();
+	Board_Class->Output(Pieces );
+
+	Board_Class->Expand();
 	Board_Class->Output(Pieces );
 	
+
+	Board_Class->Expand();
+	Board_Class->Output(Pieces );
+
+
+	Board_Class->Expand();
+	Board_Class->Output(Pieces );
 	delete Board_Class;
 
 	return 0;
