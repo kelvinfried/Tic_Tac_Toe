@@ -25,7 +25,7 @@ int main(void )
 	int input_4= 3;
 	int points_so_far= 0;
 
-	Board_Class->Default(&(Cross ) );
+	Board_Class->Default( );
 	//std::cout<<"Default state" <<std::endl;
 	//Board_Class->Output(Pieces );
 
@@ -155,8 +155,24 @@ int main(void )
 	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_4 ) );
 	//Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_3 ) );
 	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
+
+	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
+	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
+	Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
 	Board_Class->Output(Pieces );
 
+
+	bool check= Board_Class->Check(&(input_1 ), &(input_1 ), &(Cross ), &(points_so_far ) );
+
+	if(check )
+	{
+		std::cout<<"Gaming " <<std::endl;
+	}
+		
+	else
+	{
+		std::cout<<"Lmao " <<std::endl;
+	}
 	//bool test_case= Board_Class->Check(&(input_3 ), &(input_3 ), &(Cross ), &(points_so_far ) );
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ), 't' );
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ) );
