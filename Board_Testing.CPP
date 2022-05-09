@@ -24,18 +24,20 @@ int main(void )
 	int points_so_far= 0;
 
 	Board_Class->Default(true );
-	Board_Class->Output('t' );
+	std::cout<<"Default state" <<std::endl;
+	Board_Class->Output(Pieces );
 
-	Board_Class->Commit(&(input_1 ), &(input_2 ), &(points_so_far ) );
-	Board_Class->Output('t' );
+	//Insertion Checks:
+	for(int x= 1; x< 6; x++ )
+	{
+		//Draw 3 pieces 
+		//Board_Class->Insertion(&(Cross ), &(input_1 ), &(x ) ); 
+		Board_Class->Insertion(&(Cross ), &(x ), &(input_1 ) ); 
+	}
 
-	Board_Class->Expand();
-	Board_Class->Expand('t' );
-	Board_Class->Output('t' );
-	
-	Board_Class->Shrink();
-	Board_Class->Shrink('t' );
-	Board_Class->Output('t' );
+	std::cout<<"" <<std::endl;
+	std::cout<<"Edited state" <<std::endl;
+	Board_Class->Output(Pieces );
 
 	delete Board_Class;
 

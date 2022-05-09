@@ -98,12 +98,12 @@
 //Public Functions
 //-----------------------------------------Getters:
 //Used to pass these values in to other areas used later on in the game.
-int Get_Rows(void )
+int Board::Get_Rows(void )
 {
 	return rows;
 }
 
-int Get_Collums(void )
+int Board::Get_Collums(void )
 {
 	return collums;
 }
@@ -412,29 +412,34 @@ bool Board::Insertion_Trial(int* current_row, int* current_collum )
 void Board::Insertion(Piece* Piece, int* current_row, int* current_collum )
 {
 	//Input Checking First- Check attempted Row and Collum Against the boards bounds to see if it is valid.
-	if((Input_Sanitization(current_row, &(rows ) ) )&& (Input_Sanitization(current_collum, &(collums ) ) ) )
+	bool check_1= Input_Sanitization(current_row, &(rows ) );
+	bool check_2= Input_Sanitization(current_collum, &(collums ) );
+	if(check_1 && check_2 )
 	{
 		//Offset the input to match board index;
-		current_row[0 ]--;
-		current_collum[0 ]--;
+		int current_row_1= current_row[0 ];
+		current_row_1--;
+
+		int current_collum_1= current_collum[0 ];
+		current_collum_1--;
 
 		//Insertion Checking, to see if it is valid on the board
-		if(Insertion_Trial(current_row, current_collum ) )
+		if(Insertion_Trial(&(current_row_1 ), &(current_collum_1 ) ) )
 		{
 			//Writing the piece type to the board to be displayed.
-			std::cout<<"Piece written to board index [" <<current_row[0 ] <<", " <<current_collum[0 ] <<"]" <<std::endl;
-			board[current_row[0 ] ][current_collum[0 ] ]= Piece[0 ].Get_Type()[0 ];
+			std::cout<<"Piece written to board index [" <<current_row_1 <<", " <<current_collum_1 <<"]" <<std::endl;
+			board[current_row_1 ][current_collum_1 ]= Piece[0 ].Get_Type()[0 ];
 		}
 
 		else	
 		{
-			std::cout<<"Insertion not valid, insertion denyed" <<std::endl;;
+			std::cout<<"Insertion not valid for numbers: " <<current_row[0 ] <<" and "<<current_collum[0 ] <<std::endl;
 		}
 	}
 
 	else
 	{
-		std::cout<<"Insertion not valid, input out of range." <<std::endl;
+		std::cout<<"Out of range for: " <<current_row[0 ] <<" and "<<current_collum[0 ] <<std::endl;
 	}
 }
 
