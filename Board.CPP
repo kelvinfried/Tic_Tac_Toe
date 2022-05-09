@@ -145,73 +145,18 @@ void Board::Incriment_Row(void )
 	rows++;
 }
 
-void Board::Default(char overload_char )
-{
-	//Used to access each element of the passed in row
-	for(int setting_collum= 0; setting_collum< collums; setting_collum++ )
-	{
-			board[rows ][setting_collum ]= nothing;
-	}
-
-	//Incriment the value of row to keep it updated.
-	Incriment_Row();
-}
-
 //To add another collum to the end.
 void Board::Incriment_Collum(void )
 {
 	collums++;
 }
 
-void Board::Default(int overload_int )
-{
-	//Extend exisiting dataset
-	for(int setting_row= 0; setting_row< rows; setting_row++ )
-	{
-		//std::cout<<"Row number: " <<setting_row <<", out of: " <<rows[0 ] <<std::endl;
-		board[setting_row ][collums ]= nothing;
-	}
-	//Incriment the value of the collum to keep it updated.
-	//std::cout<<"incriment thing." <<std::endl;
-}
-
 
 //-----------------------------------------Board Size Management Section:
 //----------------------Board Increase In Size:
-//Used first, to add new collums to the board.
-void Board::New_Collum(void )
-{
-	//std::cout<<"Created the new collum." <<std::endl;
-	//Adds an extra collum to the end of each row, they're set to default. 
-	/*for(int current_row= 0; current_row< rows; current_row++ )
-	{
-		//board[current_row ][collums ]= new piece_identifier nothing;
-	}*/
-	Incriment_Collum();
-
-	//new_board= piece_identifier**
-
-	Default(1 );
-}
-
-//To add a new row to the board, row is set to nothing.	--Causing issues
-void Board::New_Row(void )
-{
-	//std::cout<<"(After Row) Rows value is: " <<rows[0 ] <<" Collums value is: " <<collums[0 ] <<std::endl;
-	//Create a new row in the array to address it
-	board[rows ]= new piece_identifier[collums ];
-	
-	//std::cout<<"Created the new row." <<std::endl;
-	//Set new row to default.
-	Default('t' );
-	//std::cout<<"Created the new row." <<std::endl;
-}
-
-//Combines the two seperate expansion functions into on neat package.
+//Rewritten expansion.
 void Board::Expand(void )
 {
-	/*New_Collum();
-	New_Row();*/
 	Incriment_Collum();
 	Incriment_Row();
 
@@ -234,7 +179,6 @@ void Board::Expand(void )
 
 	/*std::cout<<"old rows is "<< previous_rows;
 	std::cout<<"old collums is "<< previous_collums <<std::endl;
-
 	std::cout<<"new rows is "<< rows;
 	std::cout<<"new collums is "<< collums <<std::endl;*/
 

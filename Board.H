@@ -48,12 +48,6 @@ class Board
 
 		//-----------------------------------------Board Size Management Section:
 		//----------------------Board Increase In Size:
-		//Used first, to add new collums to the board.
-		void New_Collum(void );
-
-		//To add a new row to the board, row is set to nothing.
-		void New_Row(void );
-
 		//Combines the two seperate expansion functions into on neat package.
 		void Expand(void );
 
