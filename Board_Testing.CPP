@@ -78,7 +78,37 @@ int main(void )
 		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
 	}*/
 
+//Vertical Testing Part
+	int temp_1= input_2;
+	temp_1--;
 
+	int temp_2= input_2;
+	temp_2--;
+
+	int temp_3= input_3;
+	temp_3--;
+
+	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
+	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_3 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_4 ) );
+
+
+	std::cout<<"" <<std::endl;
+	std::cout<<"Edited state" <<std::endl;
+	Board_Class->Output(Pieces );
+
+	//Board_Class->Vertical_Check(&(input_1 ), &(input_1 ), &(Pieces[2 ] ), &(points_so_far ) );
+	Board_Class->Horizontal_Check(&(temp_1 ), &(temp_1 ), &(Pieces[2 ] ), &(points_so_far ), 't' );
+
+	if(points_so_far== 3 )
+	{
+		std::cout<<"Non Stinkers wins so far: " <<points_so_far <<std::endl;
+	}
+
+	else
+	{
+		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
+	}
 
 	delete Board_Class;
 

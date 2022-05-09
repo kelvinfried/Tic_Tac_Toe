@@ -127,10 +127,10 @@ class Board
 
 		//-----------------------------------------Win Checks:
 		//Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
-		void Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
+		void Vertical_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
 
 		//Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
-		void Vertical_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
+		void Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char );
 
 		//Linear check, checks for diagonals. i.e x -> y or y -> x
 		void Linear_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );

@@ -665,7 +665,7 @@ void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 //-----------------------------------------Win Checks:
 //Note input must be handeled before it is passed
 //Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
-void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+void Board::Vertical_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {	
 	//Out of "Board" Bounds check;
 	bool bound_check= Input_Sanitization(start_row, &(rows ) );
@@ -696,8 +696,8 @@ void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 				previous_row--;
 
 				std::cout<<"Called next set" <<std::endl;
-				Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
-				Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+				Vertical_Check(&(next_row ), start_collum, Piece, points_so_far );
+				Vertical_Check(&(previous_row ), start_collum, Piece, points_so_far );
 			}
 
 			else
@@ -721,10 +721,10 @@ void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 }
 
 //Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
-void Board::Vertical_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
+void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
 {
-	/*//Out of "Board" Bounds check;
-	bool bound_check= Input_Sanitization(start_row, &(collums ) );
+	//Out of "Board" Bounds check;
+	bool bound_check= Input_Sanitization(start_collum, &(collums ) );
 
 	//In the Boards Bounds 
 	if(bound_check )
@@ -752,8 +752,8 @@ void Board::Vertical_Check(int* start_row, int* start_collum, Piece piece, int* 
 				previous_collum--;
 
 				std::cout<<"Called next set" <<std::endl;
-				Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
-				//Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+				Horizontal_Check(start_row, &(next_collum ), Piece, points_so_far, 't' );
+				Horizontal_Check(start_row, &(previous_collum ), Piece, points_so_far, 't' );
 			}
 
 			else
@@ -772,8 +772,8 @@ void Board::Vertical_Check(int* start_row, int* start_collum, Piece piece, int* 
 	//Outside of the Board Bounds.
 	else
 	{
-		std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
-	}*/
+		std::cout<<start_collum[0 ] <<" is out of bounds." <<std::endl;
+	}
 }
 
 //Linear check, checks for diagonals. i.e x -> y or y -> x
