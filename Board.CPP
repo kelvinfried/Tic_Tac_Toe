@@ -38,7 +38,7 @@
 			keyed_positions[x ]= -1;
 		}
 
-		Output('t');
+		//Output('t');
 	};
 
 	//Overloaded
@@ -134,6 +134,7 @@ void Board::Default(void )
 		//Used to access each collum of the current row.
 		for(int setting_collum= 0; setting_collum< collums; setting_collum++ )
 		{
+			//std::cout<<"Row is: " <<setting_row <<" Collum is: " <<setting_collum <<std::endl;
 			board[setting_row ][setting_collum ]= nothing;
 		}
 	}
@@ -339,8 +340,12 @@ void Board::Output_Row(Piece* Pieces, int* current_row )
 					std::cout<<Pieces[nought ].Get_Output()[current_layer ] <<border_parts[0 ];
 					break;
 
-				default:
+				case nothing:
 					std::cout<<Pieces[nothing ].Get_Output()[current_layer ] <<border_parts[0 ];
+					break;
+
+				default:
+					std::cout<<"Invalid";
 					break;
 			}
 		}
@@ -430,9 +435,10 @@ bool Board::Insertion_Trial(int* current_row, int* current_collum )
 //The actual insertion into the board, incorporates the checks and if valid will draw onto the board.
 void Board::Insertion(Piece* Piece, int* current_row, int* current_collum )
 {
+	std::cout<<"Placing pieces:" <<current_row[0 ] <<" and " <<current_collum[0 ] <<std::endl;
 	//Input Checking First- Check attempted Row and Collum Against the boards bounds to see if it is valid.
-	bool check_1= Input_Sanitization(current_row, &(rows ) );
-	bool check_2= Input_Sanitization(current_collum, &(collums ) );
+	bool check_1= Input_Sanitization(current_row, &(rows ), true);
+	bool check_2= Input_Sanitization(current_collum, &(collums ), true );
 	if(check_1 && check_2 )
 	{
 		//Offset the input to match board index;
@@ -452,7 +458,7 @@ void Board::Insertion(Piece* Piece, int* current_row, int* current_collum )
 
 		else	
 		{
-			//std::cout<<"Insertion not valid for numbers: " <<current_row[0 ] <<" and "<<current_collum[0 ] <<std::endl;
+			std::cout<<"Insertion not valid for numbers: " <<current_row[0 ] <<" and "<<current_collum[0 ] <<std::endl;
 		}
 	}
 

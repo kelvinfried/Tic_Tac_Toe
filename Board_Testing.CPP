@@ -25,9 +25,9 @@ int main(void )
 	int input_4= 3;
 	int points_so_far= 0;
 
-	Board_Class->Default(&(Cross ) );
-	//std::cout<<"Default state" <<std::endl;
-	//Board_Class->Output(Pieces );
+	Board_Class->Default( );
+	std::cout<<"Default state" <<std::endl;
+	Board_Class->Output(Pieces );
 
 	/*//"Automated" Insertion Checks:
 	for(int x= 1; x< Board_Class->Get_Rows(); x++ )
@@ -37,10 +37,12 @@ int main(void )
 		//Board_Class->Insertion(&(Cross ), &(input_1 ), &(x ) ); 
 		Board_Class->Output(Pieces );
 	}*/
-	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_1 ) );
-	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_1 ) );
-	Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_1 ) );
+	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
+	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
+	Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
 
+	std::cout<<"" <<std::endl;
+	std::cout<<"" <<std::endl;
 	std::cout<<"Output part:" <<std::endl;
 	Board_Class->Output(Pieces );
 
@@ -77,33 +79,6 @@ int main(void )
 
 	points_so_far=0;
 
-	std::cout<<"" <<std::endl;
-	Board_Class->Horizontal_Check(&(temp_2 ), &(input_2 ), &(Pieces[2 ] ), &(points_so_far ) );
-
-	if(points_so_far== 3 )
-	{
-		std::cout<<"Non Stinkers wins so far: " <<points_so_far <<std::endl;
-	}
-
-	else
-	{
-		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
-	}
-
-	points_so_far=0;
-
-	std::cout<<"" <<std::endl;
-	Board_Class->Horizontal_Check(&(temp_3 ), &(input_2 ), &(Pieces[2 ] ), &(points_so_far ) );
-	
-	if(points_so_far== 3 )
-	{
-		std::cout<<"Non Stinkers wins so far: " <<points_so_far <<std::endl;
-	}
-
-	else
-	{
-		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
-	}
 
 	delete Board_Class;
 
