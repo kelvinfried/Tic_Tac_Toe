@@ -439,6 +439,7 @@ void Board::Insertion(Piece* Piece, int* current_row, int* current_collum )
 	//Input Checking First- Check attempted Row and Collum Against the boards bounds to see if it is valid.
 	bool check_1= Input_Sanitization(current_row, &(rows ), true);
 	bool check_2= Input_Sanitization(current_collum, &(collums ), true );
+
 	if(check_1 && check_2 )
 	{
 		//Offset the input to match board index;
@@ -696,7 +697,7 @@ void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 
 				std::cout<<"Called next set" <<std::endl;
 				Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
-				//Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+				Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
 			}
 
 			else
@@ -717,90 +718,62 @@ void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 	{
 		std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
 	}
-
-
-	/*//Here to catch any extra recursions.
-	if(points_so_far[0 ]== 3 )
-	{	
-		std::cout<<"Win moment" <<std::endl;
-		return true;
-	}
-
-	else
-	{
-		;
-	}
-
-	//Out of bounds check
-	int garbage= 0;
-	bool check_1= Input_Sanitization(start_row, &(rows ) ); 
-	//In bounds
-	if(check_1 )
-	{
-		//std::cout<<"1st pass" <<std::endl;
-		//Check to see if the piece is a valid one for the player.
-		piece_identifier current_piece= board[start_row[0 ] ][start_collum[0 ] ];
-		
-		//If it is pass it into the tracking array to test it.
-		if(current_piece== Piece->Get_Type()[0 ] )
-		{
-			//std::cout<<"Gaming output" <<std::endl;
-			//Key it 
-			if( Commit(start_row, start_collum, points_so_far ) )
-			{
-				//std::cout<<"commiting went correctly" <<std::endl;
-				std::cout<<"Points so far is: " <<points_so_far[0 ] <<std::endl;
-				std::cout<<"Rows is: " <<rows <<std::endl;
-
-				//Define values for the next cycle
-				int next_row, previous_row;
-				next_row= start_row[0 ];
-				previous_row= next_row;
-				
-				std::cout<<"input part:" <<std::endl;
-				std::cin>>garbage;
-				//Offsets
-				//next_row++;
-				//previous_row--;
-
-				//Output('t' );
-
-				//Recursive call to keep on checking.
-				if(points_so_far[0 ]== 3 )
-				{	
-					std::cout<<"Win moment" <<std::endl;
-					return true;
-				}
-
-				else 
-				{
-					std::cout<<"keep searching" <<std::endl;
-					Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
-					Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
-				}
-			}
-
-			//If the commit does not work
-			else
-			{
-				//std::cout<<"commiting went correctly" <<std::endl;;
-			}
-		}
-
-		//If the piece does not match the type on the board.
-		else
-		{
-			;
-		}
-	//Ending conditions
-	std::cout<<"Not yet" <<std::endl;
-	return false;*/
-
 }
 
 //Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
 void Board::Vertical_Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
 {
+	/*//Out of "Board" Bounds check;
+	bool bound_check= Input_Sanitization(start_row, &(collums ) );
+
+	//In the Boards Bounds 
+	if(bound_check )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board[(start_row[0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+			//Check to see if the piece is valid against the previously keyed pieces.
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+				
+
+				//offset vairables 
+				int next_collum= start_collum[0 ];
+				next_collum++;
+
+				int previous_collum= start_collum[0 ];
+				previous_collum--;
+
+				std::cout<<"Called next set" <<std::endl;
+				Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
+				//Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+			}
+
+			else
+			{
+				std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		//If the piece type does not match
+		else
+		{
+			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+	
+	//Outside of the Board Bounds.
+	else
+	{
+		std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
+	}*/
 }
 
 //Linear check, checks for diagonals. i.e x -> y or y -> x

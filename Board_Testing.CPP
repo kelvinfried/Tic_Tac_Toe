@@ -37,10 +37,11 @@ int main(void )
 		//Board_Class->Insertion(&(Cross ), &(input_1 ), &(x ) ); 
 		Board_Class->Output(Pieces );
 	}*/
-	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
-	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
-	Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
 
+/*//horizontal testing part
 	std::cout<<"" <<std::endl;
 	std::cout<<"" <<std::endl;
 	std::cout<<"Output part:" <<std::endl;
@@ -75,9 +76,8 @@ int main(void )
 	else
 	{
 		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
-	}
+	}*/
 
-	points_so_far=0;
 
 
 	delete Board_Class;
