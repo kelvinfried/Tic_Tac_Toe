@@ -25,9 +25,9 @@ int main(void )
 	int input_4= 3;
 	int points_so_far= 0;
 
-	Board_Class->Default( );
-	std::cout<<"Default state" <<std::endl;
-	Board_Class->Output(Pieces );
+	Board_Class->Default(&(Cross ) );
+	//std::cout<<"Default state" <<std::endl;
+	//Board_Class->Output(Pieces );
 
 	/*//"Automated" Insertion Checks:
 	for(int x= 1; x< Board_Class->Get_Rows(); x++ )
@@ -152,16 +152,16 @@ int main(void )
 	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_3 ) );
 	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );*/
 
-	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_4 ) );
-	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_3 ) );
-	Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
-
+	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_4 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_3 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
 	Board_Class->Output(Pieces );
 
-	Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ), 't' );
+	bool test_case= Board_Class->Check(&(input_3 ), &(input_3 ), &(Cross ), &(points_so_far ) );
+	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ), 't' );
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ) );
 
-	if(points_so_far== 3 )
+	/*if(points_so_far== 3 )
 	{
 		std::cout<<"Non Stinkers wins so far: " <<points_so_far <<std::endl;
 	}
@@ -169,6 +169,16 @@ int main(void )
 	else
 	{
 		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
+	}*/
+
+	if(test_case )
+	{
+		std::cout<<"Win Moment" <<std::endl;
+	}
+
+	else
+	{
+		std::cout<<"Not Win Moment" <<std::endl;
 	}
 
 	delete Board_Class;

@@ -375,6 +375,7 @@ void Board::Output(Piece* Pieces )
 
 //-----------------------------------------Input Handling Section:
 //----------------------Handle Input:
+//For access to the board.
 bool Board::Input_Sanitization(int* test_data, int* upper_limit )
 {
 	//Used to see if the test data is within the bounds of the array
@@ -392,6 +393,7 @@ bool Board::Input_Sanitization(int* test_data, int* upper_limit )
 	}
 }
 //overloaded
+//For user inputs.
 //Test case weight against upper limit //Updated to have a bool return, to be used directly with if statments.
 bool Board::Input_Sanitization(int* test_data, int* upper_limit, char overload_char )
 {
@@ -667,11 +669,12 @@ void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 //Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
 void Board::Vertical_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {	
-	//Out of "Board" Bounds check;
-	bool bound_check= Input_Sanitization(start_row, &(rows ) );
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
 
-	//In the Boards Bounds 
-	if(bound_check )
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
 	{
 		//Reads the piece on the board
 		piece_identifier board_piece= board[(start_row[0 ] ) ][(start_collum[0 ] ) ];
@@ -723,11 +726,12 @@ void Board::Vertical_Check(int* start_row, int* start_collum, Piece* Piece, int*
 //Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
 void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
 {
-	//Out of "Board" Bounds check;
-	bool bound_check= Input_Sanitization(start_collum, &(collums ) );
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
 
-	//In the Boards Bounds 
-	if(bound_check )
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
 	{
 		//Reads the piece on the board
 		piece_identifier board_piece= board[(start_row[0 ] ) ][(start_collum[0 ] ) ];
@@ -903,6 +907,104 @@ void Board::Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* p
 }
 
 //Combines all the checks into one function with additional information.
-void Board::Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char )
+bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {
+	//Vertical
+	//Keeps track a hold of these values.
+		//Positions
+	int start_x_1= start_row[0 ];
+	int start_y_1= start_row[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Vertical_Check(&(start_x_1 ), &(start_y_1 ), Piece, points_so_far );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		std::cout<<"First check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		std::cout<<"" <<std::endl;//Passed
+	}
+
+	//Horzontal
+	//Reset vairables.
+		//Positions
+	int start_x_2= start_row[0 ];
+	int start_y_2= start_collum[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Horizontal_Check(&(start_x_2 ), &(start_y_2 ), Piece, points_so_far, 't' );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		std::cout<<"Second check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows()  <<std::endl;//Passed
+		std::cout<<"" <<std::endl;//Passed
+	}
+
+	//Linear (1)
+	//Reset vairables.
+		//Positions
+	int start_x_3= start_row[0 ];
+	int start_y_3= start_collum[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Linear_Check(&(start_x_3 ), &(start_y_3 ), Piece, points_so_far );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		std::cout<<"Third check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		std::cout<<"" <<std::endl;//Passed
+	}
+
+	//Linear (2)
+	//Reset vairables.
+		//Positions
+	int start_x_4= start_row[0 ];
+	int start_y_4= start_collum[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Linear_Check(&(start_x_4 ), &(start_y_4 ), Piece, points_so_far, 't' );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		std::cout<<"Forth check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		std::cout<<"" <<std::endl;//Passed
+	}
+
+	std::cout<<"No win" <<std::endl;
+	return false;
 }

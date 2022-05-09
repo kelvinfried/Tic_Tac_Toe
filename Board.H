@@ -139,6 +139,6 @@ class Board
 		void Linear_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char );
 
 		//Combines all the checks into one function with additional information.
-		void Check(int* start_row, int* start_collum, Piece piece, int* points_so_far, char overload_char );
+		bool Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
 };
 #endif
