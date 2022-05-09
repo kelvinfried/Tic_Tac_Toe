@@ -37,6 +37,8 @@
 		{
 			keyed_positions[x ]= -1;
 		}
+
+		Output('t');
 	};
 
 	//Overloaded
@@ -563,8 +565,8 @@ void Board::Output(char overload_char )
 		current_collum= current_row;
 		current_collum++;
 
-		//std::cout<<"The '" <<counter <<"' has a value of:";
-		//std::cout<<keyed_positions[current_row ] <<" and " <<keyed_positions[current_collum ] <<std::endl;
+		std::cout<<"The '" <<counter <<"' has a value of:";
+		std::cout<<keyed_positions[current_row ] <<" and " <<keyed_positions[current_collum ] <<std::endl;
 	}
 }
 
@@ -573,7 +575,7 @@ void Board::Output(char overload_char )
 bool Board::Insertion_Check(int* current_row, int* current_collum )
 {
 	//Used to not modify the iterative value.
-	int array_value= 0;
+	int array_value_x, array_value_y;
 	int check_1, check_2;
 
 	int length= rows;
@@ -582,10 +584,12 @@ bool Board::Insertion_Check(int* current_row, int* current_collum )
 	//To iterate the lenght of the 
 	for(int element= 0; element< length; element +=2 )
 	{
-		array_value= element;
+		array_value_x= element;
+		array_value_y= array_value_x;
+		array_value_y++;
 
-		check_1=  keyed_positions[array_value ];
-		check_2= keyed_positions[array_value+= 1 ];
+		check_1=  keyed_positions[array_value_x ];
+		check_2= keyed_positions[array_value_y ];
 
 		//Match found exit
 		if((current_row[0 ]== check_1 )&& (current_collum[0 ]== check_2 ) )
@@ -607,7 +611,7 @@ void Board::Insertion(int* current_row, int* current_collum, int* points_so_far 
 {
 	//Insert the value in the next free slot.
 	//Next free slot is points so far * 2; Then ++ for the second value.
-	int element= 0;
+	int element, element_1;
 
 	//To not divide by 0
 	switch(points_so_far[0 ] )
@@ -617,21 +621,21 @@ void Board::Insertion(int* current_row, int* current_collum, int* points_so_far 
 			break;
 
 		default:
-			//std::cout<< "before: " << points_so_far[0 ] <<std::endl;
 			element= points_so_far[0 ];
 			element*= 2;
-			//std::cout<< "After: " << points_so_far[0 ] <<std::endl;
 			break;
 	}
-
-	//std::cout<<"element is: "<<element <<std::endl;
+	//Set values to be passed into the array for placement
+	element_1= element;
+	element_1++;
 
 	keyed_positions[element ]= current_row[0 ];
-	keyed_positions[element++ ]= current_collum[0 ];
+	keyed_positions[element_1 ]= current_collum[0 ];
+	//std::cout<<"Elment is: " <<element <<" Elment 1 is: " <<element_1 <<std::endl;
 }
 
 //Used to above functions to create one function way for check and insertion.
-bool Board::Commit(int* current_row, int* current_collum, int* points_so_far )
+void Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 {
 	bool check= Insertion_Check(current_row, current_collum );
 
@@ -640,26 +644,76 @@ bool Board::Commit(int* current_row, int* current_collum, int* points_so_far )
 		Insertion(current_row, current_collum, points_so_far );
 		//Incriments points to update it for the next value to be passed in.
 		points_so_far[0 ]++;
-		std::cout<<"incriment point" <<std::endl;
+		//std::cout<<"incriment point" <<std::endl;
 
-		Output('t' );
-
-		return true;
+		//Output('t' );
 	}
 
 	else
 	{
-		return false;
-		//std::cout<<"fail" <<std::endl;
+		;
 	}
 }
 
 //-----------------------------------------Win Checks:
 //Note input must be handeled before it is passed
 //Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
-bool Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+void Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {	
-	//Here to catch any extra recursions.
+	//Out of "Board" Bounds check;
+	bool bound_check= Input_Sanitization(start_row, &(rows ) );
+
+	//In the Boards Bounds 
+	if(bound_check )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board[(start_row[0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+			//Check to see if the piece is valid against the previously keyed pieces.
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+				
+
+				//offset vairables 
+				int next_row= start_row[0 ];
+				next_row++;
+
+				int previous_row= start_row[0 ];
+				previous_row--;
+
+				std::cout<<"Called next set" <<std::endl;
+				Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
+				//Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
+			}
+
+			else
+			{
+				std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		//If the piece type does not match
+		else
+		{
+			std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+	
+	//Outside of the Board Bounds.
+	else
+	{
+		std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
+	}
+
+
+	/*//Here to catch any extra recursions.
 	if(points_so_far[0 ]== 3 )
 	{	
 		std::cout<<"Win moment" <<std::endl;
@@ -718,22 +772,6 @@ bool Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 					Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
 					Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
 				}
-	
-				/*if((points_so_far[0 ] )!= Get_Rows() )
-				{
-					Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
-					Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
-				}
-
-				else if((points_so_far[0 ]== rows ) )
-				{
-					return true;
-				}
-
-				else
-				{
-					std::cout<<"haha funny if passed" <<std::endl;
-				}*/
 			}
 
 			//If the commit does not work
@@ -748,61 +786,10 @@ bool Board::Horizontal_Check(int* start_row, int* start_collum, Piece* Piece, in
 		{
 			;
 		}
-	}
-
 	//Ending conditions
 	std::cout<<"Not yet" <<std::endl;
-	return false;
-
-
-	/*if(points_so_far[0 ]== rows )
-	{
-		std::cout<< "end clause true" <<std::endl;
-		return true;
-	}
-
-	else 
-	{
-		if(board[start_row[0 ] ][start_collum[0 ] ]== Piece->Get_Type()[0 ] )
-		{
-			points_so_far[0 ]++;
-
-			//Declare
-			int next_row, previous_row;
-				//Define values for this cycle
-			next_row= start_row[0 ];
-			previous_row= next_row;
-				//Offsets
-			next_row++;
-			previous_row--;
-
-			//Used to tell if the recursion should carry on
-			bool check_1= (start_row[0 ]< rows ); 
-			bool check_2= (0< start_row[0 ] ); 
-
-			//End condition for the recursion.
-			if(check_1 && check_1 )
-			{
-				std::cout<<"Loop seg" <<std::endl;
-				Horizontal_Check(&(next_row ), start_collum, Piece, points_so_far );
-				Horizontal_Check(&(previous_row ), start_collum, Piece, points_so_far );
-			}
-
-			else
-			{
-				std::cout<<"Not inside the defined range" <<std::endl;
-			}
-		}
-
-		else
-		{	
-			std::cout<<"piece match found, type "<<board[start_row[0 ] ][start_collum[0 ] ] <<" Not match with Cross." <<std::endl;
-			std::cout<<"Board parts accessed were:" <<start_row[0 ] <<", " <<start_collum[0 ] <<std::endl;;
-		}
-	}
-
-	std::cout<<"End no success" <<std::endl;
 	return false;*/
+
 }
 
 //Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
