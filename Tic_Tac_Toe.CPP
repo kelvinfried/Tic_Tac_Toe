@@ -1,47 +1,22 @@
 #include <stdlib.h>
 #include <time.h>
 //Setup and call player class
-#include "Board.CPP"
+//#include "Board.CPP"
+
+#include "Game.CPP"
 
 //Most of this will be converted into functions of the "Game".
 int main(void )
 {
-//This is the intro segment of the program
-	//Intro Text
-	std::cout<<"#----Tic Tac Toe Console Application----#" <<std::endl <<std::endl;
-	std::cout<<"Welcome to Tic Tac Toe." <<std::endl;
-	std::cout<<"This is a 2 Player game and will require you and your opponent to swap";
-	std::cout<<" after every turn for the game to function." <<std::endl <<std::endl <<std::endl;
-
-	//Rules Section
-	std::cout<<"#----The rules are as follows----#" <<std::endl;
-	std::cout<<"As stated his is a two player game, in which you and your opponent take turns to";
-	std::cout<<" play a move." <<std::endl;
-
-	std::cout<<"Each turn you will an action, which is to place your piece onto an";
-	std::cout<<" empty place in the grid" <<std::endl;
-	std::cout<<"With the goal to line up 3 pieces horizontally, vertically or diagonally." <<std::endl;
-
-	std::cout<<"As a player you can choose one of two piece styles, these being an 'X' and";
-	std::cout<<" an 'O'."<<std::endl;
-
-	std::cout<<"The grid is initially comprised of 3x 3 empty spaces, which progressivly get";
-	std::cout<<" filled as the game progress. " <<std::endl;
-	std::cout<<"The goal is to be the first one to reach 3 (or more) consecutive pieces " <<std::endl;
-
-	//Control Scheme
-	std::cout<<"" <<std::endl;
-	std::cout<<"" <<std::endl;
-	std::cout<<"#----The Control scheme----#" <<std::endl;
-	std::cout<<"There will be prompts telling you what to do when interacting";
-	std::cout<<" with the game and you must follow them to progress." <<std::endl;
-	std::cout<<"For example entering a position on the board," <<std::endl;
-	std::cout<<"" <<std::endl;
-	std::cout<<"" <<std::endl;
-
 	//Define the Players.
-	Player* Player_Class= new Player[2 ]();
+	Player* Player_class= new Player[2 ]();
 
+	//Define the Game Class
+	Game* Game_class= new Game();
+
+	//Game_class->Intro_Output();
+
+	Game_class->Players_Output();
 	//Setting Player Vairables:
 	//Going to put these parts into their own functions so the stack made functions 
 	//Memory can be relinquished once I am done with it.
@@ -111,12 +86,12 @@ int main(void )
 			}
 
 			//Assign the name to the player class
-			Player_Class[x ].Set_Name(&(confirmed_name ) );
+			Player_class[x ].Set_Name(&(confirmed_name ) );
 		}	
 
 		std::cout<<"" <<std::endl;
-		Player_Class[0 ].Get_Stats();
-		Player_Class[1 ].Get_Stats();
+		Player_class[0 ].Get_Stats();
+		Player_class[1 ].Get_Stats();
 
 		//Set the piece type.
 		int player_1, player_2;
@@ -126,12 +101,12 @@ int main(void )
 		int player_2_piece;
 
 
-		std::cout<<Player_Class[0 ].Get_Name()[0 ] <<" please, select your piece type:";
+		std::cout<<Player_class[0 ].Get_Name()[0 ] <<" please, select your piece type:";
 		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
 
 		std::cin>>player_1;
 
-		std::cout<<Player_Class[1 ].Get_Name()[0 ]<<" please, select your piece type:";
+		std::cout<<Player_class[1 ].Get_Name()[0 ]<<" please, select your piece type:";
 		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
 
 		std::cin>>player_2;
@@ -146,8 +121,8 @@ int main(void )
 			player_1_piece= player_1;
 			player_2_piece= player_2;
 
-			Player_Class[0 ].Set_Type(&(player_1_piece ) );
-			Player_Class[1 ].Set_Type(&(player_2_piece ) );
+			Player_class[0 ].Set_Type(&(player_1_piece ) );
+			Player_class[1 ].Set_Type(&(player_2_piece ) );
 		}
 
 		//If they're equal.
@@ -170,13 +145,13 @@ int main(void )
 					break;
 			}
 
-			Player_Class[0 ].Set_Type(&(player_1_piece ) );
-			Player_Class[1 ].Set_Type(&(player_2_piece ) );
+			Player_class[0 ].Set_Type(&(player_1_piece ) );
+			Player_class[1 ].Set_Type(&(player_2_piece ) );
 		}
 
 		std::cout<<"" <<std::endl;
-		Player_Class[0 ].Get_Stats();
-		Player_Class[1 ].Get_Stats();
+		Player_class[0 ].Get_Stats();
+		Player_class[1 ].Get_Stats();
 
 	//Game Parameters:
 		//Number of Rounds
@@ -189,8 +164,8 @@ int main(void )
 
 
 	//Clean up
-	delete[] Player_Class;
-	Player_Class= NULL;
+	delete[] Player_class;
+	Player_class= NULL;
 
 	return 0;
 }
