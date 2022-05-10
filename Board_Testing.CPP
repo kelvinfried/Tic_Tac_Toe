@@ -1,10 +1,9 @@
 //Tic Tac Toe Array "Grd" Setup code and testing stuff from in person lesson.
 #include "Board.CPP"
 
-//==================############################--------------------------=================
 int main(void )
 {
-//Keep hold of the piece data.	-Passed in board piece type.
+/*//Keep hold of the piece data.	-Passed in board piece type.
 	Piece Nothing;
 	Piece Nought(nought );
 	Piece Cross(cross );
@@ -27,7 +26,7 @@ int main(void )
 
 	Board_Class->Default( );
 	//std::cout<<"Default state" <<std::endl;
-	//Board_Class->Output(Pieces );
+	//Board_Class->Output(Pieces );*/
 
 	/*//"Automated" Insertion Checks:
 	for(int x= 1; x< Board_Class->Get_Rows(); x++ )
@@ -197,7 +196,7 @@ int main(void )
 		std::cout<<"Not Win Moment" <<std::endl;
 	}*/
 
-//Player class testing 
+/*//Player class testing 
 	std::string name= "Test_Player";
 	piece_identifier cross_piece= cross;
 	//Define the player classes in memory
@@ -228,8 +227,7 @@ int main(void )
 	delete Board_Class;
 
 	delete[] Pieces;
-	Pieces= NULL;
-
+	Pieces= NULL;*/
 
 	return 0;
 }

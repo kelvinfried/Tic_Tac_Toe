@@ -16,13 +16,13 @@ class Board
 		
 
 	public:
-		//Constructors
+		//-----------------------------------------Constructor:
 			//Default
 		Board(void );
 			//Used to set a custom size at the start
 		Board(int rows, int collums );
 
-		//Destructors 
+		//-----------------------------------------Destructors:
 		~Board(void );
 
 		//Public Functions

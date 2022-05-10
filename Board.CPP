@@ -1,6 +1,6 @@
 #include "Board.H"
 
-//Constructors
+//-----------------------------------------Constructor:
 	//Default
 	Board::Board(void )
 	{
@@ -81,7 +81,7 @@
 		}
 	};
 
-//Destructors 
+//-----------------------------------------Destructors:
 	Board::~Board(void )
 	{
 		//Clean board

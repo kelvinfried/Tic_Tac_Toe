@@ -22,42 +22,45 @@ class Player
 		int* inputs;
 		
 	public:
-		//Constructor- Called upon object creation
+		//-----------------------------------------Constructor:
 			//Default
 		Player(void );
 		
 			//Over Ridden
 		Player(std::string* start_name, piece_identifier* new_Piece );
 		
-		//Destructor- //Will be used for when the vairables are made dynamic because of their lifespans
+		//-----------------------------------------Destructor: 
+		//Will be used to automatically clean up the dynamic data types and null their points.
 		~Player(void );	
 
 		//Public Functions
 		//-----------------------------------------Getters and Setters:
 		//----------------------Player Statistics
-		//Name- Now returns a string pointer, so it will carry the memory address of the name so it can be printed.
+		//Now returns a string pointer, so it will carry the memory address of the name so it can be printed.
 		std::string* Get_Name(void );
+		//To Set their name after created 
 		void Set_Name(std::string* new_name );
 
-		//Wins
+		//Return the win count
 		int* Get_Win_Count(void );
-		//does not require any parameters as it can only go up by one.
+		//Upon winning incriment the win counter to update it
 		void Incriment_Win_Count(void );
 
 		//Piece
 		piece_identifier* Get_Type(void );
 		//Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
 		void Set_Type(piece_identifier* new_piece );
-			//Needed as the player class is private
+		//Needed as the player class is private
 		std::string* Get_Piece_Output(void );
 
-		//Output- Used only for debug.
+		//Debug	-Used for when there will be more than one player assigned to the pointer
 		void Get_Stats(void );
 
 		//----------------------Player Inputs
 		//Input Handling.
 		int* Get_Inputs(void );
-		void Set_Input(int* new_input, int input_number );
+		//Passes both inputs into the input for the player.
+		void Set_Inputs(int input_1, int input_2 );
 
 };
 #endif

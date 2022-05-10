@@ -22,25 +22,6 @@ int main(void )
 	std::cout<<"For example entering the position you wish to select, there will be a prompt and until a valid position is passed in" <<std::endl;*/
 	
 //Data input phase
-
-//Testing the class
-	Player test;
-	
-	//Dynamic version of the "test" object, using the default constructor	//Now Trying the constructor
-	std::string test_name= "Test Gaming Moment :sunglasses:";
-	bool test_piece= 0;
-	
-	Player* player_pointer= new Player(&test_name, &test_piece);
-	//player_pointer[0 ].Set_Piece_Type(&test_piece );
-	
-	//Player* player_pointer= new Player();
-	
-	//Static
-	test.Get_Stats();
-	//Dynamic 
-	player_pointer[0 ].Get_Stats;
-	
-	
 	
 	return 0;
 }

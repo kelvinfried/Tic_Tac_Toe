@@ -1,6 +1,6 @@
 #include "Piece.H"
 
-//Constructor
+//-----------------------------------------Constructor:
 Piece::Piece(void )
 {
 	//If nothing is passed in, which is an error; The default value will be the "nothing" piece.
@@ -77,11 +77,12 @@ std::string* Piece::Get_Output(void )
 	return (output );
 }
 
+//Returns the type of the piece
 piece_identifier* Piece::Get_Type(void )
 {
 	return &(type );
 }
-
+//Used to set the pieces type after the class is created
 void Piece::Set_Type(piece_identifier* type_selected )
 {
 	//Change display

@@ -1,6 +1,6 @@
 #include "Player.H"
 
-//Constructors
+//-----------------------------------------Constructor:
 	//Default
 Player::Player(void )
 {
@@ -37,7 +37,7 @@ Player::Player(std::string* start_name, piece_identifier* new_Piece )
 	inputs[1 ]= 0;
 };
 
-//Destructor
+//-----------------------------------------Destructor:
 Player::~Player(void )
 {
 //Relinquish memory and null the pointer
@@ -65,7 +65,7 @@ std::string* Player::Get_Name(void )
 	return name;
 }
 
-//To Set their name again.
+//To Set their name after created
 void Player::Set_Name(std::string* new_name )
 {
 	//Added dereferancing so the pointer is not overwritten but the value is.
@@ -120,8 +120,10 @@ int* Player::Get_Inputs(void )
 	return inputs;
 }
 
-void Player::Set_Input(int* new_input, int input_number )
+//Passes both inputs into the input for the player.
+void Player::Set_Inputs(int input_1, int input_2 )
 {
-	inputs[input_number ]= new_input[0 ];
+	inputs[0 ]= input_1;
+	inputs[1 ]= input_2;
 }
 

@@ -14,16 +14,21 @@ class Piece
 
 
 	public:
-	//Constructor
+	//-----------------------------------------Constructor:
 		//Default
 		Piece(void );
-
+		//Overloaded
 		Piece(piece_identifier type_selected );
 
-	//Getters
+		//Public Functions
+		//-----------------------------------------Getters and Setters:
+		//----------------------Player Statistics
+		//To return the string array which holds the piece output.
 		std::string* Get_Output(void );
 
+		//Returns the type of the piece
 		piece_identifier* Get_Type(void );
+		//Used to set the pieces type after the class is created
 		void Set_Type(piece_identifier* new_piece );
 };
 #endif
