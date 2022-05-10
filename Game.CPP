@@ -7,7 +7,6 @@ Game::Game(void )
 	Board_class= new Board();
 	Board_class->Default();
 	
-
 	Player_class= new Player[2 ];
 
 	//Temp to assign to the Pieces
@@ -15,7 +14,7 @@ Game::Game(void )
 	Piece Nought(nought );
 	Piece Cross(cross );
 
-	Piece* Pieces=new Piece[3 ];
+	Pieces=new Piece[3 ];
 		//Assigning the values.
 		Pieces[0 ]= Nothing;
 		Pieces[1 ]= Nought;
@@ -32,11 +31,14 @@ Game::~Game(void )
 	delete Board_class;
 	Board_class= NULL;
 
+	//std::cout<<"Board gone" <<std::endl;
+
 	delete Player_class;
 	Player_class= NULL;
-
-	delete Pieces;
+	//std::cout<<"Player gone" <<std::endl;
+	delete[] Pieces;
 	Pieces= NULL;
+	//std::cout<<"Pieces gone" <<std::endl;
 }
 
 
@@ -330,11 +332,11 @@ void Game::Row_Setup(void )
 	}
 
 	//Setup board here
-	switch(size )
+	//Board starts from a base of 3.
+	/*switch(size )
 	{
 		case 2:
 			Board_class->Shrink();
-			Board_class->Default();
 			break;
 		case 4:
 			Board_class->Expand();
@@ -348,9 +350,8 @@ void Game::Row_Setup(void )
 
 		//Value of 3
 		default:
-			Board_class->Default();
 			break;
-	}
+	}*/
 }
 
 //----------------------Rules Output 
@@ -413,7 +414,7 @@ void Game::Players_Output(void )
 void Game::Board_Output(void )
 {
 	Players_Output();
-	Board_class->Output(Pieces );
+	//Board_class->Output(Pieces );
 }
 
 
