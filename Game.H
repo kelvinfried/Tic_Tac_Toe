@@ -14,7 +14,7 @@ class Game
 
 		Player* Player_class;
 	
-		Piece* Pieces;
+		Piece* Pieces_class;
 
 		int number_of_rounds;
 		int round_counter;

@@ -14,11 +14,11 @@ Game::Game(void )
 	Piece Nought(nought );
 	Piece Cross(cross );
 
-	Pieces=new Piece[3 ];
+	Pieces_class=new Piece[3 ];
 		//Assigning the values.
-		Pieces[0 ]= Nothing;
-		Pieces[1 ]= Nought;
-		Pieces[2 ]= Cross;
+		Pieces_class[0 ]= Nothing;
+		Pieces_class[1 ]= Nought;
+		Pieces_class[2 ]= Cross;
 
 	number_of_rounds= 3;
 	round_counter= 0;
@@ -36,8 +36,8 @@ Game::~Game(void )
 	delete Player_class;
 	Player_class= NULL;
 	//std::cout<<"Player gone" <<std::endl;
-	delete[] Pieces;
-	Pieces= NULL;
+	delete[] Pieces_class;
+	Pieces_class= NULL;
 	//std::cout<<"Pieces gone" <<std::endl;
 }
 
@@ -414,7 +414,7 @@ void Game::Players_Output(void )
 void Game::Board_Output(void )
 {
 	Players_Output();
-	//Board_class->Output(Pieces );
+	Board_class->Output(Pieces_class );
 }
 
 
