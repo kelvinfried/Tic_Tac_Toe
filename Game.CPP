@@ -5,6 +5,8 @@ Game::Game(void )
 {
 	//Don't define board yet
 	Board_class= new Board();
+	Board_class->Default();
+	
 
 	Player_class= new Player[2 ];
 
@@ -34,9 +36,6 @@ Game::~Game(void )
 	Player_class= NULL;
 
 	delete Pieces;
-	Pieces= NULL;
-
-	delete[] Pieces;
 	Pieces= NULL;
 }
 
@@ -416,6 +415,8 @@ void Game::Board_Output(void )
 	Players_Output();
 	Board_class->Output(Pieces );
 }
+
+
 //-----------------------------------------Player Inputs:
 //----------------------Player;
 

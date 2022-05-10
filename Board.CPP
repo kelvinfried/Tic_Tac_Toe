@@ -179,7 +179,7 @@ void Board::Incriment_Collum(void )
 //Rewritten expansion.
 void Board::Expand(void )
 {
-	if((rows!=5 )|| (collums!= 5) )
+	if((rows!=6 )|| (collums!= 6) )
 	{
 		Incriment_Collum();
 		Incriment_Row();

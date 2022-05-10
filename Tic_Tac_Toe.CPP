@@ -36,7 +36,7 @@ int main(void )
 
 	//Intro Segment of the game.
 	//Player Class setup
-	Game_class->Intro_Output();
+	/*Game_class->Intro_Output();
 
 	for(int x= 0; x< 2; x++ )
 	{
@@ -46,10 +46,9 @@ int main(void )
 
 	std::cout<<"Here are the stats so far.." <<std::endl;
 	Game_class->Players_Output();
-	//Board Setup
+	//Board Setup*/
 	Game_class->Row_Setup();
 		//Set up board
-		
 
 	//Round Count setup
 	Game_class->Set_Rounds();
