@@ -108,7 +108,7 @@ std::string* Player::Get_Piece_Output(void )
 }
 
 //----------------------Stats Output
-//Debug	-Used for when there will be more than one player assigned to the pointer
+//Formatted output of the player stats
 void Player::Get_Stats(void )
 {
 	std::cout<<"###_Player-1: " <<name[0 ] <<"_##_Win-Count: " <<win_count[0 ];
@@ -130,6 +130,28 @@ void Player::Get_Stats(void )
 	}
 }
 
+void Player::Get_Stats(int* overload_int )
+{
+	std::cout<<"###_Player-" <<overload_int[0 ] <<": " <<name[0 ] <<"_##_Win-Count: " <<win_count[0 ];
+	
+	
+	switch(Get_Type()[0 ] )
+	{
+		case cross:
+			std::cout<<"_#_Piece-Type: Cross__" <<std::endl;
+			break;
+
+		case nought:
+			std::cout<<"_#_Piece-Type: Nought__" <<std::endl;
+			break;
+
+		default:
+			std::cout<<"_#_Piece-Type: Nought__" <<std::endl;
+			break;
+	}
+}
+
+//Debug	-Used for when there will be more than one player assigned to the pointer
 void Player::Get_Stats(char overload_char )
 {
 	std::cout<<"Player Stats block:" <<std::endl;

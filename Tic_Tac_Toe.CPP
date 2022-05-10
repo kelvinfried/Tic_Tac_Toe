@@ -22,6 +22,14 @@ int main(void )
 	{
 		Game_class->Name_Trial(&(x ) );
 	}
+
+	Game_class->Players_Output();
+
+	Game_class->Piece_Trial();
+
+	Game_class->Players_Output();
+
+	
 	//Setting Player Vairables:
 	//Going to put these parts into their own functions so the stack made functions 
 	//Memory can be relinquished once I am done with it.
@@ -98,7 +106,7 @@ int main(void )
 		Player_class[0 ].Get_Stats();
 		Player_class[1 ].Get_Stats();*/
 
-		//Set the piece type.
+		/*//Set the piece type.
 		int player_1, player_2;
 		bool piece_check;
 
@@ -156,7 +164,7 @@ int main(void )
 
 		std::cout<<"" <<std::endl;
 		Player_class[0 ].Get_Stats();
-		Player_class[1 ].Get_Stats();
+		Player_class[1 ].Get_Stats();*/
 
 	//Game Parameters:
 		//Number of Rounds

@@ -55,7 +55,9 @@ class Player
 
 		//----------------------Stats
 		void Get_Stats(void );
-		//Overloaded now- Debug	-Used for when there will be more than one player assigned to the pointer
+		//Overloaded
+		void Get_Stats(int* overload_int );
+		//Overloaded now- Debug	Version
 		void Get_Stats(char overload_char );
 
 		//----------------------Player Inputs

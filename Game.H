@@ -28,9 +28,16 @@ class Game
 		~Game(void );
 
 		//Public Functions
+		//-----------------------------------------Input Handling Section:
+		//----------------------Handle Input:
+		bool Input_Sanitization(int* test_data );
 		//-----------------------------------------Getters and Setters:
 		//----------------------Player Statistics
+		//Used to set player names.
 		void Name_Trial(int* iteration_count );
+		
+		//Used to set the players piece type
+		void Piece_Trial(void );
 	
 		//----------------------Board Statistics
 

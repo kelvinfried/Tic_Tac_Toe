@@ -21,8 +21,28 @@ Game::~Game(void )
 
 
 //Public Functions
+//-----------------------------------------Input Handling Section:
+//----------------------Handle Input:
+//Used to test against if the players input is within the correct range for the pieces assignment.
+bool Game::Input_Sanitization(int* test_data )
+{
+	if((0< test_data[0 ] )&& (test_data[0 ] <3) )
+	{
+		//Valid inputted number
+		return true;
+	}
+
+	else
+	{
+		//Invalid number.
+		return false;
+	}
+}
+
+
 //-----------------------------------------Getters and Setters:
 //----------------------Player Statistics
+//Used to set player names.
 void Game::Name_Trial(int* iteration_count )
 {
 	//Used to hold original input name.
@@ -34,6 +54,10 @@ void Game::Name_Trial(int* iteration_count )
 	//Used to store the current part of the string that will be analysed.
 	std::string current_string_part= "";
 
+	//Used to number the player consistantly (in outputs)
+	int player_number= iteration_count[0 ];
+	player_number++;
+
 	//Used to define the max amount of character a name can be
 	int cull_amount= 16;
 
@@ -44,12 +68,14 @@ void Game::Name_Trial(int* iteration_count )
 
 	while(confirmation )
 	{
+		
 		std::cout<<"" <<std::endl;
-		std::cout<<"Player "<<iteration_count[0 ] <<" Please enter your name and press enter when done: " <<std::endl;
+		std::cout<<"Player "<<player_number <<" Please enter your name and press enter when done: " <<std::endl;
 		//Assign input to a vairable
 		std::cin>> temp_name;
 
 		//Lets the player commit to their 
+		std::cout<<"" <<std::endl;
 		std::cout<<"Is this the name you wanted: " <<temp_name <<".?" <<std::endl;
 		std::cout<<"Press 'y' to agree, 'n' to disagree " <<std::endl;
 		std::cin>>confirmation_string;
@@ -99,6 +125,99 @@ void Game::Name_Trial(int* iteration_count )
 	Player_class[iteration_count[0 ] ].Set_Name(&(confirmed_name ) );
 }
 
+//Used to set the players piece type
+void Game::Piece_Trial(void )
+{
+	//Used to store the players "inputs" 
+	int player_1, player_2;
+	//Used to Keep the player inside of a loop until their input is correct 
+	bool input_check= true;
+
+	//Used to check for which piece assignment should be used
+	bool piece_check;
+	
+	//Player 1's loop
+	while(input_check )
+	{
+		std::cout<<Player_class[0 ].Get_Name()[0 ] <<" please, select your piece type:";
+		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
+		//Pass input to vairable
+		std::cin>>player_1;
+
+		//If it is true carry on to the next player.
+		if( Input_Sanitization(&(player_1 ) ) )
+		{
+			input_check= false;
+		}
+
+		else
+		{
+			;
+		}
+
+	}
+	//Reset the loop value for the next player.
+	input_check= true;	
+
+	while(input_check )
+	{
+		std::cout<<Player_class[1 ].Get_Name()[0 ]<<" please, select your piece type:";
+		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
+
+		std::cin>>player_2;
+
+		if( Input_Sanitization(&(player_2 ) ) )
+		{
+			input_check= false;
+		}
+
+		else
+		{
+			;
+		}
+	}
+
+	//If there is conflict the game cannot work so a check needs to be made.
+	piece_check= (player_1!= player_2 );
+
+	//If they're not equal- "Normal case"
+	if(piece_check )
+	{
+		//Pass in enum
+		Player_class[0 ].Set_Type(&(player_1 ) );
+		Player_class[1 ].Set_Type(&(player_2 ) );
+	}
+
+	//If they're equal- "Abnormal case"
+	else
+	{
+		//Generate a random number
+		srand(time(NULL ) );
+
+		//Mod 2 to return 1 or 0; Which is then incrimented to get within the right range.
+		player_1= rand()%2;
+		player_1++;
+
+		//Based on what the 1st players value is, the second player gets the "opposite" 
+		switch(player_1 )
+		{
+			case 1:
+				player_2= 2;		
+				break;
+
+			default:
+				player_2= 1;
+				break;
+		}
+
+		//Commit these piece values.
+		Player_class[0 ].Set_Type(&(player_1 ) );
+		Player_class[1 ].Set_Type(&(player_2 ) );
+	}
+
+	std::cout<<"" <<std::endl;
+}
+
 //----------------------Board Statistics
 
 //----------------------Rules Output 
@@ -143,14 +262,17 @@ void Game::Intro_Output(void )
 //Used to ouput the two players stats bars.
 void Game::Players_Output(void )
 {
+		int player_1= 1;
+		int player_2= 2;
+
 		std::cout<<"" <<std::endl;
-		Player_class[0 ].Get_Stats();
+		Player_class[0 ].Get_Stats(&(player_1 ) );
 		for(int x= 0; x< 2; x++ )
 		{
 			std::cout<<"--#---#---#---#--";
 		} 
 		std::cout<<"" <<std::endl;
-		Player_class[1 ].Get_Stats();
+		Player_class[1 ].Get_Stats(&(player_2 ) );
 }
 
 //----------------------Board Output
