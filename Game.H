@@ -30,6 +30,7 @@ class Game
 		//Public Functions
 		//-----------------------------------------Getters and Setters:
 		//----------------------Player Statistics
+		void Name_Trial(int* iteration_count );
 	
 		//----------------------Board Statistics
 

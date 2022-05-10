@@ -17,10 +17,15 @@ int main(void )
 	//Game_class->Intro_Output();
 
 	Game_class->Players_Output();
+
+	for(int x= 0; x< 2; x++ )
+	{
+		Game_class->Name_Trial(&(x ) );
+	}
 	//Setting Player Vairables:
 	//Going to put these parts into their own functions so the stack made functions 
 	//Memory can be relinquished once I am done with it.
-		//Name Section
+		/*//Name Section
 			//Used when handling the players name
 		std::string temp_name, confirmed_name, char_segment, confirmation_string;
 		bool confirmation, case_1;
@@ -91,7 +96,7 @@ int main(void )
 
 		std::cout<<"" <<std::endl;
 		Player_class[0 ].Get_Stats();
-		Player_class[1 ].Get_Stats();
+		Player_class[1 ].Get_Stats();*/
 
 		//Set the piece type.
 		int player_1, player_2;
