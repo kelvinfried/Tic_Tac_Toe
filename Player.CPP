@@ -58,6 +58,7 @@ Player::~Player(void )
 //Public Functions
 //-----------------------------------------Getters and Setters:
 //----------------------Player Statistics
+//----------------------Name
 //To return their name, used for outputs for the stats part of the UI.
 std::string* Player::Get_Name(void )
 {
@@ -72,6 +73,7 @@ void Player::Set_Name(std::string* new_name )
 	name[0 ]= new_name[0 ];
 }
 
+//----------------------Win Count
 //Return the win count
 int* Player::Get_Win_Count(void )
 {
@@ -86,7 +88,7 @@ void Player::Incriment_Win_Count(void )
 	(win_count[0 ] )+= 1;
 }
 
-//Piece
+//----------------------Piece Type
 piece_identifier* Player::Get_Type(void )
 {
 	return (Piece_class->Get_Type() );
@@ -98,14 +100,37 @@ void Player::Set_Type(int* new_piece )
 	Piece_class->Set_Type(new_piece );
 }
 
+//----------------------Piece Output
 //Needed as the player class is private
 std::string* Player::Get_Piece_Output(void )
 {
 	return Piece_class->Get_Output();
 }
 
+//----------------------Stats Output
 //Debug	-Used for when there will be more than one player assigned to the pointer
 void Player::Get_Stats(void )
+{
+	std::cout<<"###_Player-1: " <<name[0 ] <<"_##_Win-Count: " <<win_count[0 ];
+	
+	
+	switch(Get_Type()[0 ] )
+	{
+		case cross:
+			std::cout<<"_#_Piece-Type: Cross__" <<std::endl;
+			break;
+
+		case nought:
+			std::cout<<"_#_Piece-Type: Nought__" <<std::endl;
+			break;
+
+		default:
+			std::cout<<"_#_Piece-Type: Nought__" <<std::endl;
+			break;
+	}
+}
+
+void Player::Get_Stats(char overload_char )
 {
 	std::cout<<"Player Stats block:" <<std::endl;
 	std::cout<<"Player name is: " <<name[0 ] <<std::endl;

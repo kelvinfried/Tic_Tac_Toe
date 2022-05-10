@@ -46,15 +46,17 @@ class Player
 		//Upon winning incriment the win counter to update it
 		void Incriment_Win_Count(void );
 
-		//Piece
+		//----------------------Piece
 		piece_identifier* Get_Type(void );
 		//Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
 		void Set_Type(int* new_piece );
 		//Needed as the player class is private
 		std::string* Get_Piece_Output(void );
 
-		//Debug	-Used for when there will be more than one player assigned to the pointer
+		//----------------------Stats
 		void Get_Stats(void );
+		//Overloaded now- Debug	-Used for when there will be more than one player assigned to the pointer
+		void Get_Stats(char overload_char );
 
 		//----------------------Player Inputs
 		//Input Handling.
