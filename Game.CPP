@@ -413,6 +413,7 @@ void Game::Players_Output(void )
 //Outputs the board.
 void Game::Board_Output(void )
 {
+	Players_Output();
 	Board_class->Output(Pieces );
 }
 //-----------------------------------------Player Inputs:

@@ -48,6 +48,9 @@ int main(void )
 	Game_class->Players_Output();
 	//Board Setup
 	Game_class->Row_Setup();
+		//Set up board
+		
+
 	//Round Count setup
 	Game_class->Set_Rounds();
 	
@@ -57,7 +60,8 @@ int main(void )
 
 	while(main_game_loop[0 ] )
 	{
-		//Formatted output.
+		//Formatted output of the game state
+		Game_class->Board_Output();
 		
 
 
