@@ -40,6 +40,7 @@ class Game
 		void Piece_Trial(void );
 	
 		//----------------------Board Statistics
+		void Row_Setup(void );
 
 		//----------------------Rules Output 
 		//Used to print out the rules segment

@@ -38,6 +38,22 @@ bool Game::Input_Sanitization(int* test_data )
 		return false;
 	}
 }
+//Overloaded
+//Used to test against if the players input is within the correct range for the row number.
+bool Game::Input_Sanitization(int* test_data, char overload_char )
+{
+	if((1< test_data[0 ] )&& (test_data[0 ] <6) )
+	{
+		//Valid inputted number
+		return true;
+	}
+
+	else
+	{
+		//Invalid number.
+		return false;
+	}
+}
 
 
 //-----------------------------------------Getters and Setters:
@@ -219,6 +235,36 @@ void Game::Piece_Trial(void )
 }
 
 //----------------------Board Statistics
+int* Game::Row_Setup(void )
+{
+	//Used to hold the size for the board
+	int size;
+
+	bool check= false;
+	//To keep it itearting and work with the input sanitization function
+	while(check!= true )
+	{
+		std::cout<<"" <<std::endl;
+		std::cout<<"Please enter how many rows and collums you want to start with, from 2- 5:" <<std::endl;
+		//holds the input 
+		std::cin>>size;
+		
+		//Checks it.
+		check= Input_Sanitization(&(size ), 't' );
+	}
+
+	switch(size )
+	{
+		case 2:
+		case 3:
+		case 4:
+			break;
+
+		default:
+			break;
+	}
+
+}
 
 //----------------------Rules Output 
 //Used to print out the rules segment
