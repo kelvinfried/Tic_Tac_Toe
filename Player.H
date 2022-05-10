@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <iostream>
+#include "Piece.CPP"
 
 class Player
 {
@@ -15,11 +15,11 @@ class Player
 		int* win_count;
 
 		//Shows which piece the player has using the piece identifier data type
-		Piece* Piece;
+		Piece* Piece_class;
 
 		//To store inputs
-		int input_1;
-		int input_2;
+		//Array to store input 1 and 2.
+		int* inputs;
 		
 	public:
 		//Constructor- Called upon object creation
@@ -27,34 +27,34 @@ class Player
 		Player(void );
 		
 			//Over Ridden
-		Player(std::string* start_name, int piece );
+		Player(std::string* start_name, piece_identifier* new_Piece );
 		
 		//Destructor- //Will be used for when the vairables are made dynamic because of their lifespans
 		~Player(void );	
 
-	//Getters and Setters - Function Prototypes
+		//Public Functions
+		//-----------------------------------------Getters and Setters:
+		//----------------------Player Statistics
 		//Name- Now returns a string pointer, so it will carry the memory address of the name so it can be printed.
 		std::string* Get_Name(void );
 		void Set_Name(std::string* new_name );
 
 		//Wins
 		int* Get_Win_Count(void );
-
 		//does not require any parameters as it can only go up by one.
 		void Incriment_Win_Count(void );
 
 		//Piece
-		piece_identifier* Player::Get_Type(void );
+		piece_identifier* Get_Type(void );
+		void Set_Type(piece_identifier* new_piece );
 
 		//Output- Used only for debug.
 		void Get_Stats(void );
 
+		//----------------------Player Inputs
 		//Input Handling.
-		int Get_Input_1(void );
-		void Set_Input_1(int new_input );
+		int* Get_Inputs(void );
+		void Set_Input(int* new_input, int input_number );
 
-		int Get_Input_2(void );
-		void Get_Input_2(int new_input );
-		
 };
 #endif

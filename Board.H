@@ -1,8 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Piece.CPP"
-#include <iostream>
+#include "Player.CPP" 
+
 class Board 
 {
 	private:
@@ -25,11 +25,13 @@ class Board
 		//Destructors 
 		~Board(void );
 
+		//Public Functions
 		//-----------------------------------------Getters:
 		//Used to pass these values in to other areas used later on in the game.
 		int Get_Rows(void );
 
 		int Get_Collums(void );
+
 
 		//-----------------------------------------Board Set Up Section:
 		piece_identifier** Setup(void );
@@ -41,19 +43,19 @@ class Board
 		//Overloaded function, used to fill the board with the passed in piece type.
 		void Default(Piece* piece);
 
-		//----------------------For Board Expansion:
-		//To add anoter row, the current row, overload_char is only for overloading. Used first.
+		//----------------------For Board Expansion
+		//To add another row, the current row, used first.
 		void Incriment_Row(void );
-		void Default(char overload_char );
+		//void Default(char overload_char );
 
 		//To add another collum to the end.
 		void Incriment_Collum(void );
-		void Default(int overload_int );
+		//void Default(int overload_int );
 
 
 		//-----------------------------------------Board Size Management Section:
 		//----------------------Board Increase In Size:
-		//Combines the two seperate expansion functions into on neat package.
+		//Rewritten expansion.
 		void Expand(void );
 
 		//----------------------Board Decrease In Size:

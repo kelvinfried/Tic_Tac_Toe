@@ -2,7 +2,6 @@
 #define PIECE_H
 
 #include "Type.H"
-#include <iostream>
 
 class Piece
 {
@@ -25,5 +24,6 @@ class Piece
 		std::string* Get_Output(void );
 
 		piece_identifier* Get_Type(void );
+		void Set_Type(piece_identifier* new_piece );
 };
 #endif

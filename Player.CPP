@@ -12,15 +12,15 @@ Player::Player(void )
 	win_count= new int(0 );
 
 	//Shows which piece the player has using the piece identifier data type
-	Piece= new Piece(nothing );
+	Piece_class= new Piece();
 
 	//To store inputs
-	input_1= 0;
-	input_2= 0;
+	//Array to store input 1 and 2.
+	inputs= new int[2 ];
 };
 
-	//Overridden
-Player::Player(std::string* start_name, int piece )
+//Overridden
+Player::Player(std::string* start_name, piece_identifier* new_Piece )
 {
 //Attrubutes
 	//Used  to store the name passed by the player.
@@ -30,11 +30,11 @@ Player::Player(std::string* start_name, int piece )
 	win_count= new int(0 );	
 
 	//Shows which piece the player has using the piece identifier data type
-	Piece= new Piece(piece );
+	Piece_class= new Piece(new_Piece[0 ] );
 
 	//To store inputs
-	input_1= 0;
-	input_2= 0;
+	inputs[0 ]= 0;
+	inputs[1 ]= 0;
 };
 
 //Destructor
@@ -50,31 +50,35 @@ Player::~Player(void )
 	win_count= NULL;
 	
 	//Piece_type
-	delete Piece;
-	Piece= NULL;
+	delete Piece_class;
+	Piece_class= NULL;
 }
 
 
-//Getters and Setters
-	//Name
+//Public Functions
+//-----------------------------------------Getters and Setters:
+//----------------------Player Statistics
+//To return their name, used for outputs for the stats part of the UI.
 std::string* Player::Get_Name(void )
 {
 	//Returns the pointer
 	return name;
 }
 
+//To Set their name again.
 void Player::Set_Name(std::string* new_name )
 {
 	//Added dereferancing so the pointer is not overwritten but the value is.
 	name[0 ]= new_name[0 ];
 }
 
-	//Win count
+//Return the win count
 int* Player::Get_Win_Count(void )
 {
 	return win_count;
 }
 
+//Upon winning incriment the win counter to update it
 void Player::Incriment_Win_Count(void )
 {
 	//Incriment wins up by one.
@@ -82,42 +86,36 @@ void Player::Incriment_Win_Count(void )
 	(win_count[0 ] )+= 1;
 }
 
-	//Piece
+//Piece
 piece_identifier* Player::Get_Type(void )
 {
-	return &(type );
+	return (Piece_class->Get_Type() );
 }
 
-	//Input handling
-int Player::Get_Input_1(void )
+//Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
+void Player::Set_Type(piece_identifier* new_piece )
 {
-	return input_1;
+	Piece_class->Set_Type(new_piece );
 }
-
-void Player::Set_Input_1(int new_input )
-{
-	input_1= new_input;
-}
-
-int Player::Get_Input_2(void )
-{
-	return input_2;
-}
-
-void Player::Set_Input_2(int new_input )
-{
-	input_2= new_input;
-}
-
-
 
 //Debug	-Used for when there will be more than one player assigned to the pointer
 void Player::Get_Stats(void )
 {
-	std::cout<<"Player Stats block:" <<std:endl;
+	std::cout<<"Player Stats block:" <<std::endl;
 	std::cout<<"Player name is: " <<name[0 ] <<std::endl;
 	std::cout<<"Player win count is: " <<win_count[0 ] <<std::endl;
-	std::cout<<"Player piece type is: " <<piece_type[0 ] <<std::endl;
+	std::cout<<"Player piece type is: " <<Piece_class->Get_Type()[0 ] <<std::endl;
 }
 
+//----------------------Player Inputs
+//Input handling
+int* Player::Get_Inputs(void )
+{
+	return inputs;
+}
+
+void Player::Set_Input(int* new_input, int input_number )
+{
+	inputs[input_number ]= new_input[0 ];
+}
 

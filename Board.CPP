@@ -4,10 +4,10 @@
 	//Default
 	Board::Board(void )
 	{
-		//Rows
+		//Hold the number of rows the board posseses
 		rows= 3;
 
-		//Collums 
+		//Collums ^
 		collums= 3;
 
 		//Board
@@ -20,34 +20,34 @@
 			board[creation_row ]= new piece_identifier[collums];
 		}
 
-		//Border Parts ~Dya 
+		//Border Parts Array. ^Same reasons as above bar dynamics.
 		char space_character= 'X';
 		char divider_character='_';
 		//To allow the spacing character to be passed into functions.
 		border_parts= new char[2 ];
-			//Declare
+			//Declare value to be called.
 		border_parts[0 ]= space_character;
 		border_parts[1 ]= divider_character;
 
-		//Keyed Positions ~Dya
+		//Keyed Positions;
+		//Another long lifetime data structure, also needs to be changed during run time to match 
+		//the size of the board
 		int length= rows * 2;
 		keyed_positions=new int[length ];
-			//Set Default
+			//Set Default values.
 		for(int x=0; x< length; x++ )
 		{
 			keyed_positions[x ]= -1;
 		}
-
-		//Output('t');
 	};
 
 	//Overloaded
 	Board::Board(int input_rows, int input_collums )
 	{
-		//Rows
+		//Hold the number of rows the board posseses
 		rows= input_rows;
 
-		//Collums 
+		//Collums ^
 		collums= input_collums;
 
 		//Board
@@ -60,7 +60,7 @@
 			board[creation_row ]= new piece_identifier[collums];
 		}
 
-		//Border Parts ~Dya 
+		//Border Parts Array. ^Same reasons as above bar dynamics.
 		char space_character= 'X';
 		char divider_character='_';
 		//To allow the spacing character to be passed into functions.
@@ -69,7 +69,9 @@
 		border_parts[0 ]= space_character;
 		border_parts[1 ]= divider_character;
 
-		//Keyed Positions ~Dya
+		//Keyed Positions;
+		//Another long lifetime data structure, also needs to be changed during run time to match 
+		//the size of the board
 		int length= rows * 2;
 		keyed_positions=new int[length ];
 			//Set Default
@@ -85,8 +87,11 @@
 		//Clean board
 		for(int x=0; x< rows; x++ )
 		{
+			//Delete each row one at a time
 			delete[] board[x ];
 		}
+
+		delete board;
 		board= NULL;
 
 		delete[] border_parts;
@@ -124,6 +129,7 @@ piece_identifier** Board::Setup(void )
 
 	return board;
 }
+
 //----------------------For Setting Defaults Across the board:
 //Sets the default value for the entire board. -Takes in the board, and the number of rows, collums
 void Board::Default(void )
@@ -155,7 +161,7 @@ void Board::Default(Piece* piece )
 }
 
 //----------------------For Board Expansion
-//To add anoter row, the current row, overload_char is only for overloading. Used first.
+//To add another row, the current row, used first.
 void Board::Incriment_Row(void )
 {
 	rows++;
@@ -225,7 +231,7 @@ void Board::Expand(void )
 			//std::cout<<"Delete: row number" <<z <<std::endl;
 			delete[] board[z ];
 		}
-
+		//Board is not delete as it is reassigned.
 		board= new_board;
 		//Null the pointer
 		new_board= NULL;

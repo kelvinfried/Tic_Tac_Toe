@@ -1,4 +1,5 @@
 #include "Board.CPP"
+
 //To clean out the int Arry for keeping track of found spaces.
 //Keyed position is the integer array that holds the positions for the placed pieces in sets of 2 i.e. [ [1, 1], .... ]
 //row is how many of these pairs there will be are

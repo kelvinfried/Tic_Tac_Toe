@@ -1,16 +1,5 @@
 #include "Piece.H"
 
-//Getters
-std::string* Piece::Get_Output(void )
-{
-	return (output );
-}
-
-piece_identifier* Piece::Get_Type(void )
-{
-	return &(type );
-}
-
 //Constructor
 Piece::Piece(void )
 {
@@ -35,6 +24,72 @@ Piece::Piece(piece_identifier type_selected )
 
 	//Switch statment to set parameters.
 	switch(type_selected )
+	{
+		//Definitions formatted to make them easy to work with.
+			//Can call the lines in a more flexable manner.
+			//Braces to prevent error in the console.
+			//Nought Piece type.
+		case nought:
+		{
+			std::string line_3= "_#_";
+			std::string line_4= "#_#";
+			std::string line_5= "_#_";
+
+			output[0 ]= line_3;
+			output[1 ]= line_4; 
+			output[2 ]= line_5;
+			break;
+		}
+
+			//Cross Piece type.
+		case cross:
+		{
+			std::string line_6= "#_#";
+			std::string line_7= "_#_";
+			std::string line_8= "#_#";
+
+			output[0 ]= line_6;
+			output[1 ]= line_7;
+			output[2 ]= line_8;
+			break;
+		}
+
+			//Nothing Piece type.
+		default:
+		{
+			std::string line_0= "___";
+			std::string line_1= "___";
+			std::string line_2= "___";
+
+			output[0 ]= line_0;
+			output[1 ]= line_1;
+			output[2 ]= line_2;
+			break;
+		}
+	}
+}
+
+//Public Functions
+//-----------------------------------------Getters and Setters:
+//----------------------Player Statistics
+std::string* Piece::Get_Output(void )
+{
+	return (output );
+}
+
+piece_identifier* Piece::Get_Type(void )
+{
+	return &(type );
+}
+
+void Piece::Set_Type(piece_identifier* type_selected )
+{
+	//Change display
+	type= type_selected[0 ];
+
+	//Change output
+	//Switch statment to set parameters.
+	switch(type_selected[0 ] )
 	{
 		//Definitions formatted to make them easy to work with.
 			//Can call the lines in a more flexable manner.

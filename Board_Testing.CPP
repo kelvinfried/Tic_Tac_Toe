@@ -36,10 +36,10 @@ int main(void )
 		//Board_Class->Insertion(&(Cross ), &(input_1 ), &(x ) ); 
 		//Board_Class->Insertion(&(Cross ), &(input_1 ), &(x ) ); 
 		Board_Class->Output(Pieces );
-	}*/
+	}
 	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
 	//Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
-	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );*/
 
 /*//horizontal testing part
 	std::cout<<"" <<std::endl;
@@ -138,7 +138,7 @@ int main(void )
 		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
 	}*/
 
-//Linear testing Part -2
+/*//Linear testing Part -2
 	int temp_1= input_2;
 	temp_1--;
 
@@ -150,16 +150,16 @@ int main(void )
 
 	/*Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_4 ) );
 	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_3 ) );
-	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );*/
+	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
 
 	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_4 ) );
 	//Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_3 ) );
 	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
 
-	Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
-	Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
-	Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
-	Board_Class->Output(Pieces );
+	//Board_Class->Insertion(&(Cross ), &(input_2 ), &(input_2 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_3 ), &(input_2 ) );
+	//Board_Class->Insertion(&(Cross ), &(input_4 ), &(input_2 ) );
+	//Board_Class->Output(Pieces );
 
 
 	bool check= Board_Class->Check(&(input_1 ), &(input_1 ), &(Cross ), &(points_so_far ) );
@@ -177,7 +177,7 @@ int main(void )
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ), 't' );
 	//Board_Class->Linear_Check(&(input_2 ), &(input_2 ), &(Cross ), &(points_so_far ) );
 
-	/*if(points_so_far== 3 )
+	if(points_so_far== 3 )
 	{
 		std::cout<<"Non Stinkers wins so far: " <<points_so_far <<std::endl;
 	}
@@ -185,9 +185,9 @@ int main(void )
 	else
 	{
 		std::cout<<"UnPogr: "<< points_so_far <<std::endl;
-	}*/
+	}
 
-	/*if(test_case )
+	if(test_case )
 	{
 		std::cout<<"Win Moment" <<std::endl;
 	}
@@ -196,7 +196,28 @@ int main(void )
 	{
 		std::cout<<"Not Win Moment" <<std::endl;
 	}*/
- 
+
+//Player class testing 
+	std::string name= "Test_Player";
+	piece_identifier cross_piece= cross;
+	//Define the player classes in memory
+	//Player* Player_Class= new Player[0 ]();
+	//Player* Player_Class= new Player[2 ]();
+		//Have to pass values above if creating like this; Can only make use of one constructor.
+		//Default
+		//Player_Class[0 ]= new Player();
+		//Overloaded
+		//Player_Class[0 ]= new Player(&(name ), &(cross_piece )  );
+
+	//Create a defualt player.
+	Player* Player_Class= new Player[2 ]();
+
+	std::cout<<"First class is: " <<std::endl;
+	Player_Class[0 ].Get_Stats();
+	std::cout<<"" <<std::endl;
+	std::cout<<"Second class is: " <<std::endl;
+	Player_Class[1 ].Get_Stats();
+	
 	delete Board_Class;
 
 	delete[] Pieces;
