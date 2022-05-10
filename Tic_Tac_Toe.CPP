@@ -34,6 +34,20 @@ int main(void )
 	//Game_class->Incriment_Rounds();
 	//std::cout<<"Current round value is: " <<Game_class->Get_Rounds('t' )[0 ] <<std::endl;
 
+	//Intro Segment of the game.
+	Game_class->Intro_Output();
+
+	for(int x= 0; x< 2; x++ )
+	{
+		Game_class->Name_Trial(&(x ) );
+	}
+	Game_class->Piece_Trial();
+
+	Game_class->Players_Output();
+
+	Game_class->Row_Setup();
+	
+	//Main Game Loop
 
 
 	//Clean up
