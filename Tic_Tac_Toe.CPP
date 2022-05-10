@@ -43,21 +43,49 @@ int main(void )
 	//Going to put these parts into their own functions so the stack made functions 
 	//Memory can be relinquished once I am done with it.
 		//Name Section
+			//Used when handling the players name
+		std::string temp_name, confirmed_name, char_segment, confirmation_string;
+		bool confirmation, case_1;
+		confirmation= true;
+
+		int cull_amount= 16;
+
 		for(int x= 0; x< 2; x++ )
 		{
-			//
-			std::string temp_name, confirmed_name, char_segment;
-			std::cout<<"Please enter your name and press enter when done: " <<std::endl;
-			
-			//Assign input to a vairable
-			std::cin>> temp_name;
-			//Trim down name.
-				//Test to see if strings have a escape character in c++
-	
-			std::cout<<"" <<std::endl;
+			//Reset this between the iterations -A for a new name, B so player 2 has some input on their name..
+			confirmed_name="";
+			confirmation= true;
+
+			while(confirmation )
+			{
+				std::cout<<"Please enter your name and press enter when done: " <<std::endl;
+				//Assign input to a vairable
+				std::cin>> temp_name;
+
+				std::cout<<"Is this the name you wanted: " <<temp_name <<".?" <<std::endl;
+				std::cout<<"Press 'y' to agree, 'n' to disagree " <<std::endl;
+				std::cin>>confirmation_string;
+				
+				//Setup boolean values
+				case_1= ( (confirmation_string[0 ] )==int('y') );
+
+				//Confirmation
+				if(case_1 )
+				{
+					std::cout<<"Name accepted., your name is: " <<temp_name <<std::endl;
+					//Set to false to stop the looping.
+					confirmation= false;	
+				}
+
+				//Not what they wanted.
+				else
+				{
+					std::cout<<"Not what you wanted." <<std::endl;
+				}
+			}
 
 			//Upon confirming the name is correct
-			int cull_amount= 16;
+			//Trim down name. (//Tested to see if strings have a escape character in c++)
 			for(int y= 0; y< cull_amount; y++ )
 			{
 				//Updated
@@ -78,8 +106,14 @@ int main(void )
 					y= cull_amount;
 				}
 			}
+
+			//Assign the name to the player class
+			Player_Class[x ].Set_Name(&(confirmed_name ) );
 		}	
 
+		std::cout<<"" <<std::endl;
+		Player_Class[0 ].Get_Stats();
+		Player_Class[1 ].Get_Stats();
 
 		//Set the piece type.
 
