@@ -31,12 +31,12 @@ int main(void )
 
 	//Game_class->Row_Setup();
 
-	Game_class->Set_Rounds();
-	std::cout<<"Value: "<< Game_class->Get_Rounds()[0 ]<<std::endl;
+	//Game_class->Set_Rounds();
+	//std::cout<<"Value: "<< Game_class->Get_Rounds()[0 ]<<std::endl;
 
-	std::cout<<"Current round value is: " <<Game_class->Get_Rounds('t' )[0 ] <<std::endl;
-	Game_class->Incriment_Rounds();
-	std::cout<<"Current round value is: " <<Game_class->Get_Rounds('t' )[0 ] <<std::endl;
+	//std::cout<<"Current round value is: " <<Game_class->Get_Rounds('t' )[0 ] <<std::endl;
+	//Game_class->Incriment_Rounds();
+	//std::cout<<"Current round value is: " <<Game_class->Get_Rounds('t' )[0 ] <<std::endl;
 
 
 
