@@ -8,6 +8,17 @@ Game::Game(void )
 
 	Player_class= new Player[2 ];
 
+	//Temp to assign to the Pieces
+	Piece Nothing;
+	Piece Nought(nought );
+	Piece Cross(cross );
+
+	Piece* Pieces=new Piece[3 ];
+		//Assigning the values.
+		Pieces[0 ]= Nothing;
+		Pieces[1 ]= Nought;
+		Pieces[2 ]= Cross;
+
 	number_of_rounds= 3;
 	round_counter= 0;
 }
@@ -16,8 +27,17 @@ Game::Game(void )
 //-----------------------------------------Destructor:
 Game::~Game(void )
 {
+	delete Board_class;
+	Board_class= NULL;
+
 	delete Player_class;
 	Player_class= NULL;
+
+	delete Pieces;
+	Pieces= NULL;
+
+	delete[] Pieces;
+	Pieces= NULL;
 }
 
 
@@ -138,16 +158,16 @@ void Game::Name_Trial(int* iteration_count )
 
 	while(confirmation )
 	{
-		
 		std::cout<<"" <<std::endl;
-		std::cout<<"Player "<<player_number <<" Please enter your name and press enter when done: " <<std::endl;
+		std::cout<<"Player "<<player_number <<" Please enter your name and press enter when done:" <<std::endl;
+		std::cout<<"They must have no spaces." <<std::endl;
 		//Assign input to a vairable
 		std::cin>> temp_name;
 
 		//Lets the player commit to their 
 		std::cout<<"" <<std::endl;
 		std::cout<<"Is this the name you wanted: " <<temp_name <<".?" <<std::endl;
-		std::cout<<"Press 'y' to agree, 'n' to disagree " <<std::endl;
+		std::cout<<"Press 'y' to agree, 'n' to disagree." <<std::endl;
 		std::cin>>confirmation_string;
 		
 		//Setup boolean values
@@ -164,6 +184,7 @@ void Game::Name_Trial(int* iteration_count )
 		//Not what they wanted.
 		else
 		{
+			std::cout<<"Name not accepted: " <<std::endl;
 			//Looops back,
 			//std::cout<<"Not what you wanted." <<std::endl;
 		}
@@ -232,6 +253,7 @@ void Game::Piece_Trial(void )
 
 	while(input_check )
 	{
+		std::cout<<"" <<std::endl;
 		std::cout<<Player_class[1 ].Get_Name()[0 ]<<" please, select your piece type:";
 		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
 
@@ -391,20 +413,7 @@ void Game::Players_Output(void )
 //Outputs the board.
 void Game::Board_Output(void )
 {
-	Piece Nothing;
-	Piece Nought(nought );
-	Piece Cross(cross );
-
-	Piece* Pieces=new Piece[3 ];
-		//Assigning the values.
-		Pieces[0 ]= Nothing;
-		Pieces[1 ]= Nought;
-		Pieces[2 ]= Cross;
-
 	Board_class->Output(Pieces );
-
-	delete[] Pieces;
-	Pieces= NULL;
 }
 //-----------------------------------------Player Inputs:
 //----------------------Player;

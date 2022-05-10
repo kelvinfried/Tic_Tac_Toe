@@ -13,6 +13,8 @@ class Game
 		Board* Board_class;
 
 		Player* Player_class;
+	
+		Piece* Pieces;
 
 		int number_of_rounds;
 		int round_counter;
