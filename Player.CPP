@@ -93,7 +93,7 @@ piece_identifier* Player::Get_Type(void )
 }
 
 //Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
-void Player::Set_Type(piece_identifier* new_piece )
+void Player::Set_Type(int* new_piece )
 {
 	Piece_class->Set_Type(new_piece );
 }

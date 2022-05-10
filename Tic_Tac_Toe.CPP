@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 //Setup and call player class
 #include "Board.CPP"
 
@@ -42,7 +44,7 @@ int main(void )
 	//Setting Player Vairables:
 	//Going to put these parts into their own functions so the stack made functions 
 	//Memory can be relinquished once I am done with it.
-		//Name Section
+		/*//Name Section
 			//Used when handling the players name
 		std::string temp_name, confirmed_name, char_segment, confirmation_string;
 		bool confirmation, case_1;
@@ -113,9 +115,53 @@ int main(void )
 
 		std::cout<<"" <<std::endl;
 		Player_Class[0 ].Get_Stats();
-		Player_Class[1 ].Get_Stats();
+		Player_Class[1 ].Get_Stats();*/
+
+		int player_1, player_2;
+		bool piece_check;
+
+		int player_1_piece;
+		int player_2_piece;
 
 		//Set the piece type.
+		//std::cout<<Player_Class[0 ].Get_Name()[0 ] <<" please, select your piece type:"
+		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
+
+		std::cin>>player_1;
+
+		//std::cout<<Player_Class[1 ].Get_Name()<<" please, select your piece type:"
+		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
+
+		std::cin>>player_2;
+		//Need to sanitise the inputs at some point.
+
+		//Used to check if a random number will need to be used to sort this out.
+		piece_check= (player_1!= player_2 );
+		//If there is not a match
+		if(piece_check )
+		{
+			//Pass in enum 
+			player_1_piece= player_1;
+			player_2_piece= player_2;
+
+			Player_Class[0 ].Set_Type(&(player_1_piece ) );
+			Player_Class[1 ].Set_Type(&(player_2_piece ) );
+		}
+
+		//If there is a match.
+		{
+			//Generate 2 random number % 2
+			//Incriment them
+			player_1_piece= player_1;
+			player_2_piece= player_2;
+
+			Player_Class[0 ].Set_Type(&(player_1_piece ) );
+			Player_Class[1 ].Set_Type(&(player_2_piece ) );
+		}
+
+		std::cout<<"" <<std::endl;
+		Player_Class[0 ].Get_Stats();
+		Player_Class[1 ].Get_Stats();
 
 	//Game Parameters:
 		//Number of Rounds

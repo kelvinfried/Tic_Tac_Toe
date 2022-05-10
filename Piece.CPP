@@ -83,11 +83,8 @@ piece_identifier* Piece::Get_Type(void )
 	return &(type );
 }
 //Used to set the pieces type after the class is created
-void Piece::Set_Type(piece_identifier* type_selected )
+void Piece::Set_Type(int* type_selected )
 {
-	//Change display
-	type= type_selected[0 ];
-
 	//Change output
 	//Switch statment to set parameters.
 	switch(type_selected[0 ] )
@@ -98,6 +95,10 @@ void Piece::Set_Type(piece_identifier* type_selected )
 			//Nought Piece type.
 		case nought:
 		{
+			std::cout<<"Nought" <<std::endl;
+			//Change display
+			type= nought;
+
 			std::string line_3= "_#_";
 			std::string line_4= "#_#";
 			std::string line_5= "_#_";
@@ -111,6 +112,10 @@ void Piece::Set_Type(piece_identifier* type_selected )
 			//Cross Piece type.
 		case cross:
 		{
+			//Change display
+			type= cross;
+			std::cout<<"cross" <<std::endl;
+
 			std::string line_6= "#_#";
 			std::string line_7= "_#_";
 			std::string line_8= "#_#";
@@ -124,6 +129,9 @@ void Piece::Set_Type(piece_identifier* type_selected )
 			//Nothing Piece type.
 		default:
 		{
+			//Change display
+			type= nothing;
+			std::cout<<"nothing" <<std::endl;
 			std::string line_0= "___";
 			std::string line_1= "___";
 			std::string line_2= "___";
