@@ -73,7 +73,7 @@ void Game::Players_Output(void )
 		for(int x= 0; x< 2; x++ )
 		{
 			std::cout<<"--#---#---#---#--";
-		}
+		} 
 		std::cout<<"" <<std::endl;
 		Player_class[1 ].Get_Stats();
 }
