@@ -52,25 +52,33 @@ int main(void )
 
 	//Round Count setup
 	//Game_class->Set_Rounds();
-	Game_class->Board_Output();
+	
 
 	//Main Game Loop
 	bool* main_game_loop= new bool();
-	//main_game_loop[0 ]= ((Game_class->Get_Rounds()[0 ] )!= (Game_class->Get_Rounds('t' )[0 ] ) );
+	main_game_loop[0 ]= ((Game_class->Get_Rounds()[0 ] )!= (Game_class->Get_Rounds('t' )[0 ] ) );
 
-	/*while(main_game_loop[0 ] )
+	bool* current_round= new bool();
+	
+
+	//Outer loop for each round.
+	while(main_game_loop[0 ] )
 	{
-		//Formatted output of the game state
-		//Game_class->Board_Output();
-		
+		//Inner loop for each round itself.
+		while(current_round )
+		{
+			//Formatted output of the game state
+			Game_class->Board_Output();
+			
 
 
+		}
 
 		//Update the number of rounds value
 		Game_class->Incriment_Rounds();
 		//Update the value so it can be checked again.
 		main_game_loop[0 ]= ((Game_class->Get_Rounds()[0 ] )!= (Game_class->Get_Rounds('t' )[0 ] ) );
-	}*/
+	}
 
 
 	//Clean up

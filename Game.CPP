@@ -5,7 +5,7 @@ Game::Game(void )
 {
 	//Don't define board yet
 	Board_class= new Board();
-	Board_class->Default();
+	//Board_class->Default();
 	
 	Player_class= new Player[2 ];
 
@@ -333,10 +333,11 @@ void Game::Row_Setup(void )
 
 	//Setup board here
 	//Board starts from a base of 3.
-	/*switch(size )
+	switch(size )
 	{
 		case 2:
 			Board_class->Shrink();
+			Board_class->Default();
 			break;
 		case 4:
 			Board_class->Expand();
@@ -351,7 +352,7 @@ void Game::Row_Setup(void )
 		//Value of 3
 		default:
 			break;
-	}*/
+	}
 }
 
 //----------------------Rules Output 

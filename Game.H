@@ -18,7 +18,6 @@ class Game
 
 		int number_of_rounds;
 		int round_counter;
-
 		
 	public:
 		//-----------------------------------------Constructor:
@@ -78,6 +77,7 @@ class Game
 		//----------------------Player;
 
 		//----------------------Board;
+		void 
 
 		
 };		
