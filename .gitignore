@@ -1,9 +1,12 @@
 exe/
 old/
-Tic_Tac_Toe.CPP
-Tic_Tac_Toe.CPP.bak
-Player.H
+Board.CPP.bak
+Board.H.bak
+Board_Testing.CPP
+Board_Testing.CPP.bak
+Piece.CPP.bak
+Piece.H.bak
 Player.H.bak
-Player.CPP
 Player.CPP.bak
-Piece_Grid.CPP.bak
+Tic_Tac_Toe.CPP.bak
+Type.H.bak
