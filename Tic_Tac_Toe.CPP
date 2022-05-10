@@ -9,14 +9,14 @@
 int main(void )
 {
 	//Define the Players.
-	Player* Player_class= new Player[2 ]();
+	//Player* Player_class= new Player[2 ]();
 
 	//Define the Game Class
 	Game* Game_class= new Game();
 
 	//Game_class->Intro_Output();
 
-	Game_class->Players_Output();
+	/*Game_class->Players_Output();
 
 	for(int x= 0; x< 2; x++ )
 	{
@@ -25,9 +25,13 @@ int main(void )
 
 	Game_class->Players_Output();
 
-	Game_class->Piece_Trial();
+	Game_class->Piece_Trial( );
 
-	Game_class->Players_Output();
+	Game_class->Players_Output();*/
+
+	Game_class->Row_Setup();
+
+	//Game_class->
 
 	
 	//Setting Player Vairables:
@@ -177,8 +181,11 @@ int main(void )
 
 
 	//Clean up
-	delete[] Player_class;
-	Player_class= NULL;
+	//delete[] Player_class;
+	//Player_class= NULL;
 
+	delete Game_class;
+	Game_class= NULL;
+	
 	return 0;
 }

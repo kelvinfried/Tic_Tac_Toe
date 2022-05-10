@@ -3,6 +3,7 @@
 //-----------------------------------------Constructor:
 Game::Game(void )
 {
+	//Don't define board yet
 	Board_class= new Board();
 
 	Player_class= new Player[2 ];
@@ -54,9 +55,61 @@ bool Game::Input_Sanitization(int* test_data, char overload_char )
 		return false;
 	}
 }
+//Overloaded
+//Used to test against for the round count
+bool Game::Input_Sanitization(int* test_data, bool* overload_bool )
+{
+	if(0< test_data[0 ] )
+	{
+		//Valid inputted number
+		return true;
+	}
+
+	else
+	{
+		//Invalid number.
+		return false;
+	}
+}
 
 
 //-----------------------------------------Getters and Setters:
+//----------------------Game Statistics
+//To set the length of the game via the number of rounds.
+int* Game::Get_Rounds(void )
+{
+	return &(number_of_rounds );
+}
+//To set the value from the user
+void Game::Set_Rounds(void )
+{
+	int new_round;
+	bool input_check= false;
+
+	while(input_check!= true )
+	{
+		std::cout<<"" <<std::endl;
+		std::cout<<"Please enter how many rounds you  want to play for: " <<std::endl;
+		//Stores input
+		std::cin>> new_round;
+		//Sanitise
+		input_check= Input_Sanitization(&(new_round ), &(input_check ) );
+	}
+
+	number_of_rounds= input_check;
+}
+
+
+int* Game::Get_Rounds(char overload_char )
+{
+}
+
+void Game::Incriment_Rounds(void )
+{
+	//int new_number_of_rows
+	round_counter++;
+}
+
 //----------------------Player Statistics
 //Used to set player names.
 void Game::Name_Trial(int* iteration_count )
@@ -155,6 +208,7 @@ void Game::Piece_Trial(void )
 	//Player 1's loop
 	while(input_check )
 	{
+		std::cout<<"" <<std::endl;
 		std::cout<<Player_class[0 ].Get_Name()[0 ] <<" please, select your piece type:";
 		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
 		//Pass input to vairable
@@ -235,7 +289,7 @@ void Game::Piece_Trial(void )
 }
 
 //----------------------Board Statistics
-int* Game::Row_Setup(void )
+void Game::Row_Setup(void )
 {
 	//Used to hold the size for the board
 	int size;
@@ -253,17 +307,28 @@ int* Game::Row_Setup(void )
 		check= Input_Sanitization(&(size ), 't' );
 	}
 
+	//Setup board here
 	switch(size )
 	{
 		case 2:
-		case 3:
+			Board_class->Shrink();
+			Board_class->Default();
+			break;
 		case 4:
+			Board_class->Expand();
+			Board_class->Default();
+			break;
+		case 5:
+			Board_class->Expand();
+			Board_class->Expand();
+			Board_class->Default();
 			break;
 
+		//Value of 3
 		default:
+			Board_class->Default();
 			break;
 	}
-
 }
 
 //----------------------Rules Output 
@@ -322,7 +387,24 @@ void Game::Players_Output(void )
 }
 
 //----------------------Board Output
+//Outputs the board.
+void Game::Board_Output(void )
+{
+	Piece Nothing;
+	Piece Nought(nought );
+	Piece Cross(cross );
 
+	Piece* Pieces=new Piece[3 ];
+		//Assigning the values.
+		Pieces[0 ]= Nothing;
+		Pieces[1 ]= Nought;
+		Pieces[2 ]= Cross;
+
+	Board_class->Output(Pieces );
+
+	delete[] Pieces;
+	Pieces= NULL;
+}
 //-----------------------------------------Player Inputs:
 //----------------------Player;
 

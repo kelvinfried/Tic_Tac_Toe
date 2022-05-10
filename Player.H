@@ -65,6 +65,5 @@ class Player
 		int* Get_Inputs(void );
 		//Passes both inputs into the input for the player.
 		void Set_Inputs(int input_1, int input_2 );
-
 };
 #endif

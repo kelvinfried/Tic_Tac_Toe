@@ -173,4 +173,3 @@ void Player::Set_Inputs(int input_1, int input_2 )
 	inputs[0 ]= input_1;
 	inputs[1 ]= input_2;
 }
-

@@ -31,7 +31,24 @@ class Game
 		//-----------------------------------------Input Handling Section:
 		//----------------------Handle Input:
 		bool Input_Sanitization(int* test_data );
+		//Overloaded
+		//Used to test against if the players input is within the correct range for the row number.
+		bool Input_Sanitization(int* test_data, char overload_char );
+		//Overloaded
+		//Used to test against for the round count
+		bool Input_Sanitization(int* test_data, bool* overload_bool );
 		//-----------------------------------------Getters and Setters:
+		//----------------------Game Statistics
+		//To set the length of the game.
+		int* Get_Rounds(void );
+
+		void Set_Rounds(void );
+
+		//Used to increase the value of the round counter.
+		int* Get_Rounds(char overload_char );
+
+		void Incriment_Rounds(void );
+
 		//----------------------Player Statistics
 		//Used to set player names.
 		void Name_Trial(int* iteration_count );
@@ -51,6 +68,8 @@ class Game
 		void Players_Output(void );
 
 		//----------------------Board Output
+		//Outputs the board.
+		void Board_Output(void );
 
 		//-----------------------------------------Player Inputs:
 		//----------------------Player;
