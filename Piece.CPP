@@ -95,7 +95,7 @@ void Piece::Set_Type(int* type_selected )
 			//Nought Piece type.
 		case nought:
 		{
-			std::cout<<"Nought" <<std::endl;
+			//std::cout<<"Nought" <<std::endl;
 			//Change display
 			type= nought;
 
@@ -114,7 +114,7 @@ void Piece::Set_Type(int* type_selected )
 		{
 			//Change display
 			type= cross;
-			std::cout<<"cross" <<std::endl;
+			//std::cout<<"cross" <<std::endl;
 
 			std::string line_6= "#_#";
 			std::string line_7= "_#_";
@@ -131,7 +131,8 @@ void Piece::Set_Type(int* type_selected )
 		{
 			//Change display
 			type= nothing;
-			std::cout<<"nothing" <<std::endl;
+			//std::cout<<"nothing" <<std::endl;
+
 			std::string line_0= "___";
 			std::string line_1= "___";
 			std::string line_2= "___";

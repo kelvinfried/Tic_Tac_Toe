@@ -117,13 +117,13 @@ int main(void )
 		Player_Class[0 ].Get_Stats();
 		Player_Class[1 ].Get_Stats();*/
 
+		//Set the piece type.
 		int player_1, player_2;
 		bool piece_check;
 
 		int player_1_piece;
 		int player_2_piece;
 
-		//Set the piece type.
 		//std::cout<<Player_Class[0 ].Get_Name()[0 ] <<" please, select your piece type:"
 		std::cout<<" Noughts '1' or Crosses '2';" <<std::endl;
 
@@ -137,7 +137,7 @@ int main(void )
 
 		//Used to check if a random number will need to be used to sort this out.
 		piece_check= (player_1!= player_2 );
-		//If there is not a match
+		//If they're not equal
 		if(piece_check )
 		{
 			//Pass in enum 
@@ -148,12 +148,25 @@ int main(void )
 			Player_Class[1 ].Set_Type(&(player_2_piece ) );
 		}
 
-		//If there is a match.
+		//If they're equal.
 		{
 			//Generate 2 random number % 2
-			//Incriment them
-			player_1_piece= player_1;
-			player_2_piece= player_2;
+			srand(time(NULL ) );
+
+			//Gives a value that is either 0 or 1
+			player_1_piece= rand()%2;
+			player_1_piece++;
+	
+			switch(player_1_piece )
+			{
+				case 1:
+					player_2_piece= 2;		
+					break;
+
+				default:
+					player_2_piece= 1;
+					break;
+			}
 
 			Player_Class[0 ].Set_Type(&(player_1_piece ) );
 			Player_Class[1 ].Set_Type(&(player_2_piece ) );
