@@ -220,6 +220,7 @@ int main(void )
 
 	std::cout<<"Second class is: " <<std::endl;
 	Player_Class[1 ].Get_Stats();
+	//Testing the other function.
 	std::cout<<"output is: " <<(Player_Class[1 ].Get_Piece_Output() )[0 ] <<std::endl;
 	std::cout<<"output is: " <<(Player_Class[1 ].Get_Piece_Output() )[1 ] <<std::endl;
 	std::cout<<"output is: " <<(Player_Class[1 ].Get_Piece_Output() )[2 ] <<std::endl;
