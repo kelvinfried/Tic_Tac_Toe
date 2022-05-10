@@ -215,8 +215,14 @@ int main(void )
 	std::cout<<"First class is: " <<std::endl;
 	Player_Class[0 ].Get_Stats();
 	std::cout<<"" <<std::endl;
+
+	Player_Class[1 ].Set_Type( &(cross_piece ) );
+
 	std::cout<<"Second class is: " <<std::endl;
 	Player_Class[1 ].Get_Stats();
+	std::cout<<"output is: " <<(Player_Class[1 ].Get_Piece_Output() )[0 ] <<std::endl;
+	std::cout<<"output is: " <<(Player_Class[1 ].Get_Piece_Output() )[1 ] <<std::endl;
+	std::cout<<"output is: " <<(Player_Class[1 ].Get_Piece_Output() )[2 ] <<std::endl;
 	
 	delete Board_Class;
 

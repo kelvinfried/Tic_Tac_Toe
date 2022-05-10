@@ -46,7 +46,10 @@ class Player
 
 		//Piece
 		piece_identifier* Get_Type(void );
+		//Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
 		void Set_Type(piece_identifier* new_piece );
+			//Needed as the player class is private
+		std::string* Get_Piece_Output(void );
 
 		//Output- Used only for debug.
 		void Get_Stats(void );

@@ -98,6 +98,12 @@ void Player::Set_Type(piece_identifier* new_piece )
 	Piece_class->Set_Type(new_piece );
 }
 
+//Needed as the player class is private
+std::string* Player::Get_Piece_Output(void )
+{
+	return Piece_class->Get_Output();
+}
+
 //Debug	-Used for when there will be more than one player assigned to the pointer
 void Player::Get_Stats(void )
 {
