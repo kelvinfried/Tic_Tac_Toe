@@ -9,7 +9,7 @@ Game::Game(void )
 	Player_class= new Player[2 ];
 
 	number_of_rounds= 3;
-	round_counter= 3;
+	round_counter= 0;
 }
 
 
@@ -75,12 +75,12 @@ bool Game::Input_Sanitization(int* test_data, bool* overload_bool )
 
 //-----------------------------------------Getters and Setters:
 //----------------------Game Statistics
-//To set the length of the game via the number of rounds.
+//To get the number of rounds there are in total.
 int* Game::Get_Rounds(void )
 {
 	return &(number_of_rounds );
 }
-//To set the value from the user
+//Used during setup to define how many rounds the game will have.
 void Game::Set_Rounds(void )
 {
 	int new_round;
@@ -96,14 +96,15 @@ void Game::Set_Rounds(void )
 		input_check= Input_Sanitization(&(new_round ), &(input_check ) );
 	}
 
-	number_of_rounds= input_check;
+	number_of_rounds= new_round;
 }
 
-
+//To get the current round counter
 int* Game::Get_Rounds(char overload_char )
 {
+	return &(round_counter );
 }
-
+//To increase the round counters current value.
 void Game::Incriment_Rounds(void )
 {
 	//int new_number_of_rows

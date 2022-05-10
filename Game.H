@@ -30,6 +30,7 @@ class Game
 		//Public Functions
 		//-----------------------------------------Input Handling Section:
 		//----------------------Handle Input:
+		//Used to test against if the players input is within the correct range for the pieces assignment.
 		bool Input_Sanitization(int* test_data );
 		//Overloaded
 		//Used to test against if the players input is within the correct range for the row number.
@@ -39,14 +40,14 @@ class Game
 		bool Input_Sanitization(int* test_data, bool* overload_bool );
 		//-----------------------------------------Getters and Setters:
 		//----------------------Game Statistics
-		//To set the length of the game.
+		//To get the number of rounds there are in total.
 		int* Get_Rounds(void );
-
+		//Used during setup to define how many rounds the game will have.
 		void Set_Rounds(void );
 
-		//Used to increase the value of the round counter.
+		//To get the current round counter
 		int* Get_Rounds(char overload_char );
-
+		//To increase the round counters current value.
 		void Incriment_Rounds(void );
 
 		//----------------------Player Statistics
