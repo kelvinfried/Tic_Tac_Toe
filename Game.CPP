@@ -171,7 +171,7 @@ void Game::Piece_Trial(void )
 			input_check= false;
 		}
 
-		else
+		else 
 		{
 			;
 		}
