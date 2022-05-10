@@ -19,7 +19,7 @@ int main(void )
 
 	std::cout<<"Each turn you will have one action, which is to place your piece onto an";
 	std::cout<<" empty place in the grid, with the goal to line up 3 pieces horizontally,";
-	std:;cout<<" vertically or diagonally." <<std::endl;
+	std::cout<<" vertically or diagonally." <<std::endl;
 
 	std::cout<<"As a player you can choose one of two piece styles, these being an 'X' and";
 	std::cout<<" an 'O'."<<std::endl;
@@ -37,11 +37,48 @@ int main(void )
 	std::cout<<" and until a valid position is passed in" <<std::endl;
 
 	//Define the Players.
-	Player* Player_Class= new Player[0 ]();
 	Player* Player_Class= new Player[2 ]();
 
 	//Setting Player Vairables:
+	//Going to put these parts into their own functions so the stack made functions 
+	//Memory can be relinquished once I am done with it.
 		//Name Section
+		for(int x= 0; x< 2; x++ )
+		{
+			//
+			std::string temp_name, confirmed_name, char_segment;
+			std::cout<<"Please enter your name and press enter when done: " <<std::endl;
+			
+			//Assign input to a vairable
+			std::cin>> temp_name;
+			//Trim down name.
+				//Test to see if strings have a escape character in c++
+	
+			std::cout<<"" <<std::endl;
+
+			//Upon confirming the name is correct
+			int cull_amount= 16;
+			for(int y= 0; y< cull_amount; y++ )
+			{
+				//Updated
+				char_segment= temp_name[y ];
+
+				//If it is a null value do not carry on as that would be redudant.
+				if((int(char_segment[0 ] ) ) != 0 )
+				{
+					//std::cout<<y <<"th value is: " <<temp_name[y ] <<std::endl;
+					//std::cout<<y <<"th value is: " <<int(temp_name[y ] ) <<std::endl;
+					confirmed_name+= temp_name[y ];
+					std::cout<<"Confirmed name is now: " <<confirmed_name <<std::endl;
+				}
+
+				else
+				{
+					std::cout<<"Null character met, die time" <<std::endl;
+					y= cull_amount;
+				}
+			}
+		}	
 
 
 		//Set the piece type.
@@ -57,7 +94,7 @@ int main(void )
 
 
 	//Clean up
-	delete[] Player_Class[];
+	delete[] Player_Class;
 	Player_Class= NULL;
 
 	return 0;
