@@ -50,6 +50,8 @@ class Game
 		int* Get_Rounds(char overload_char );
 		//To increase the round counters current value.
 		void Incriment_Rounds(void );
+		//Used to also adjust the player score
+		void Incriment_Rounds(int* current_player );
 
 		//----------------------Player Statistics
 		//Used to set player names.
@@ -84,6 +86,8 @@ class Game
 		void Board_Insertion(int* iteration_count );
 		
 		bool Win_Check(piece_identifier** game_board, int* iteration_count );
+		
+		void Win_Screen(void );
 };		
 
 #endif

@@ -132,6 +132,15 @@ void Game::Incriment_Rounds(void )
 	round_counter++;
 }
 
+//To increase the round counters current value.
+void Game::Incriment_Rounds(int* current_player )
+{
+	//int new_number_of_rows
+	round_counter++;
+	
+	Player_class[current_player[0 ] ].Incriment_Win_Count();
+}
+
 //----------------------Player Statistics
 //Used to set player names.
 void Game::Name_Trial(int* iteration_count )
@@ -565,4 +574,25 @@ bool Game::Win_Check(piece_identifier** game_board, int* iteration_count )
 		return false;
 	}
 
+}
+
+void Game::Win_Screen(void )
+{
+	if((Player_class[0 ].Get_Win_Count()[0 ] )> (Player_class[1 ].Get_Win_Count()[0 ] ) )
+	{
+		std::cout<<"" <<std::endl;
+		std::cout<<"" <<std::endl;
+		std::cout<<"" <<std::endl;
+		std::cout<<"Player 1: " <<Player_class[0 ].Get_Name()[0 ] <<" Has won, with a total of ";
+		std::cout<<Player_class[0 ].Get_Win_Count()[0 ] <<" wins. " <<std::endl;
+	}
+	
+	else
+	{
+		std::cout<<"" <<std::endl;
+		std::cout<<"" <<std::endl;
+		std::cout<<"" <<std::endl;
+		std::cout<<"Player 2: " <<Player_class[1 ].Get_Name()[0 ] <<" Has won, with a total of ";
+		std::cout<<Player_class[1 ].Get_Win_Count()[0 ] <<" wins. " <<std::endl;
+	}
 }

@@ -130,63 +130,15 @@ int main(void )
 				//std::cout<<"No win." <<std::endl;
 			}
 		}
+		
+		//Since they won their value needs to be updated.
+		Game_class->Incriment_Rounds(&(current_player ) );
 	}
-	std::cout<<"Wining moment" <<std::endl;
-	//Outer loop for each round.
-	/*while(main_game_loop[0 ] )
-	{
-		//Inner loop for each round itself.
-		while(current_round[0 ] )
-		{
-			holdy_thing= false;
-
-			//Used to keep track of the current turn
-			current_turn[0 ]++;
-	
-			//Used to keep track of which players turn it currently is
-			current_player[0 ]= current_turn[0 ];
-			current_player[0 ]%= 2;
-	
-			std::cout<<"Current player is:" << current_player[0] <<std::endl;
-
-			//Formatted output of the game state
-			Game_class->Board_Output();
-
-			
-			//Input
-			Game_class->Board_Insertion_Intro(current_player );
-			Game_class->Board_Insertion(current_player );
-
-			std::cout<<"" <<std::endl;
-			std::cout<<"After placing your piece:" <<std::endl;
-			Game_class->Board_Output();
-
-			holdy_thing= Game_class->Win_Check(current_player );
-			
-			//Win Check
-			//Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
-			//Win condition
-			if(current_turn[0 ]== 2 )
-			{
-				current_round[0 ]= false;;
-			}
-
-			else
-			{
-				;
-			}
-		}
-
-		//Update the number of rounds value
-		Game_class->Incriment_Rounds();
-		//Update the value so it can be checked again.
-		main_game_loop[0 ]= ((Game_class->Get_Rounds()[0 ] )!= (Game_class->Get_Rounds('t' )[0 ] ) );
-	}*/
 
 	//Win Output.
-	std::cout<< "You win " <<std::endl;
-
-
+	Game_class->Win_Screen();
+	
+	
 	//Clean up
 	delete Game_class;
 	Game_class= NULL;
