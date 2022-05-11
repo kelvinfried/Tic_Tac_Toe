@@ -485,12 +485,15 @@ void Game::Board_Insertion_Intro(int* iteration_count )
 void Game::Board_Insertion(int* iteration_count )
 {
 	int* inputs= new int[2];
+	
 	inputs[0 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[0 ];
 	inputs[1 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[1 ];
 	Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Piece(), &(inputs[0 ] ), &(inputs[1 ] ) );
+	
 	//Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Type(), Player_class[iteration_count[0 ] ].Get_Inputs()[0 ], Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] );
 	//Board_class->Insertion((Player_class[iteration_count[0 ] ].Get_Type() ), (Player_class[iteration_count[0 ] ].Get_Inputs()[0 ] ), (Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] ) );
 	//Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Piece, (Player_class[iteration_count[0 ] ].Get_Inputs()[0 ] ), (Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] ) );
+	
 	delete[] inputs;
 	inputs= NULL;
 }
