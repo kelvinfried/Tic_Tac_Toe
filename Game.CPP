@@ -351,6 +351,7 @@ void Game::Row_Setup(void )
 
 		//Value of 3
 		default:
+			Board_class->Default();
 			break;
 	}
 }
@@ -451,7 +452,39 @@ void Game::Board_Insertion_Intro(int* iteration_count )
 
 void Game::Board_Insertion(int* iteration_count )
 {
-	Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Type(), Player_class[iteration_count[0 ] ].Get_Inputs()[0 ], Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] );
+	int* inputs= new int[2];
+	inputs[0 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[0 ];
+	inputs[1 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[1 ];
+	Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Piece(), &(inputs[0 ] ), &(inputs[1 ] ) );
+	//Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Type(), Player_class[iteration_count[0 ] ].Get_Inputs()[0 ], Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] );
 	//Board_class->Insertion((Player_class[iteration_count[0 ] ].Get_Type() ), (Player_class[iteration_count[0 ] ].Get_Inputs()[0 ] ), (Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] ) );
 	//Board_class->Insertion(Player_class[iteration_count[0 ] ].Get_Piece, (Player_class[iteration_count[0 ] ].Get_Inputs()[0 ] ), (Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] ) );
+	delete[] inputs;
+	inputs= NULL;
+}
+
+bool Game::Win_Check(int* iteration_count )
+{
+	//Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
+	bool hold;
+	int* inputs= new int[2];
+	inputs[0 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[0 ];
+	inputs[1 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[1 ];
+
+	hold= Board_class->Check(inputs, inputs, Player_class[iteration_count[0 ] ].Get_Piece(), Player_class[iteration_count[0 ] ].Get_Points() );
+
+	if(hold )
+	{
+		delete[] inputs;
+		inputs= NULL;
+		return true;
+	}
+
+	else
+	{
+		delete[] inputs;
+		inputs= NULL;
+		return false;
+	}
+
 }

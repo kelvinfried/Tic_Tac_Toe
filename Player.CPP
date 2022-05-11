@@ -17,6 +17,8 @@ Player::Player(void )
 	//To store inputs
 	//Array to store input 1 and 2.
 	inputs= new int[2 ];
+
+	points_so_far= 0;
 };
 
 //Overridden
@@ -111,6 +113,12 @@ void Player::Set_Type(int* new_piece )
 std::string* Player::Get_Piece_Output(void )
 {
 	return Piece_class->Get_Output();
+}
+
+//----------------------Points so Far Output
+int* Player::Get_Points(void )
+{
+	return &(points_so_far );
 }
 
 //----------------------Stats Output

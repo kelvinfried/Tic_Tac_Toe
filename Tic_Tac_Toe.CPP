@@ -47,11 +47,12 @@ int main(void )
 	std::cout<<"Here are the stats so far.." <<std::endl;
 	Game_class->Players_Output();
 	//Board Setup*/
+	Game_class->Piece_Trial();
 	Game_class->Row_Setup();
 		//Set up board
 
 	//Round Count setup
-	//Game_class->Set_Rounds();
+	Game_class->Set_Rounds();
 	
 
 	//Main Game Loop
@@ -66,7 +67,7 @@ int main(void )
 	while(main_game_loop[0 ] )
 	{
 		//Inner loop for each round itself.
-		while(current_round )
+		while(current_round[0 ] )
 		{
 			//Used to keep track of the current turn
 			current_turn[0 ]++;
@@ -88,7 +89,11 @@ int main(void )
 			std::cout<<"" <<std::endl;
 			std::cout<<"After placing your piece:" <<std::endl;
 			Game_class->Board_Output();
+
+			Game_class->Win_Check(current_player );
 			
+			//Win Check
+			//Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
 			//Win condition
 			if(current_turn[0 ]== 2 )
 			{

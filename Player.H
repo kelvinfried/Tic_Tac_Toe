@@ -20,6 +20,8 @@ class Player
 		//To store inputs
 		//Array to store input 1 and 2.
 		int* inputs;
+
+		int points_so_far;
 		
 	public:
 		//-----------------------------------------Constructor:
@@ -49,6 +51,8 @@ class Player
 		//----------------------Piece
 		//Used to get the entire piece out of the class.
 		Piece* Get_Piece(void );
+		//----------------------Points
+		int* Get_Points(void );
 
 		piece_identifier* Get_Type(void );
 		//Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
