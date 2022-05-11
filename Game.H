@@ -60,6 +60,8 @@ class Game
 	
 		//----------------------Board Statistics
 		void Row_Setup(void );
+		
+		piece_identifier** Get_Board(void );
 
 		//----------------------Rules Output 
 		//Used to print out the rules segment
@@ -81,7 +83,7 @@ class Game
 
 		void Board_Insertion(int* iteration_count );
 		
-		bool Win_Check(int* iteration_count );
+		bool Win_Check(piece_identifier** game_board, int* iteration_count );
 };		
 
 #endif

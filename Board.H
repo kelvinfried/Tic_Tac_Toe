@@ -34,6 +34,8 @@ class Board
 
 		int Get_Collums(void );
 		int* Get_Collums(char overload_char );
+		
+		piece_identifier** Get_Board(void );
 
 
 

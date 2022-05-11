@@ -112,7 +112,9 @@ int main(void )
 			std::cout<<"After placing your piece:" <<std::endl;
 			Game_class->Board_Output();
 
-			//win_tracker=Game_class->Win_Check(&(current_player ) );
+			//win_tracker= Game_class->Win_Check(&(current_player ) );
+			//Done to ensure the correct board is used in checking.
+			win_tracker= Game_class->Win_Check((Game_class->Get_Board() ), &(current_player ) );
 
 			if(win_tracker )
 			{

@@ -358,6 +358,11 @@ void Game::Row_Setup(void )
 	std::cout<<"The board will have a size of: " <<size <<std::endl;
 }
 
+piece_identifier** Game::Get_Board(void )
+{
+	return Board_class->Get_Board();
+}
+
 //----------------------Rules Output 
 //Used to print out the rules segment
 void Game::Intro_Output(void )
@@ -490,7 +495,7 @@ void Game::Board_Insertion(int* iteration_count )
 	inputs= NULL;
 }
 
-bool Game::Win_Check(int* iteration_count )
+bool Game::Win_Check(piece_identifier** game_board, int* iteration_count )
 {
 	//Check(int* start_row, int* start_collum, Piece* Piece, int* points_so_far );
 	bool hold;
@@ -499,13 +504,14 @@ bool Game::Win_Check(int* iteration_count )
 	inputs[1 ]= (Player_class[iteration_count[0 ] ].Get_Inputs() )[1 ];
 
 	//hold= Board_class->Check(inputs[, inputs, Player_class[iteration_count[0 ] ].Get_Piece(), Player_class[iteration_count[0 ] ].Get_Points() );
-	hold= Board_class->Check(&(inputs[0 ] ), &(inputs[1 ] ), Player_class[iteration_count[0 ] ].Get_Piece(), Player_class[iteration_count[0 ] ].Get_Points() );
+	hold= Board_class->Check(game_board, &(inputs[0 ] ), &(inputs[1 ] ), Player_class[iteration_count[0 ] ].Get_Piece(), Player_class[iteration_count[0 ] ].Get_Points() );
 	if(hold )
 	{
 		std::cout<<"" <<std::endl;
 		std::cout<<"" <<std::endl;
 		std::cout<<"" <<std::endl;
 		std::cout<<"Winning" <<std::endl;
+		std::cout<<"Points so far is: " <<Player_class[iteration_count[0 ] ].Get_Points()[0 ]<<std::endl;
 		delete[] inputs;
 		inputs= NULL;
 		return true;
@@ -516,8 +522,8 @@ bool Game::Win_Check(int* iteration_count )
 		std::cout<<"" <<std::endl;
 		std::cout<<"" <<std::endl;
 		std::cout<<"" <<std::endl;
-		std::cout<<"Winning" <<std::endl;
-		std::cout<<"Points so far is:" <<std::endl;
+		std::cout<<"Losting" <<std::endl;
+		std::cout<<"Points so far is: " <<Player_class[iteration_count[0 ] ].Get_Points()[0 ]<<std::endl;
 		delete[] inputs;
 		inputs= NULL;
 		return false;

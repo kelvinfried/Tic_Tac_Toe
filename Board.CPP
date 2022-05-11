@@ -125,6 +125,11 @@ int* Board::Get_Collums(char overload_char )
 	return &(collums);
 }
 
+piece_identifier** Board::Get_Board(void )
+{
+	return board;
+}
+
 //-----------------------------------------Board Set Up Section:
 //Creates the board and returns it.
 /*piece_identifier** Board::Setup(void )
