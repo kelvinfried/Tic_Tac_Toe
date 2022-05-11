@@ -90,7 +90,7 @@ void Player::Incriment_Win_Count(void )
 
 //----------------------Piece Type
 //Used to get the entire piece out of the class.
-Piece* Get_Piece(void )
+Piece* Player::Get_Piece(void )
 {
 	return Piece_class;
 }
