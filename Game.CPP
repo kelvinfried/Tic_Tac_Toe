@@ -354,6 +354,8 @@ void Game::Row_Setup(void )
 			Board_class->Default();
 			break;
 	}
+
+	std::cout<<"The board will have a size of: " <<size <<std::endl;
 }
 
 //----------------------Rules Output 
@@ -398,12 +400,18 @@ void Game::Intro_Output(void )
 //Used to ouput the two players stats bars.
 void Game::Players_Output(void )
 {
+		std::cout<<"Current Round is: " << Get_Rounds('t' )[0 ] <<std::endl;
+		for(int x= 0; x< 4; x++ )
+		{
+			std::cout<<"--#---#---#---#--";
+		} 
+
 		int player_1= 1;
 		int player_2= 2;
 
 		std::cout<<"" <<std::endl;
 		Player_class[0 ].Get_Stats(&(player_1 ) );
-		for(int x= 0; x< 2; x++ )
+		for(int x= 0; x< 4; x++ )
 		{
 			std::cout<<"--#---#---#---#--";
 		} 
