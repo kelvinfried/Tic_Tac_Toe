@@ -29,6 +29,8 @@ class Board
 		//-----------------------------------------Getters:
 		//Used to pass these values in to other areas used later on in the game.
 		int Get_Rows(void );
+		int* Get_Rows(char overload_char );
+
 
 		int Get_Collums(void );
 

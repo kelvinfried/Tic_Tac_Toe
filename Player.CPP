@@ -168,8 +168,8 @@ int* Player::Get_Inputs(void )
 }
 
 //Passes both inputs into the input for the player.
-void Player::Set_Inputs(int input_1, int input_2 )
+void Player::Set_Inputs(int* input_1, int* input_2 )
 {
-	inputs[0 ]= input_1;
-	inputs[1 ]= input_2;
+	inputs= input_1;
+	inputs= input_2;
 }

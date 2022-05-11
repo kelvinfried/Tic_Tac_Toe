@@ -110,6 +110,11 @@ int Board::Get_Rows(void )
 	return rows;
 }
 
+int* Board::Get_Rows(char overload_char )
+{
+	return &(rows);
+}
+
 int Board::Get_Collums(void )
 {
 	return collums;

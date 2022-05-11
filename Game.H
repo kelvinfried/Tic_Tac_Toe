@@ -77,7 +77,9 @@ class Game
 		//----------------------Player;
 
 		//----------------------Board;
-		void 
+		void Board_Insertion_Intro(int* iteration_count );
+
+		void Board_Insertion(int* iteration_count );
 
 		
 };		

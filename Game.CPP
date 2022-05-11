@@ -420,6 +420,36 @@ void Game::Board_Output(void )
 
 
 //-----------------------------------------Player Inputs:
-//----------------------Player;
-
 //----------------------Board;
+void Game::Board_Insertion_Intro(int* iteration_count )
+{
+	//Used to store the inputs
+	int player_input_1;
+	int player_input_2;
+	//Used to keep the player in a loop if their inputs are incorrect
+	bool check_1= false;
+	bool check_2= false;
+	
+	//Loop to make the player get the correct input.
+	while((check_1&& check_2) != true )
+	{
+		std::cout<<"" <<std::endl;
+		std::cout<<"Player " <<iteration_count[0 ] <<", please input 2 positions on the board seperated by a space:" <<std::endl;
+		//Sanitise
+		std::cin>>player_input_1 >>player_input_2;
+
+		check_1=Board_class->Input_Sanitization((&(player_input_1) ), Board_class->Get_Rows('t' ) );
+		check_2=Board_class->Input_Sanitization(&(player_input_2), Board_class->Get_Rows('t' ) );
+		//check_1= (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Rows() ) ) )==  (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Collums() ) ) );
+		//check= //Board_class->Insertion_Check(Player_class[iteration_count[0 ] ].Get_Type(), &(player_input_1 ), &(player_input_2 ) )
+	}
+
+	std::cout<<"exit loop" <<std::endl;
+	//When valid Set the inputs for the player.
+	Player_class[iteration_count[0 ] ].Set_Inputs(&(player_input_1 ), &(player_input_2 ) );
+}
+
+void Game::Board_Insertion(int* iteration_count )
+{
+	Board_class->Insertion((Player_class[iteration_count[0 ] ].Get_Type() ), (Player_class[iteration_count[0 ] ].Get_Inputs()[0 ] ), (Player_class[iteration_count[0 ] ].Get_Inputs()[1 ] ) );
+}
