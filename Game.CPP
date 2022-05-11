@@ -438,8 +438,8 @@ void Game::Board_Output(void )
 void Game::Board_Insertion_Intro(int* iteration_count )
 {
 	//Used to store the inputs
-	int player_input_1;
-	int player_input_2;
+	int player_input_1= 0;
+	int player_input_2= 0;
 	//Used to keep the player in a loop if their inputs are incorrect
 	bool check_1= false;
 	bool check_2= false;
