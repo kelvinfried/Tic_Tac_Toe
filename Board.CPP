@@ -1027,11 +1027,11 @@ bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_s
 //-----------------------------------------Win Checks:
 //Note input must be handeled before it is passed
 //Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
-void Vertical_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+void Board::Vertical_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {	
 	//Out of "Board" bounds check:
-	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
-	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+	bool bound_check_x= Input_Sanitization(start_row, Get_Rows('t' ) );
+	bool bound_check_y= Input_Sanitization(start_collum, Get_Collums('t' ) );
 
 	//In the boards bounds
 	if(bound_check_x && bound_check_y )
@@ -1087,8 +1087,8 @@ void Vertical_Check(piece_identifier** board_struct, int* start_row, int* start_
 void Board::Horizontal_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
 {
 	//Out of "Board" bounds check:
-	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
-	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+	bool bound_check_x= Input_Sanitization(start_row, Get_Rows('t' ) );
+	bool bound_check_y= Input_Sanitization(start_collum, Get_Collums('t' ) );
 
 	//In the boards bounds
 	if(bound_check_x && bound_check_y )
@@ -1144,8 +1144,8 @@ void Board::Horizontal_Check(piece_identifier** board_struct, int* start_row, in
 void Board::Linear_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
 {
 	//Out of "Board" bounds check:
-	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
-	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+	bool bound_check_x= Input_Sanitization(start_row, Get_Rows('t' ) );
+	bool bound_check_y= Input_Sanitization(start_collum, Get_Collums('t' ) );
 
 	//In the boards bounds
 	if(bound_check_x && bound_check_y )
@@ -1207,8 +1207,8 @@ void Board::Linear_Check(piece_identifier** board_struct, int* start_row, int* s
 void Board::Linear_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
 {
 	//Out of "Board" bounds check:
-	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
-	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+	bool bound_check_x= Input_Sanitization(start_row, Get_Rows('t' ) );
+	bool bound_check_y= Input_Sanitization(start_collum, Get_Collums('t' ) );
 
 	//In the boards bounds
 	if(bound_check_x && bound_check_y )
@@ -1244,7 +1244,7 @@ void Board::Linear_Check(piece_identifier** board_struct, int* start_row, int* s
 
 				//std::cout<<"Called next set" <<std::endl;
 				Linear_Check(board_struct, &(previous_row ), &(next_collum ), Piece, points_so_far, 't' );
-				Linear_Checkboard_struct, (&(next_row ), &(previous_collum ), Piece, points_so_far, 't' );
+				Linear_Check(board_struct, &(next_row ), &(previous_collum ), Piece, points_so_far, 't' );
 			}
 			
 			else

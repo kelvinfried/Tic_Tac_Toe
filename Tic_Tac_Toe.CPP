@@ -103,7 +103,7 @@ int main(void )
 			std::cout<<"After placing your piece:" <<std::endl;
 			Game_class->Board_Output();
 
-			win_tracker=Game_class->Win_Check(&(current_player ) );
+			//win_tracker=Game_class->Win_Check(&(current_player ) );
 
 			if(win_tracker )
 			{

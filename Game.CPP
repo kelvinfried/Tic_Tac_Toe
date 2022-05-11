@@ -447,15 +447,15 @@ void Game::Board_Insertion_Intro(int* iteration_count )
 		//Sanitise
 		std::cin>>player_input_1 >>player_input_2;
 
-		int row_value= (Board_class->Get_Rows('t' ) )[0 ];
-		row_value= row_value+ 1;
+		int* row_value= Board_class->Get_Rows('t' );
+		row_value[0 ]= row_value[0 ]+ 1;
 
-		int collum_value= (Board_class->Get_Collums('t' ) )[0 ];
-		collum_value= collum_value+ 1;
+		int* collum_value= Board_class->Get_Collums('t' );
+		collum_value[0 ]= collum_value[0 ]+ 1;
 
 
-		check_1=Board_class->Input_Sanitization((&(player_input_1) ), &(row_value ) );
-		check_2=Board_class->Input_Sanitization(&(player_input_2), &(collum_value ) );
+		check_1=Board_class->Input_Sanitization((&(player_input_1) ), row_value );
+		check_2=Board_class->Input_Sanitization(&(player_input_2), collum_value );
 		//check_1= (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Rows() ) ) )==  (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Collums() ) ) );
 		//check= //Board_class->Insertion_Check(Player_class[iteration_count[0 ] ].Get_Type(), &(player_input_1 ), &(player_input_2 ) )
 	}
@@ -505,7 +505,7 @@ bool Game::Win_Check(int* iteration_count )
 		std::cout<<"" <<std::endl;
 		std::cout<<"" <<std::endl;
 		std::cout<<"Winning" <<std::endl;
-		std::cout<<"Points so far is <<std::endl;
+		std::cout<<"Points so far is:" <<std::endl;
 		delete[] inputs;
 		inputs= NULL;
 		return false;
