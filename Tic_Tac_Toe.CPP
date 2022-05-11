@@ -69,6 +69,7 @@ int main(void )
 	int current_turn= 0;
 	int current_player= -1;
 	bool win_tracker= false;
+	bool game_tracker= true;
 
 
 	//Outer loop for each round
@@ -77,9 +78,10 @@ int main(void )
 		//Reset every round.
 		win_tracker= false;
 		current_turn= -1;
+		game_tracker= true;
 
 		//Inner loop for the main game logic.
-		while(true )
+		while(game_tracker )
 		{
 			current_turn++;
 
@@ -105,6 +107,7 @@ int main(void )
 
 			if(win_tracker )
 			{
+				game_tracker= false;
 				break;
 			}
 		
@@ -115,6 +118,7 @@ int main(void )
 			}
 		}
 	}
+	std::cout<<"Wining moment" <<std::endl;
 	//Outer loop for each round.
 	/*while(main_game_loop[0 ] )
 	{

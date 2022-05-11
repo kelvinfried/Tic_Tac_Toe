@@ -1023,3 +1023,348 @@ bool Board::Check(int* start_row, int* start_collum, Piece* Piece, int* points_s
 	//std::cout<<"No win" <<std::endl;
 	return false;
 }
+
+//-----------------------------------------Win Checks:
+//Note input must be handeled before it is passed
+//Horizontal_Check for if the player has placed "row" number of their pieces in a row on the collums.
+void Vertical_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+{	
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board_struct[(start_row[0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+			//Check to see if the piece is valid against the previously keyed pieces.
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+				
+
+				//offset vairables 
+				int next_row= start_row[0 ];
+				next_row++;
+
+				int previous_row= start_row[0 ];
+				previous_row--;
+
+				//std::cout<<"Called next set" <<std::endl;
+				Vertical_Check(board_struct, &(next_row ), start_collum, Piece, points_so_far );
+				Vertical_Check(board_struct, &(previous_row ), start_collum, Piece, points_so_far );
+			}
+
+			else
+			{
+				//std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		//If the piece type does not match
+		else
+		{
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+	
+	//Outside of the Board Bounds.
+	else
+	{
+		//std::cout<<start_row[0 ] <<" is out of bounds." <<std::endl;
+	}
+}
+
+//Vertical check, for checking  if the player has placed "row" number of theur pieces in a collum on the rows;
+void Board::Horizontal_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
+{
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board_struct[(start_row[0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+			//Check to see if the piece is valid against the previously keyed pieces.
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+				
+
+				//offset vairables 
+				int next_collum= start_collum[0 ];
+				next_collum++;
+
+				int previous_collum= start_collum[0 ];
+				previous_collum--;
+
+				//std::cout<<"Called next set" <<std::endl;
+				Horizontal_Check(board_struct, start_row, &(next_collum ), Piece, points_so_far, 't' );
+				Horizontal_Check(board_struct, start_row, &(previous_collum ), Piece, points_so_far, 't' );
+			}
+
+			else
+			{
+				//std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		//If the piece type does not match
+		else
+		{
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+	
+	//Outside of the Board Bounds.
+	else
+	{
+		//std::cout<<start_collum[0 ] <<" is out of bounds." <<std::endl;
+	}
+}
+
+//Linear check, checks for diagonals. i.e x -> y or y -> x
+void Board::Linear_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+{
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board_struct[(start_row[ 0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+
+				//offset vairables 
+					//"Forward"
+				int next_row= start_row[0 ];
+				next_row++;
+
+				int next_collum= start_collum[0 ];
+				next_collum++;
+
+					//"Backwards"
+				int previous_row= start_row[0 ];
+				previous_row--;
+
+				int previous_collum= start_collum[0 ];
+				previous_collum--;
+
+				//std::cout<<"Called next set" <<std::endl;
+				Linear_Check(board_struct, &(next_row ), &(next_collum ), Piece, points_so_far );
+				Linear_Check(board_struct, &(previous_row ), &(previous_collum ), Piece, points_so_far );
+			}
+			
+			else
+			{
+				//std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		else
+		{
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+		
+	//Outside of the boards bound:
+	else
+	{
+		//std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
+	}
+}
+
+//Linear check, checks for diagonals. i.e y -> x and reverse
+void Board::Linear_Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far, char overload_char )
+{
+	//Out of "Board" bounds check:
+	bool bound_check_x= Input_Sanitization(start_row, &(rows ) );
+	bool bound_check_y= Input_Sanitization(start_collum, &(collums ) );
+
+	//In the boards bounds
+	if(bound_check_x && bound_check_y )
+	{
+		//Reads the piece on the board
+		piece_identifier board_piece= board_struct[(start_row[ 0 ] ) ][(start_collum[0 ] ) ];
+
+		//Checks if the piece on the board is the same as the one passed in by the player.
+		if(board_piece== Piece->Get_Type()[0 ] )
+		{
+			//Stores function output.
+			bool commit_test= Insertion_Check(start_row, start_collum );
+
+			if(commit_test )
+			{
+				//Begin commit into the board.
+				Commit(start_row, start_collum, points_so_far );
+
+				//offset vairables 
+					//"Forward"
+				int next_row= start_row[0 ];
+				next_row++;
+
+				int next_collum= start_collum[0 ];
+				next_collum++;
+
+					//"Backwards"
+				int previous_row= start_row[0 ];
+				previous_row--;
+
+				int previous_collum= start_collum[0 ];
+				previous_collum--;
+
+				//std::cout<<"Called next set" <<std::endl;
+				Linear_Check(board_struct, &(previous_row ), &(next_collum ), Piece, points_so_far, 't' );
+				Linear_Checkboard_struct, (&(next_row ), &(previous_collum ), Piece, points_so_far, 't' );
+			}
+			
+			else
+			{
+				//std::cout<<"Test commit failed: " <<std::endl;
+			}
+		}
+
+		else
+		{
+			//std::cout<<"Piece value does not match, board: " <<board_piece <<" while player input is: " <<Piece->Get_Type()[0 ] <<std::endl;
+		}
+	}
+		
+	//Outside of the boards bound:
+	else
+	{
+		//std::cout<<start_row[0 ] <<", " <<start_collum[0 ] <<" is out of bounds." <<std::endl;
+	}
+}
+
+//Combines all the checks into one function with additional information.
+bool Board::Check(piece_identifier** board_struct, int* start_row, int* start_collum, Piece* Piece, int* points_so_far )
+{
+	//Vertical
+	//Keeps track a hold of these values.
+		//Positions
+	int start_x_1= start_row[0 ];
+	int start_y_1= start_row[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Vertical_Check(board_struct, &(start_x_1 ), &(start_y_1 ), Piece, points_so_far );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		//std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		//std::cout<<"First check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
+	}
+
+	//Horzontal
+	//Reset vairables.
+		//Positions
+	int start_x_2= start_row[0 ];
+	int start_y_2= start_collum[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Horizontal_Check(board_struct, &(start_x_2 ), &(start_y_2 ), Piece, points_so_far, 't' );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		//std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		//std::cout<<"Second check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows()  <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
+	}
+
+	//Linear (1)
+	//Reset vairables.
+		//Positions
+	int start_x_3= start_row[0 ];
+	int start_y_3= start_collum[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Linear_Check(board_struct, &(start_x_3 ), &(start_y_3 ), Piece, points_so_far );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		//std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		//std::cout<<"Third check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
+	}
+
+	//Linear (2)
+	//Reset vairables.
+		//Positions
+	int start_x_4= start_row[0 ];
+	int start_y_4= start_collum[0 ];
+		//Points so far
+	points_so_far[0 ]= 0;
+		//Set Keying Array to default.
+	Default(true );
+
+	Linear_Check(board_struct, &(start_x_4 ), &(start_y_4 ), Piece, points_so_far, 't' );
+	//If the win condition was met.
+	if(points_so_far[0 ]== Get_Rows() )
+	{
+		//std::cout<<"First check passed." <<std::endl;
+		return true;
+	}
+	
+	else
+	{
+		//std::cout<<"Forth check failed, points so far is: " <<points_so_far[0 ] <<" while rows is: " <<Get_Rows() <<std::endl;//Passed
+		//std::cout<<"" <<std::endl;//Passed
+	}
+
+	//std::cout<<"No win" <<std::endl;
+	return false;
+}
