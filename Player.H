@@ -47,6 +47,9 @@ class Player
 		void Incriment_Win_Count(void );
 
 		//----------------------Piece
+		//Used to get the entire piece out of the class.
+		Piece* Get_Piece(void );
+
 		piece_identifier* Get_Type(void );
 		//Used to set the piece after the player is created, done as with my current method I cannot use anything other than the default constructor.
 		void Set_Type(int* new_piece );

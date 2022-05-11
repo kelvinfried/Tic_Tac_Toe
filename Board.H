@@ -33,6 +33,8 @@ class Board
 
 
 		int Get_Collums(void );
+		int* Get_Collums(char overload_char );
+
 
 
 		//-----------------------------------------Board Set Up Section:

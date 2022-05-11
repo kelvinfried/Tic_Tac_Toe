@@ -439,7 +439,7 @@ void Game::Board_Insertion_Intro(int* iteration_count )
 		std::cin>>player_input_1 >>player_input_2;
 
 		check_1=Board_class->Input_Sanitization((&(player_input_1) ), Board_class->Get_Rows('t' ) );
-		check_2=Board_class->Input_Sanitization(&(player_input_2), Board_class->Get_Rows('t' ) );
+		check_2=Board_class->Input_Sanitization(&(player_input_2), Board_class->Get_Collums('t' ) );
 		//check_1= (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Rows() ) ) )==  (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Collums() ) ) );
 		//check= //Board_class->Insertion_Check(Player_class[iteration_count[0 ] ].Get_Type(), &(player_input_1 ), &(player_input_2 ) )
 	}

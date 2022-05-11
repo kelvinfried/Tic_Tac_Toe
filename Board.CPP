@@ -120,10 +120,14 @@ int Board::Get_Collums(void )
 	return collums;
 }
 
+int* Board::Get_Collums(char overload_char )
+{
+	return &(collums);
+}
 
 //-----------------------------------------Board Set Up Section:
 //Creates the board and returns it.
-piece_identifier** Board::Setup(void )
+/*piece_identifier** Board::Setup(void )
 {
 	board= new piece_identifier*[collums ];
 		//Declares the rows, Iterative approach to have a dynamic size during runtime.
@@ -133,7 +137,7 @@ piece_identifier** Board::Setup(void )
 	}
 
 	return board;
-}
+}*/
 
 //----------------------For Setting Defaults Across the board:
 //Sets the default value for the entire board. -Takes in the board, and the number of rows, collums
