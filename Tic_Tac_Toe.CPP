@@ -86,8 +86,17 @@ int main(void )
 			current_turn++;
 
 			//Used to keep track of which player is going to play
-			current_player= current_turn;
-			current_player= current_player% 2;
+			if(current_turn== 0 )
+			{
+				current_player= 0;
+			}
+			
+			else
+			{
+				current_player= current_turn;
+				current_player= current_player;
+				current_player= current_player% 2;
+			}
 
 			//Formatted game State (Output):
 			Game_class->Board_Output();
@@ -113,8 +122,8 @@ int main(void )
 		
 			else
 			{
-				std::cout<<"" <<std::endl;
-				std::cout<<"No win." <<std::endl;
+				//std::cout<<"" <<std::endl;
+				//std::cout<<"No win." <<std::endl;
 			}
 		}
 	}

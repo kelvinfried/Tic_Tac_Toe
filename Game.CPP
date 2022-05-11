@@ -424,6 +424,7 @@ void Game::Players_Output(void )
 void Game::Board_Output(void )
 {
 	Players_Output();
+	std::cout<<"" <<std::endl;
 	Board_class->Output(Pieces_class );
 }
 
@@ -443,26 +444,37 @@ void Game::Board_Insertion_Intro(int* iteration_count )
 	while((check_1&& check_2) != true )
 	{
 		std::cout<<"" <<std::endl;
-		std::cout<<"Player " <<iteration_count[0 ] <<", please input 2 positions on the board seperated by a space:" <<std::endl;
-		//Sanitise
-		std::cin>>player_input_1 >>player_input_2;
+		std::cout<<"Player " <<iteration_count[0 ] <<", please input the X position you want to write on the board" <<std::endl;
+		std::cin>>player_input_1;
+		
+		std::cout<<"" <<std::endl;
+		std::cout<<"Player " <<iteration_count[0 ] <<", please input the Y position you want to write on the board" <<std::endl;
+		std::cin>>player_input_2;
 
-		int* row_value= Board_class->Get_Rows('t' );
-		row_value[0 ]= row_value[0 ]+ 1;
+		//Getting the array bounds for the input sanitization
+		//Incrimented to account for the bounds of the array.
+		int row_value= Board_class->Get_Rows();
+		row_value++;
+		int* row_pointer= &(row_value );
+		//row_value[0 ]= row_value[0 ]+ 1;
 
-		int* collum_value= Board_class->Get_Collums('t' );
-		collum_value[0 ]= collum_value[0 ]+ 1;
+		int collum_value= Board_class->Get_Collums();
+		//collum_value[0 ]= collum_value[0 ]+ 1;
+		collum_value++;
+		int* collum_pointer= &(collum_value );
 
 
-		check_1=Board_class->Input_Sanitization((&(player_input_1) ), row_value );
-		check_2=Board_class->Input_Sanitization(&(player_input_2), collum_value );
+		check_1=Board_class->Input_Sanitization(&(player_input_1), row_pointer, 't' );
+		check_2=Board_class->Input_Sanitization(&(player_input_2), collum_pointer, 't' );
+		
 		//check_1= (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Rows() ) ) )==  (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Collums() ) ) );
 		//check= //Board_class->Insertion_Check(Player_class[iteration_count[0 ] ].Get_Type(), &(player_input_1 ), &(player_input_2 ) )
 	}
 
-	std::cout<<"exit loop" <<std::endl;
+	//std::cout<<"exit loop" <<std::endl;
 	//When valid Set the inputs for the player.
 	Player_class[iteration_count[0 ] ].Set_Inputs(&(player_input_1 ), &(player_input_2 ) );
+	std::cout<<"" <<std::endl;
 }
 
 void Game::Board_Insertion(int* iteration_count )
