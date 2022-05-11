@@ -224,10 +224,9 @@ void Game::Piece_Trial(void )
 	int player_1, player_2;
 	//Used to Keep the player inside of a loop until their input is correct 
 	bool input_check= true;
-
-	//Used to check for which piece assignment should be used
-	bool piece_check;
 	
+	bool piece_check= false;
+
 	//Player 1's loop
 	while(input_check )
 	{
@@ -247,8 +246,8 @@ void Game::Piece_Trial(void )
 		{
 			;
 		}
-
 	}
+
 	//Reset the loop value for the next player.
 	input_check= true;	
 
@@ -445,41 +444,75 @@ void Game::Board_Insertion_Intro(int* iteration_count )
 	bool check_1= false;
 	bool check_2= false;
 	
-	//Loop to make the player get the correct input.
-	while((check_1&& check_2) != true )
+	//Used to ensure the insertion is correct.
+	bool insertion= false;
+	bool insertion_return= false;
+	
+	
+	if(insertion== false )
 	{
 		std::cout<<"" <<std::endl;
-		std::cout<<"Player " <<iteration_count[0 ] <<", please input the X position you want to write on the board" <<std::endl;
-		std::cin>>player_input_1;
+		std::cout<<"Please enter a position where there are no pieces." <<std::endl;
 		
-		std::cout<<"" <<std::endl;
-		std::cout<<"Player " <<iteration_count[0 ] <<", please input the Y position you want to write on the board" <<std::endl;
-		std::cin>>player_input_2;
+		//Loop to make the player get the correct input.
+		while((check_1&& check_2) != true )
+		{
+			std::cout<<"" <<std::endl;
+			std::cout<<"Player " <<iteration_count[0 ] <<", please input the X position you want to write on the board" <<std::endl;
+			
+			std::cin>>player_input_1;
+			
+			std::cout<<"" <<std::endl;
+			std::cout<<"Player " <<iteration_count[0 ] <<", please input the Y position you want to write on the board" <<std::endl;
+			
+			std::cin>>player_input_2;
 
-		//Getting the array bounds for the input sanitization
-		//Incrimented to account for the bounds of the array.
-		int row_value= Board_class->Get_Rows();
-		row_value++;
-		int* row_pointer= &(row_value );
-		//row_value[0 ]= row_value[0 ]+ 1;
+			//Getting the array bounds for the input sanitization
+			//Incrimented to account for the bounds of the array.
+			int row_value= Board_class->Get_Rows();
+			row_value++;
+			int* row_pointer= &(row_value );
+			//row_value[0 ]= row_value[0 ]+ 1;
 
-		int collum_value= Board_class->Get_Collums();
-		//collum_value[0 ]= collum_value[0 ]+ 1;
-		collum_value++;
-		int* collum_pointer= &(collum_value );
+			int collum_value= Board_class->Get_Collums();
+			//collum_value[0 ]= collum_value[0 ]+ 1;
+			collum_value++;
+			int* collum_pointer= &(collum_value );
 
 
-		check_1=Board_class->Input_Sanitization(&(player_input_1), row_pointer, 't' );
-		check_2=Board_class->Input_Sanitization(&(player_input_2), collum_pointer, 't' );
+			check_1=Board_class->Input_Sanitization(&(player_input_1), row_pointer, 't' );
+			check_2=Board_class->Input_Sanitization(&(player_input_2), collum_pointer, 't' );
+			
+			//check_1= (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Rows() ) ) )==  (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Collums() ) ) );
+			//check= //Board_class->Insertion_Check(Player_class[iteration_count[0 ] ].Get_Type(), &(player_input_1 ), &(player_input_2 ) )
+		}
 		
-		//check_1= (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Rows() ) ) )==  (Board_class->Input_Sanitization(player_input_1, &(Board_class->Get_Collums() ) ) );
-		//check= //Board_class->Insertion_Check(Player_class[iteration_count[0 ] ].Get_Type(), &(player_input_1 ), &(player_input_2 ) )
+		//Once range check is done, now to check the placement is valid.
+		if( (insertion_return= Board_class->Insertion_Trial(&(player_input_1 ), &(player_input_1 ) ) )== true )
+		{
+		//If valid
+			std::cout<<"" <<std::endl;
+			std::cout<<"Insertion valid" <<std::endl;
+			
+			//To stop the looping
+			insertion= false;
+		}
+		
+		//If not
+		else
+		{
+			std::cout<<"" <<std::endl;
+			std::cout<<"Insertion valid" <<std::endl;
+		}
 	}
-
-	//std::cout<<"exit loop" <<std::endl;
-	//When valid Set the inputs for the player.
-	Player_class[iteration_count[0 ] ].Set_Inputs(&(player_input_1 ), &(player_input_2 ) );
-	std::cout<<"" <<std::endl;
+	
+	else
+	{
+		//std::cout<<"exit loop" <<std::endl;
+		//When valid Set the inputs for the player.
+		Player_class[iteration_count[0 ] ].Set_Inputs(&(player_input_1 ), &(player_input_2 ) );
+		std::cout<<"" <<std::endl;
+	}
 }
 
 void Game::Board_Insertion(int* iteration_count )

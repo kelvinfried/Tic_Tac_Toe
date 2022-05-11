@@ -104,7 +104,9 @@ int main(void )
 			std::cout<<"Current player is: " <<current_player <<std::endl;
 
 			//Input
+				//Get
 			Game_class->Board_Insertion_Intro(&(current_player ) );
+				//Pass onto board.
 			Game_class->Board_Insertion(&(current_player ) );
 
 			//Output Again:
